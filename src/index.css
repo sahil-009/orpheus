@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   Orpheus Financial — Blue / Dark FinTech Design System
+   ========================================================= */
+
+@layer base {
+  :root {
+    --blue:        #4361EE;
+    --blue-light:  #6B8AF4;
+    --blue-pale:   #EEF2FF;
+    --blue-ultra:  #F5F7FF;
+    --blue-dark:   #2D4BCC;
+    --blue-deep:   #1A2E8A;
+    --charcoal:    #0A0F1E;
+    --charcoal-mid:#0F1629;
+    --charcoal-soft:#151D36;
+    --off-white:   #F5F7FF;
+    --text-ink:    #0A0F1E;
+    --text-muted:  #64748B;
+    --line:        rgba(67,97,238,0.15);
+    --line-strong: rgba(67,97,238,0.30);
+
+    /* Shadcn HSL tokens */
+    --background: 0 0% 100%;
+    --foreground: 220 47% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 47% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 47% 8%;
+    --primary: 231 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 231 84% 95%;
+    --secondary-foreground: 220 47% 8%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 40%;
+    --accent: 231 84% 95%;
+    --accent-foreground: 220 47% 8%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 231 84% 60%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 231 84% 60%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    color: var(--text-ink);
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body { overflow-x: hidden; }
+  .font-display { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .font-serif   { font-family: 'DM Serif Display', Georgia, serif; }
+  .font-body    { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+}
+
+/* =========================================================
+   Custom Cursor — Blue edition
+   ========================================================= */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99999;
+  border-radius: 9999px; will-change: transform;
+}
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--blue);
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 40px; height: 40px;
+  border: 1.5px solid var(--blue);
+  background: transparent;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.25s ease, border-color 0.25s ease, width 0.2s ease, height 0.2s ease;
+}
+.cursor-ring.is-hover { width: 52px; height: 52px; background: rgba(67,97,238,0.1); }
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+  * { cursor: auto !important; }
+}
+@media (pointer: fine) { body, body * { cursor: none; } }
+
+/* =========================================================
+   Grid textures
+   ========================================================= */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(67,97,238,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67,97,238,0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.grid-texture-light {
+  background-image:
+    linear-gradient(rgba(67,97,238,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67,97,238,0.09) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.grid-texture-white {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* =========================================================
+   Glass
+   ========================================================= */
+.glass-dark {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(67,97,238,0.18);
+}
+.glass-blue {
+  background: rgba(67,97,238,0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(67,97,238,0.22);
+}
+
+/* =========================================================
+   Text utilities
+   ========================================================= */
+.text-balance { text-wrap: balance; }
+.reveal-line  { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.reveal-word  { display: inline-block; will-change: transform, opacity; }
+.reveal-char  { display: inline-block; will-change: transform, opacity; }
+
+/* Blue shimmer */
+@keyframes shimmer-sweep {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.blue-shimmer {
+  background: linear-gradient(90deg, #4361EE 0%, #6B8AF4 35%, #A5BEFF 50%, #6B8AF4 65%, #4361EE 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+.blue-shimmer-slow {
+  background: linear-gradient(90deg, #2D4BCC 0%, #4361EE 40%, #6B8AF4 60%, #4361EE 80%, #2D4BCC 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-sweep 5s linear infinite;
+}
+/* Legacy alias for components still using gold-shimmer */
+.gold-shimmer {
+  background: linear-gradient(90deg, #4361EE 0%, #6B8AF4 35%, #A5BEFF 50%, #6B8AF4 65%, #4361EE 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+.gold-shimmer-slow {
+  background: linear-gradient(90deg, #2D4BCC 0%, #4361EE 40%, #6B8AF4 60%, #4361EE 80%, #2D4BCC 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-sweep 5s linear infinite;
+}
+
+/* =========================================================
+   Floating particles (light-section bg)
+   ========================================================= */
+@keyframes p-float {
+  0%   { transform: translateY(0)     scale(1);   opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 0.75; }
+  100% { transform: translateY(-90px) scale(0.65); opacity: 0; }
+}
+@keyframes p-sway {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(14px); }
+}
+
+/* =========================================================
+   Pulse
+   ========================================================= */
+@keyframes pulse-dot  { 0%,100% { transform:scale(1);opacity:1; } 50% { transform:scale(1.5);opacity:0.5; } }
+@keyframes pulse-ring { 0% { transform:scale(0.85);opacity:0.9; } 100% { transform:scale(2.8);opacity:0; } }
+.pulse-dot  { animation: pulse-dot  2s ease-in-out infinite; }
+.pulse-ring { animation: pulse-ring 2.6s cubic-bezier(0.215,0.61,0.355,1) infinite; }
+
+/* =========================================================
+   Card hover
+   ========================================================= */
+.card-hover {
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 56px rgba(67,97,238,0.2);
+  border-color: rgba(67,97,238,0.45);
+}
+
+/* =========================================================
+   Marquee
+   ========================================================= */
+@keyframes marquee-ltr { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+.marquee-track {
+  display: flex; width: max-content;
+  animation: marquee-ltr 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* =========================================================
+   Selection & scrollbar
+   ========================================================= */
+::selection          { background: var(--blue); color: #fff; }
+::-webkit-scrollbar  { width: 8px; height: 8px; }
+::-webkit-scrollbar-track  { background: #0A0F1E; }
+::-webkit-scrollbar-thumb  { background: rgba(67,97,238,0.35); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(67,97,238,0.65); }
+
+/* =========================================================
+   Lenis
+   ========================================================= */
+html.lenis, html.lenis body           { height: auto; }
+.lenis.lenis-smooth                   { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped                  { overflow: hidden; }
+
+/* =========================================================
+   Utilities
+   ========================================================= */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.stat-number  { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+.border-glow-blue {
+  box-shadow: 0 0 0 1px rgba(67,97,238,0.35), 0 0 24px rgba(67,97,238,0.14);
+}
+.orb {
+  position: absolute; border-radius: 9999px;
+  filter: blur(80px); pointer-events: none; will-change: transform;
+}
+
+/* ─── hr ───────────────────────────────────────────────── */
+.hr-blue {
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(67,97,238,0.4), transparent);
+}
