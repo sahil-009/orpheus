@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "@/lib/gsapSetup";
 import {
-  ArrowRight, ChevronUp,
+  ArrowRight, ChevronUp, Linkedin, MessageCircle,
 } from "lucide-react";
 import {
   LineChart, Line, ResponsiveContainer,
@@ -52,6 +52,7 @@ const avatars = [
 ];
 
 export function HomeHero() {
+  const [email, setEmail] = useState("");
   const leftRef   = useRef<HTMLDivElement>(null);
   const rightRef  = useRef<HTMLDivElement>(null);
   const card1     = useRef<HTMLDivElement>(null);
@@ -60,6 +61,7 @@ export function HomeHero() {
   const card4     = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     const leftEls = leftRef.current?.querySelectorAll("[data-anim]") ?? [];
     tl.fromTo(leftEls,
@@ -70,15 +72,17 @@ export function HomeHero() {
         { x: 0, opacity: 1, duration: 1.0, stagger: 0.15, ease: "power3.out" }, 0.55);
 
     /* floating */
-    const floats = [
-      { el: card1.current, y: -14, dur: 5.5 },
-      { el: card2.current, y:  12, dur: 6.2 },
-      { el: card3.current, y:  -9, dur: 4.8 },
-      { el: card4.current, y:  11, dur: 5.8 },
-    ];
-    floats.forEach(({ el, y, dur }, i) => {
-      gsap.to(el, { y, duration: dur, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 2 + i * 0.3 });
-    });
+    if (!prefersReducedMotion) {
+      const floats = [
+        { el: card1.current, y: -14, dur: 5.5 },
+        { el: card2.current, y:  12, dur: 6.2 },
+        { el: card3.current, y:  -9, dur: 4.8 },
+        { el: card4.current, y:  11, dur: 5.8 },
+      ];
+      floats.forEach(({ el, y, dur }, i) => {
+        gsap.to(el, { y, duration: dur, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 2 + i * 0.3 });
+      });
+    }
   }, []);
 
   return (

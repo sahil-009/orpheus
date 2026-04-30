@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, setupGsap } from "@/lib/gsapSetup";
 import { ArrowRight, Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import WorldMapDemo from "@/components/world-map-demo";
 
 /* ═══════════════════════════════════════════════════════════════
    GLOBE — orthographic projection, center lat=15°N lon=30°E
@@ -228,6 +229,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 ══════════════════════════════════════════════════════════════ */
 export function HomeContact() {
   const sectionRef = useRef<HTMLElement>(null);
+  const footprintRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [sent, setSent] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
@@ -240,6 +242,23 @@ export function HomeContact() {
       y: 0, opacity: 1, stagger: 0.1, duration: 0.9, ease: "power3.out",
       scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
     });
+
+    if (footprintRef.current) {
+      const q = footprintRef.current.querySelectorAll("[data-fp]");
+      gsap.fromTo(
+        q,
+        { opacity: 0, y: 24, scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: footprintRef.current, start: "top 78%", once: true },
+        },
+      );
+    }
   }, []);
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -374,15 +393,24 @@ export function HomeContact() {
 
           {/* ══ RIGHT: Globe ════════════════════════════ */}
           <div data-ca className="flex justify-center lg:justify-end">
-            <div className="relative">
+            <div ref={footprintRef} className="relative">
               {/* label above */}
-              <p className="text-center font-body text-[10px] uppercase tracking-[3px] mb-6"
+              <p data-fp className="text-center font-body text-[10px] uppercase tracking-[3px] mb-6"
                 style={{ color: "rgba(255,255,255,0.25)" }}>
                 Our Global Footprint
               </p>
-              <Globe />
+              <div data-fp className="rounded-2xl border border-white/10 bg-[#070B1C] p-2">
+                <WorldMapDemo />
+              </div>
+              <p
+                data-fp
+                className="mt-4 text-center font-body text-[12px] uppercase tracking-[2px]"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                Headquartered in Business Bay, Dubai.
+              </p>
               {/* market list below globe */}
-              <div className="mt-6 flex flex-wrap justify-center gap-2 max-w-[400px] mx-auto">
+              <div data-fp className="mt-6 flex flex-wrap justify-center gap-2 max-w-[400px] mx-auto">
                 {["UAE","BVI","Cayman","Hong Kong","Singapore","Mauritius","Seychelles","Luxembourg","Malta","UK","Switzerland","Cyprus"].map(m => (
                   <span key={m}
                     className="rounded-full px-2.5 py-1 font-display text-[9px] uppercase tracking-[1.5px] font-semibold"
