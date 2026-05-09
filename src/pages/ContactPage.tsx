@@ -52,7 +52,7 @@ function ContactForm() {
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
           <label className={labelCls}>Full Name</label>
-          <input required name="name" type="text" className={fieldCls} placeholder="Jane Doe" />
+          <input required name="name" type="text" className={fieldCls} placeholder="Your Name" />
         </div>
         <div>
           <label className={labelCls}>Company</label>

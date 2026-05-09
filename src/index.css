@@ -159,14 +159,31 @@
    Floating particles (light-section bg)
    ========================================================= */
 @keyframes p-float {
-  0%   { transform: translateY(0)     scale(1);   opacity: 0; }
-  12%  { opacity: 1; }
-  88%  { opacity: 0.75; }
-  100% { transform: translateY(-90px) scale(0.65); opacity: 0; }
+  0%   { transform: translateY(0)      scale(1);   opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 0.85; }
+  100% { transform: translateY(-130px) scale(0.55); opacity: 0; }
 }
 @keyframes p-sway {
   0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(14px); }
+  50%      { transform: translateX(22px); }
+}
+
+/* Bouncing balls — used by GoldBalls bg layer */
+@keyframes ball-drift {
+  0%   { transform: translate(0,0) scale(1); }
+  25%  { transform: translate(60px,-40px) scale(1.05); }
+  50%  { transform: translate(-30px,80px) scale(0.92); }
+  75%  { transform: translate(-80px,-20px) scale(1.08); }
+  100% { transform: translate(0,0) scale(1); }
+}
+@keyframes ball-pulse {
+  0%, 100% { opacity: 0.18; filter: blur(40px); }
+  50%      { opacity: 0.35; filter: blur(56px); }
+}
+@keyframes ball-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* =========================================================
@@ -195,7 +212,7 @@
 @keyframes marquee-ltr { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
 .marquee-track {
   display: flex; width: max-content;
-  animation: marquee-ltr 30s linear infinite;
+  animation: marquee-ltr 16s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
 

@@ -34,12 +34,12 @@ function gen(count: number): Dot[] {
       id: i,
       left:      a * 94 + 3,           // 3–97 %
       top:       b * 94 + 3,           // 3–97 %
-      size:      c * 5  + 2,           // 2–7 px
-      delay:     d * 7,                // 0–7 s
-      dur:       a * 4  + 3,           // 3–7 s
-      swayDur:   b * 3  + 2.5,         // 2.5–5.5 s
-      swayDelay: c * 4,                // 0–4 s
-      opacity:   d * 0.22 + 0.06,      // 0.06–0.28
+      size:      c * 6  + 2,           // 2–8 px
+      delay:     d * 3.5,              // 0–3.5 s (was 7)
+      dur:       a * 1.6 + 1.4,        // 1.4–3 s (was 3–7)
+      swayDur:   b * 1.4 + 1.1,        // 1.1–2.5 s (was 2.5–5.5)
+      swayDelay: c * 2,                // 0–2 s
+      opacity:   d * 0.32 + 0.10,      // 0.10–0.42 (was 0.06–0.28)
       kind:      (["dot", "ring", "dot", "diamond"] as Dot["kind"][])[i % 4],
     };
   });

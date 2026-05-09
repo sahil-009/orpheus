@@ -17,9 +17,9 @@ export function ParticleCanvas({ rgb = "212,175,55", rgb2 = "200,169,106" }: { r
 
     let animId: number;
     let W = 0, H = 0;
-    const COUNT = 90;
+    const COUNT = 130;
     const particles: Particle[] = [];
-    const CONNECT_DIST = 150;
+    const CONNECT_DIST = 170;
     const GOLD  = rgb;
     const GOLD2 = rgb2;
 
@@ -35,10 +35,10 @@ export function ParticleCanvas({ rgb = "212,175,55", rgb2 = "200,169,106" }: { r
       return {
         x: Math.random() * W,
         y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        size: Math.random() * 1.8 + 0.6,
-        opacity: Math.random() * 0.4 + 0.1,
+        vx: (Math.random() - 0.5) * 1.0,
+        vy: (Math.random() - 0.5) * 1.0,
+        size: Math.random() * 2.2 + 0.7,
+        opacity: Math.random() * 0.5 + 0.15,
         opacityDir: Math.random() > 0.5 ? 1 : -1,
       };
     }
@@ -66,8 +66,8 @@ export function ParticleCanvas({ rgb = "212,175,55", rgb2 = "200,169,106" }: { r
         if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
 
         /* breathe */
-        p.opacity += p.opacityDir * 0.003;
-        if (p.opacity >= 0.5 || p.opacity <= 0.08) p.opacityDir *= -1;
+        p.opacity += p.opacityDir * 0.008;
+        if (p.opacity >= 0.6 || p.opacity <= 0.10) p.opacityDir *= -1;
 
         /* mouse repel */
         const dx = p.x - mouse.x, dy = p.y - mouse.y;
