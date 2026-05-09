@@ -17,17 +17,17 @@ export function StatsBand() {
     <section className="relative overflow-hidden bg-[#080808]">
       {/* grid */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{
-        backgroundImage: "linear-gradient(rgba(67,97,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(67,97,238,1) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
       }} />
       {/* gold glow center */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-40 pointer-events-none" style={{
-        background: "radial-gradient(ellipse 60% 100% at 50% 50%, rgba(67,97,238,0.08) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 60% 100% at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%)",
       }} />
 
-      <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.3), transparent)" }} />
+      <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent)" }} />
 
-      <div ref={ref} className="relative mx-auto max-w-[1440px] grid grid-cols-2 md:grid-cols-4">
+      <div ref={ref} className="relative mx-auto max-w-[1440px] grid grid-cols-2 md:grid-cols-4 needs-copy" data-marker="Copy: confirm final stat numbers">
         {stats.map((s, i) => (
           <div
             key={s.label}
@@ -56,7 +56,7 @@ export function StatsBand() {
         ))}
       </div>
 
-      <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.3), transparent)" }} />
+      <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent)" }} />
     </section>
   );
 }

@@ -10,10 +10,10 @@ function WorldMapVisual() {
   return (
     <div
       className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden p-8"
-      style={{ background: "linear-gradient(135deg, #1A1A1A 0%, #111 100%)", border: "1px solid rgba(67,97,238,0.15)" }}
+      style={{ background: "linear-gradient(135deg, #1A1A1A 0%, #111 100%)", border: "1px solid rgba(212,175,55,0.15)" }}
     >
       <svg viewBox="0 0 400 220" className="w-full h-auto opacity-80">
-        <g stroke="#4361EE" strokeWidth="1" fill="none" opacity="0.5">
+        <g stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.5">
           <path d="M40 80 Q70 60 110 70 T180 80 Q200 100 180 120 T100 130 Q60 120 40 100 Z" />
           <path d="M200 60 Q240 50 280 70 T350 90 Q360 120 320 130 T240 130 Q210 110 200 90 Z" />
           <path d="M120 150 Q150 145 180 155 T230 170 Q220 185 180 185 T130 175 Z" />
@@ -22,8 +22,8 @@ function WorldMapVisual() {
         {[{ x: 285, y: 95 }, { x: 95, y: 105 }, { x: 320, y: 110 }, { x: 165, y: 115 }, { x: 280, y: 165 }, { x: 60, y: 90 }]
           .map((p, i) => (
             <g key={i}>
-              <circle cx={p.x} cy={p.y} r="4" fill="#4361EE" />
-              <circle cx={p.x} cy={p.y} r="4" fill="none" stroke="#4361EE" strokeWidth="1.5"
+              <circle cx={p.x} cy={p.y} r="4" fill="#D4AF37" />
+              <circle cx={p.x} cy={p.y} r="4" fill="none" stroke="#D4AF37" strokeWidth="1.5"
                 className="pulse-ring" style={{ transformOrigin: `${p.x}px ${p.y}px` }} />
             </g>
           ))}
@@ -62,8 +62,8 @@ function BankCardVisual() {
         className="w-full max-w-[400px] rounded-2xl p-7 text-white"
         style={{
           background: "linear-gradient(135deg, #111 0%, #1A1A1A 60%, #222 100%)",
-          boxShadow: "0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(67,97,238,0.2)",
-          border: "1px solid rgba(67,97,238,0.18)",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.2)",
+          border: "1px solid rgba(212,175,55,0.18)",
         }}
       >
         <div className="flex items-start justify-between">
@@ -117,7 +117,7 @@ function FunnelVisual() {
   return (
     <div
       className="relative aspect-square w-full rounded-2xl p-10"
-      style={{ background: "linear-gradient(135deg, #1A1A1A 0%, #111 100%)", border: "1px solid rgba(67,97,238,0.12)" }}
+      style={{ background: "linear-gradient(135deg, #1A1A1A 0%, #111 100%)", border: "1px solid rgba(212,175,55,0.12)" }}
     >
       <svg ref={ref} viewBox="0 0 400 380" className="w-full h-auto">
         {[
@@ -127,8 +127,8 @@ function FunnelVisual() {
           { d: "M140 310 L260 310 L235 365 L165 365 Z", x: 200, y: 342 },
         ].map((s, i) => (
           <g key={i}>
-            <path data-fpath d={s.d} fill="rgba(67,97,238,0.06)" stroke="#4361EE" strokeWidth="1.5" />
-            <text x={s.x} y={s.y} textAnchor="middle" fontFamily="Inter" fontSize="12" fill="#A5BEFF" fontWeight="500">
+            <path data-fpath d={s.d} fill="rgba(212,175,55,0.06)" stroke="#D4AF37" strokeWidth="1.5" />
+            <text x={s.x} y={s.y} textAnchor="middle" fontFamily="Inter" fontSize="12" fill="#E5CB7E" fontWeight="500">
               {stages[i]}
             </text>
           </g>
@@ -156,7 +156,7 @@ function ServiceBlock({
       <div className={`relative mx-auto grid max-w-[1280px] gap-16 px-6 md:px-16 lg:grid-cols-2 lg:gap-20 items-center ${reverse ? "lg:[&>*:first-child]:order-last" : ""}`}>
         <div className="relative">
           <span aria-hidden className="absolute -top-10 -left-2 font-display select-none pointer-events-none"
-            style={{ fontSize: "130px", lineHeight: 1, color: dark ? "rgba(67,97,238,0.05)" : "rgba(67,97,238,0.07)" }}>
+            style={{ fontSize: "130px", lineHeight: 1, color: dark ? "rgba(212,175,55,0.05)" : "rgba(212,175,55,0.07)" }}>
             {num}
           </span>
           <div className="relative">

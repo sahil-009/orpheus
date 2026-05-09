@@ -17,12 +17,12 @@ export function OrbBackground() {
       <div
         ref={orb1}
         className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-15"
-        style={{ background: "#4361EE", filter: "blur(100px)" }}
+        style={{ background: "#D4AF37", filter: "blur(100px)" }}
       />
       <div
         ref={orb2}
         className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full opacity-15"
-        style={{ background: "#2D4BCC", filter: "blur(80px)" }}
+        style={{ background: "#A88829", filter: "blur(80px)" }}
       />
       {/* Vertical hairlines — gold */}
       {[25, 50, 75].map((p) => (
@@ -31,7 +31,7 @@ export function OrbBackground() {
           className="absolute top-0 bottom-0 w-px"
           style={{
             left: `${p}%`,
-            background: "linear-gradient(to bottom, transparent, rgba(67,97,238,0.18), transparent)",
+            background: "linear-gradient(to bottom, transparent, rgba(212,175,55,0.18), transparent)",
           }}
         />
       ))}

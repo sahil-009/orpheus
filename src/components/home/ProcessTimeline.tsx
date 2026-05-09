@@ -35,7 +35,7 @@ export function ProcessTimeline() {
 
   return (
     <section className="bg-[#F5F4F0] py-28 md:py-36 relative overflow-hidden">
-      <FloatingParticles count={45} color="rgba(67,97,238,0.42)" ringColor="rgba(67,97,238,0.28)" />
+      <FloatingParticles count={45} color="rgba(212,175,55,0.42)" ringColor="rgba(212,175,55,0.28)" />
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
         backgroundSize: "48px 48px", pointerEvents: "none",
@@ -58,7 +58,7 @@ export function ProcessTimeline() {
           <svg viewBox="0 0 1000 20" preserveAspectRatio="none"
             className="absolute left-[7%] right-[7%] top-9 h-5 w-[86%] hidden md:block">
             <path data-line d="M0 10 L1000 10"
-              stroke="#4361EE" strokeWidth="1.5" strokeDasharray="6 6" fill="none" />
+              stroke="#D4AF37" strokeWidth="1.5" strokeDasharray="6 6" fill="none" />
           </svg>
 
           <div className="relative grid gap-14 md:grid-cols-4 md:gap-6">
@@ -66,7 +66,7 @@ export function ProcessTimeline() {
               <div key={s.n} className="text-center group">
                 <div data-step-circle
                   className="mx-auto flex h-[76px] w-[76px] items-center justify-center rounded-full bg-white border-2 border-gold text-gold transition-all group-hover:bg-gold group-hover:text-white"
-                  style={{ boxShadow: "0 8px 32px rgba(67,97,238,0.22)" }}>
+                  style={{ boxShadow: "0 8px 32px rgba(212,175,55,0.22)" }}>
                   {s.icon}
                 </div>
                 <div data-step-text className="mt-7">

@@ -62,7 +62,7 @@ export default function BlogPage() {
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')" }}
                 />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(13,13,13,0.3), rgba(67,97,238,0.1))" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(13,13,13,0.3), rgba(212,175,55,0.1))" }} />
                 <div className="absolute top-6 left-6">
                   <span className="rounded-full bg-gold px-3 py-1 font-body text-[9px] uppercase tracking-[1.5px] text-charcoal font-semibold">
                     Featured
@@ -79,7 +79,7 @@ export default function BlogPage() {
                   <div className="flex items-center gap-4">
                     <div
                       className="flex h-11 w-11 items-center justify-center rounded-full font-display text-charcoal text-xs font-semibold"
-                      style={{ background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)" }}
+                      style={{ background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)" }}
                     >
                       {featured.author.initials}
                     </div>
@@ -109,7 +109,7 @@ export default function BlogPage() {
                 to={`/blog/${p.slug}`}
                 key={p.slug}
                 data-pcard
-                className="group block overflow-hidden rounded-2xl border border-gold/[0.12] bg-white transition-all hover:-translate-y-2 hover:border-gold/35 hover:shadow-[0_24px_48px_rgba(67,97,238,0.12)]"
+                className="group block overflow-hidden rounded-2xl border border-gold/[0.12] bg-white transition-all hover:-translate-y-2 hover:border-gold/35 hover:shadow-[0_24px_48px_rgba(212,175,55,0.12)]"
               >
                 <div
                   className="relative aspect-[16/10] overflow-hidden"
@@ -152,7 +152,7 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="you@company.com"
-              className="flex-1 h-12 rounded-lg bg-white/[0.06] border border-gold/20 px-4 font-body text-sm text-white placeholder:text-white/25 outline-none focus:border-gold focus:shadow-[0_0_0_3px_rgba(67,97,238,0.08)]"
+              className="flex-1 h-12 rounded-lg bg-white/[0.06] border border-gold/20 px-4 font-body text-sm text-white placeholder:text-white/25 outline-none focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)]"
             />
             <OButton variant="gold">Subscribe</OButton>
           </form>

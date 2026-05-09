@@ -47,8 +47,8 @@ function gen(count: number): Dot[] {
 
 export function FloatingParticles({
   count = 50,
-  color    = "rgba(67,97,238,0.55)",
-  ringColor = "rgba(67,97,238,0.35)",
+  color    = "rgba(212,175,55,0.55)",
+  ringColor = "rgba(212,175,55,0.35)",
 }: Props) {
   const dots = useMemo(() => gen(count), [count]);
 

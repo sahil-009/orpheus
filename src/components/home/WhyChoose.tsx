@@ -14,12 +14,12 @@ const features = [
 ];
 
 const jurisdictions = [
-  { flag: "🇦🇪", name: "United Arab Emirates", tag: "Popular",      color: "#4361EE" },
-  { flag: "🇻🇬", name: "British Virgin Islands", tag: "Tax-efficient", color: "#4361EE" },
-  { flag: "🇰🇾", name: "Cayman Islands",         tag: "Funds",        color: "#4361EE" },
-  { flag: "🇭🇰", name: "Hong Kong",              tag: "Asia hub",     color: "#4361EE" },
-  { flag: "🇸🇨", name: "Seychelles",             tag: "IBC",          color: "#4361EE" },
-  { flag: "🇲🇺", name: "Mauritius",              tag: "Treaties",     color: "#4361EE" },
+  { flag: "🇦🇪", name: "United Arab Emirates", tag: "Popular",      color: "#D4AF37" },
+  { flag: "🇻🇬", name: "British Virgin Islands", tag: "Tax-efficient", color: "#D4AF37" },
+  { flag: "🇰🇾", name: "Cayman Islands",         tag: "Funds",        color: "#D4AF37" },
+  { flag: "🇭🇰", name: "Hong Kong",              tag: "Asia hub",     color: "#D4AF37" },
+  { flag: "🇸🇨", name: "Seychelles",             tag: "IBC",          color: "#D4AF37" },
+  { flag: "🇲🇺", name: "Mauritius",              tag: "Treaties",     color: "#D4AF37" },
 ];
 
 export function WhyChoose() {
@@ -30,13 +30,13 @@ export function WhyChoose() {
     <section className="bg-[#080808] text-white py-28 md:py-36 relative overflow-hidden">
       {/* grid */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{
-        backgroundImage: "linear-gradient(rgba(67,97,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(67,97,238,1) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
       }} />
       {/* gold orb */}
       <div className="absolute" style={{
         top: "-5%", right: "-10%", width: "50%", height: "70%",
-        background: "radial-gradient(ellipse at 60% 30%, rgba(67,97,238,0.08) 0%, transparent 65%)",
+        background: "radial-gradient(ellipse at 60% 30%, rgba(212,175,55,0.08) 0%, transparent 65%)",
         filter: "blur(60px)", pointerEvents: "none",
       }} />
 
@@ -53,7 +53,7 @@ export function WhyChoose() {
             </span>
           </h2>
 
-          <div ref={leftRef} className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div ref={leftRef} className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 needs-copy" data-marker="Copy: confirm differentiator points">
             {features.map((f) => (
               <div key={f.title} data-feat
                 className="group rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6 transition-all duration-300 hover:bg-gold/[0.07] hover:border-gold/30 cursor-default"
@@ -75,7 +75,7 @@ export function WhyChoose() {
             className="rounded-3xl border border-gold/15 p-8 md:p-10 lg:sticky lg:top-32"
             style={{
               background: "rgba(14,14,14,0.8)",
-              boxShadow: "0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(67,97,238,0.1)",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.1)",
               backdropFilter: "blur(20px)",
             }}
           >

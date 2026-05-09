@@ -73,7 +73,7 @@ export function ServicesGrid() {
   return (
     <section ref={sectionRef} className="py-28 md:py-36 relative overflow-hidden" style={{ background: "#F5F4F0" }}>
 
-      <FloatingParticles count={50} color="rgba(67,97,238,0.45)" ringColor="rgba(67,97,238,0.3)" />
+      <FloatingParticles count={50} color="rgba(212,175,55,0.45)" ringColor="rgba(212,175,55,0.3)" />
 
       {/* subtle warm dot texture */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -94,26 +94,26 @@ export function ServicesGrid() {
       {/* warm blue tint orb top-right */}
       <div className="absolute pointer-events-none" style={{
         top: "-10%", right: "-5%", width: "45%", height: "70%",
-        background: "radial-gradient(ellipse at 70% 30%, rgba(67,97,238,0.07) 0%, transparent 65%)",
+        background: "radial-gradient(ellipse at 70% 30%, rgba(212,175,55,0.07) 0%, transparent 65%)",
       }} />
 
       <div className="relative mx-auto max-w-[1280px] px-6 md:px-16">
 
         {/* Label + heading */}
         <div className="max-w-3xl">
-          <p className="font-display text-[11px] font-semibold uppercase tracking-[3px]" style={{ color: "#4361EE" }}>
+          <p className="font-display text-[11px] font-semibold uppercase tracking-[3px]" style={{ color: "#D4AF37" }}>
             Services
           </p>
           <h2
             className="mt-4 font-display font-extrabold leading-[1.0]"
-            style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", color: "#0A0F1E" }}
+            style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", color: "#0A0A0A" }}
           >
             Smart Solutions for{" "}
             <span
               className="font-serif italic"
               style={{
                 fontSize: "0.95em",
-                background: "linear-gradient(130deg, #4361EE 0%, #6B8AF4 50%, #2D4BCC 100%)",
+                background: "linear-gradient(130deg, #D4AF37 0%, #C8A96A 50%, #A88829 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -122,12 +122,12 @@ export function ServicesGrid() {
               Modern Businesses
             </span>
           </h2>
-          <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed" style={{ color: "#64748B" }}>
+          <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed" style={{ color: "#6B6B6B" }}>
             Three core practice areas — fully integrated. We don't just advise, we execute every step alongside you.
           </p>
         </div>
 
-        <div ref={cardsRef} className="mt-16 grid gap-5 md:grid-cols-3">
+        <div ref={cardsRef} className="mt-16 grid gap-5 md:grid-cols-3 needs-copy" data-marker="Copy: confirm service descriptions">
           {services.map((s) => (
             <div
               key={s.title}
@@ -147,7 +147,7 @@ export function ServicesGrid() {
                 className="absolute top-0 left-0 h-[3px] rounded-t-3xl"
                 style={{
                   width: "0%",
-                  background: "linear-gradient(90deg, #4361EE, #6B8AF4)",
+                  background: "linear-gradient(90deg, #D4AF37, #C8A96A)",
                 }}
               />
 
@@ -155,7 +155,7 @@ export function ServicesGrid() {
               <span
                 aria-hidden
                 className="absolute -top-3 right-5 font-display font-extrabold select-none pointer-events-none"
-                style={{ fontSize: "110px", lineHeight: 1, color: "rgba(67,97,238,0.04)" }}
+                style={{ fontSize: "110px", lineHeight: 1, color: "rgba(212,175,55,0.04)" }}
               >
                 {s.n}
               </span>
@@ -165,25 +165,25 @@ export function ServicesGrid() {
                 <div
                   className="flex h-14 w-14 items-center justify-center rounded-2xl mb-7 transition-all duration-300"
                   style={{
-                    background: "rgba(67,97,238,0.08)",
-                    color: "#4361EE",
+                    background: "rgba(212,175,55,0.08)",
+                    color: "#D4AF37",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "#4361EE";
+                    (e.currentTarget as HTMLElement).style.background = "#D4AF37";
                     (e.currentTarget as HTMLElement).style.color = "#ffffff";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(67,97,238,0.08)";
-                    (e.currentTarget as HTMLElement).style.color = "#4361EE";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.08)";
+                    (e.currentTarget as HTMLElement).style.color = "#D4AF37";
                   }}
                 >
                   {s.icon}
                 </div>
 
-                <h3 className="font-display font-bold text-[22px] leading-tight" style={{ color: "#0A0F1E" }}>
+                <h3 className="font-display font-bold text-[22px] leading-tight" style={{ color: "#0A0A0A" }}>
                   {s.title}
                 </h3>
-                <p className="mt-3 font-body text-[14px] leading-[1.8]" style={{ color: "#64748B" }}>
+                <p className="mt-3 font-body text-[14px] leading-[1.8]" style={{ color: "#6B6B6B" }}>
                   {s.body}
                 </p>
 
@@ -194,9 +194,9 @@ export function ServicesGrid() {
                       key={t}
                       className="rounded-full px-3 py-1 font-display text-[10px] uppercase tracking-[1.5px] font-semibold"
                       style={{
-                        background: "rgba(67,97,238,0.07)",
-                        color: "#2D4BCC",
-                        border: "1px solid rgba(67,97,238,0.12)",
+                        background: "rgba(212,175,55,0.07)",
+                        color: "#A88829",
+                        border: "1px solid rgba(212,175,55,0.12)",
                       }}
                     >
                       {t}
@@ -207,7 +207,7 @@ export function ServicesGrid() {
                 <Link
                   to={s.href}
                   className="mt-7 inline-flex items-center gap-2 font-display text-[11px] uppercase tracking-[2px] font-semibold transition-all group-hover:gap-3"
-                  style={{ color: "#4361EE" }}
+                  style={{ color: "#D4AF37" }}
                 >
                   Learn More <ArrowUpRight size={13} />
                 </Link>

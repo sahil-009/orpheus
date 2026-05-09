@@ -6,7 +6,7 @@ interface Particle {
   size: number; opacity: number; opacityDir: number;
 }
 
-export function ParticleCanvas({ rgb = "67,97,238", rgb2 = "107,138,244" }: { rgb?: string; rgb2?: string }) {
+export function ParticleCanvas({ rgb = "212,175,55", rgb2 = "200,169,106" }: { rgb?: string; rgb2?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

@@ -5,26 +5,31 @@ import { gsap, setupGsap } from "@/lib/gsapSetup";
    Each entry: name shown, accent color, optional symbol prefix.
    Two rows scroll in opposite directions for the "alive" feel.
 ─────────────────────────────────────────────────────────────────── */
+/* Strict brand palette — placeholder partner names use Gold / Soft Gold only.
+   Replace with real SVG logos once supplied by client (see asset marker). */
+const GOLD = "#D4AF37";
+const SOFT = "#C8A96A";
+
 const ROW1 = [
-  { name: "HSBC",              color: "#DB0011", symbol: "⬡" },
-  { name: "Emirates NBD",      color: "#F5A623", symbol: "◈" },
-  { name: "Standard Chartered",color: "#0BBCB2", symbol: "✦" },
-  { name: "Barclays",          color: "#00AEEF", symbol: "◉" },
-  { name: "Citibank",          color: "#0066B3", symbol: "⬤" },
-  { name: "Deutsche Bank",     color: "#0033A0", symbol: "◆" },
-  { name: "JPMorgan",          color: "#AA8C3C", symbol: "⬡" },
-  { name: "Goldman Sachs",     color: "#6DAEDB", symbol: "✦" },
+  { name: "HSBC",              color: GOLD, symbol: "⬡" },
+  { name: "Emirates NBD",      color: SOFT, symbol: "◈" },
+  { name: "Standard Chartered",color: GOLD, symbol: "✦" },
+  { name: "Barclays",          color: SOFT, symbol: "◉" },
+  { name: "Citibank",          color: GOLD, symbol: "⬤" },
+  { name: "Deutsche Bank",     color: SOFT, symbol: "◆" },
+  { name: "JPMorgan",          color: GOLD, symbol: "⬡" },
+  { name: "Goldman Sachs",     color: SOFT, symbol: "✦" },
 ];
 
 const ROW2 = [
-  { name: "Deloitte",          color: "#86BC25", symbol: "●" },
-  { name: "PwC",               color: "#E8530A", symbol: "◈" },
-  { name: "KPMG",              color: "#00338D", symbol: "◉" },
-  { name: "EY",                color: "#FFE600", symbol: "◆" },
-  { name: "Mastercard",        color: "#EB001B", symbol: "◎" },
-  { name: "Visa",              color: "#1A1F71", symbol: "⬤" },
-  { name: "DIFC",              color: "#9B59B6", symbol: "✦" },
-  { name: "ADGM",              color: "#27AE60", symbol: "◆" },
+  { name: "Deloitte",          color: SOFT, symbol: "●" },
+  { name: "PwC",               color: GOLD, symbol: "◈" },
+  { name: "KPMG",              color: SOFT, symbol: "◉" },
+  { name: "EY",                color: GOLD, symbol: "◆" },
+  { name: "Mastercard",        color: SOFT, symbol: "◎" },
+  { name: "Visa",              color: GOLD, symbol: "⬤" },
+  { name: "DIFC",              color: SOFT, symbol: "✦" },
+  { name: "ADGM",              color: GOLD, symbol: "◆" },
 ];
 
 function Logo({ name, color, symbol }: { name: string; color: string; symbol: string }) {
@@ -129,18 +134,29 @@ export function TrustBar() {
 
       {/* subtle top/bottom lines */}
       <div className="absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.25), transparent)" }} />
+        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent)" }} />
       <div className="absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.15), transparent)" }} />
+        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent)" }} />
 
       {/* very faint blue glow behind logos */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(67,97,238,0.04) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 70%)" }} />
 
       {/* header */}
       <p ref={labelRef} className="text-center font-body text-[13px] text-white/30 mb-10 tracking-[0.5px]">
         Trusted by leading businesses &amp; institutions across 18 markets
       </p>
+
+      <div className="relative mx-auto mb-8 max-w-[760px] px-6">
+        <div className="needs-asset rounded-xl px-4 py-3"
+          data-marker="Assets: partner / bank logos (SVG, monochrome)"
+          style={{ background: "rgba(212,175,55,0.05)", border: "1px dashed rgba(212,175,55,0.4)" }}>
+          <p className="text-center font-body text-[11px] text-white/55 leading-[1.6]">
+            Placeholder marquee — replace with real partner / bank logos supplied by client
+            (SVG preferred, single-color so they tint to brand gold).
+          </p>
+        </div>
+      </div>
 
       {/* row 1 — scrolls left */}
       <div className="relative mb-6">

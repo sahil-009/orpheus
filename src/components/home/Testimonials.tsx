@@ -62,26 +62,26 @@ export function Testimonials() {
 
   return (
     <section ref={sectionRef} className="bg-white py-28 md:py-36 relative overflow-hidden">
-      <FloatingParticles count={50} color="rgba(67,97,238,0.38)" ringColor="rgba(67,97,238,0.22)" />
+      <FloatingParticles count={50} color="rgba(212,175,55,0.38)" ringColor="rgba(212,175,55,0.22)" />
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
         backgroundSize: "48px 48px", pointerEvents: "none",
       }} />
       {/* gold top line */}
       <div className="absolute top-0 inset-x-0 h-[2px]" style={{
-        background: "linear-gradient(90deg, transparent, #4361EE, #A5BEFF, #4361EE, transparent)"
+        background: "linear-gradient(90deg, transparent, #D4AF37, #E5CB7E, #D4AF37, transparent)"
       }} />
 
       <div className="relative mx-auto max-w-[900px] px-6 md:px-16 text-center">
         <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Testimonials</p>
         <h2 className="mt-4 font-display font-extrabold leading-[1.0]"
-          style={{ fontSize: "clamp(32px, 4vw, 54px)", letterSpacing: "-0.03em" }}>
+          style={{ fontSize: "clamp(32px, 4vw, 54px)", letterSpacing: "-0.03em", color: "#0A0A0A" }}>
           Why Clients{" "}
           <span className="font-serif italic text-gold" style={{ fontSize: "0.92em" }}>Love Working With Us</span>
         </h2>
 
         {/* slide area */}
-        <div ref={slideRef} className="mt-14">
+        <div ref={slideRef} className="mt-14 needs-copy" data-marker="Copy: confirm or replace testimonials">
           {/* quote icon */}
           <Quote size={40} className="mx-auto text-gold/20 mb-6" />
 
@@ -99,7 +99,7 @@ export function Testimonials() {
 
           <div className="mt-10 flex items-center justify-center gap-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-full font-display font-bold text-charcoal text-[15px]"
-              style={{ background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)" }}>
+              style={{ background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)" }}>
               {t.initials}
             </div>
             <div className="text-left">

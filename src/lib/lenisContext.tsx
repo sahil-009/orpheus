@@ -1,6 +1,6 @@
 import Lenis from "@studio-freight/lenis";
 import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
-import { gsap, ScrollTrigger, setupGsap } from "./gsapSetup";
+import { ScrollTrigger, setupGsap } from "./gsapSetup";
 
 const LenisContext = createContext<Lenis | null>(null);
 
@@ -15,22 +15,24 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setupGsap();
     const l = new Lenis({
-      duration: 1.4,
+      duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      smoothTouch: false,
     });
 
-    const tickerCb = (time: number) => l.raf(time * 1000);
-    gsap.ticker.add(tickerCb);
-    gsap.ticker.lagSmoothing(0);
+    const raf = (time: number) => {
+      l.raf(time);
+      rafRef.current = requestAnimationFrame(raf);
+    };
+    rafRef.current = requestAnimationFrame(raf);
     l.on("scroll", ScrollTrigger.update);
 
     setLenis(l);
 
     return () => {
-      gsap.ticker.remove(tickerCb);
-      l.destroy();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      l.destroy();
     };
   }, []);
 

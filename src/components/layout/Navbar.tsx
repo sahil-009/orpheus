@@ -73,7 +73,7 @@ export function Navbar() {
                   ? "rgba(5,8,20,0.95)"
                   : "rgba(8,11,26,0.72)",
               boxShadow: expanded
-                ? "0 16px 56px rgba(0,0,0,0.65), 0 0 0 1px rgba(67,97,238,0.22), 0 0 80px rgba(67,97,238,0.07)"
+                ? "0 16px 56px rgba(0,0,0,0.65), 0 0 0 1px rgba(212,175,55,0.22), 0 0 80px rgba(212,175,55,0.07)"
                 : scrolled
                   ? "0 8px 36px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05)"
                   : "0 4px 24px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.04)",
@@ -87,7 +87,7 @@ export function Navbar() {
               ref={progressRef}
               className="absolute bottom-0 left-0 h-[2px] w-full origin-left pointer-events-none"
               style={{
-                background: "linear-gradient(90deg, #2D4BCC, #4361EE, #A5BEFF)",
+                background: "linear-gradient(90deg, #A88829, #D4AF37, #E5CB7E)",
                 transform: "scaleX(0)",
                 opacity: scrolled ? 1 : 0,
                 transition: "opacity 0.35s",
@@ -106,10 +106,10 @@ export function Navbar() {
                 <motion.div
                   className="h-8 w-8 rounded-full flex items-center justify-center font-display font-extrabold text-white text-[13px] flex-none"
                   style={{
-                    background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)",
-                    boxShadow: "0 0 0 0 rgba(67,97,238,0.4)",
+                    background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
+                    boxShadow: "0 0 0 0 rgba(212,175,55,0.4)",
                   }}
-                  whileHover={{ scale: 1.15, boxShadow: "0 0 0 5px rgba(67,97,238,0.18)" }}
+                  whileHover={{ scale: 1.15, boxShadow: "0 0 0 5px rgba(212,175,55,0.18)" }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 550, damping: 18 }}
                 >
@@ -169,12 +169,12 @@ export function Navbar() {
                               <motion.span
                                 className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full font-display font-semibold text-[10.5px] uppercase tracking-[1.5px] whitespace-nowrap select-none"
                                 animate={{
-                                  background: isActive ? "rgba(67,97,238,0.22)" : "rgba(0,0,0,0)",
-                                  color: isActive ? "#A5BEFF" : "rgba(255,255,255,0.5)",
-                                  borderColor: isActive ? "rgba(67,97,238,0.28)" : "rgba(0,0,0,0)",
+                                  background: isActive ? "rgba(212,175,55,0.22)" : "rgba(0,0,0,0)",
+                                  color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.5)",
+                                  borderColor: isActive ? "rgba(212,175,55,0.28)" : "rgba(0,0,0,0)",
                                 }}
                                 whileHover={{
-                                  background: "rgba(67,97,238,0.14)",
+                                  background: "rgba(212,175,55,0.14)",
                                   color: "#ffffff",
                                 }}
                                 style={{ border: "1px solid transparent" }}
@@ -184,8 +184,8 @@ export function Navbar() {
                                 {isActive && (
                                   <motion.span
                                     layoutId="island-dot"
-                                    className="h-[5px] w-[5px] rounded-full bg-[#4361EE] flex-none"
-                                    style={{ boxShadow: "0 0 7px #4361EE" }}
+                                    className="h-[5px] w-[5px] rounded-full bg-[#D4AF37] flex-none"
+                                    style={{ boxShadow: "0 0 7px #D4AF37" }}
                                     transition={spring}
                                   />
                                 )}
@@ -219,12 +219,12 @@ export function Navbar() {
                     paddingBottom: 7,
                   }}
                   style={{
-                    background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)",
-                    boxShadow: "0 3px 14px rgba(67,97,238,0.38), inset 0 1px 0 rgba(255,255,255,0.14)",
+                    background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
+                    boxShadow: "0 3px 14px rgba(212,175,55,0.38), inset 0 1px 0 rgba(255,255,255,0.14)",
                   }}
                   whileHover={{
                     scale: 1.06,
-                    boxShadow: "0 6px 26px rgba(67,97,238,0.58), inset 0 1px 0 rgba(255,255,255,0.14)",
+                    boxShadow: "0 6px 26px rgba(212,175,55,0.58), inset 0 1px 0 rgba(255,255,255,0.14)",
                   }}
                   whileTap={{ scale: 0.93 }}
                   transition={{ type: "spring", stiffness: 500, damping: 20 }}
@@ -261,7 +261,7 @@ export function Navbar() {
           <Link to="/" className="flex items-center gap-2.5">
             <div
               className="h-8 w-8 rounded-full flex items-center justify-center font-display font-extrabold text-white text-[13px]"
-              style={{ background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)" }}
+              style={{ background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)" }}
             >
               O
             </div>
@@ -275,8 +275,8 @@ export function Navbar() {
             onClick={() => setOpen((v) => !v)}
             className="flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300"
             style={{
-              background: open ? "rgba(67,97,238,0.22)" : "rgba(255,255,255,0.07)",
-              border: `1px solid ${open ? "rgba(67,97,238,0.35)" : "rgba(255,255,255,0.08)"}`,
+              background: open ? "rgba(212,175,55,0.22)" : "rgba(255,255,255,0.07)",
+              border: `1px solid ${open ? "rgba(212,175,55,0.35)" : "rgba(255,255,255,0.08)"}`,
               color: "#fff",
             }}
           >
@@ -299,7 +299,7 @@ export function Navbar() {
             ref={overlayRef}
             key="mobile-overlay"
             className="fixed inset-0 z-[999] lg:hidden flex flex-col"
-            style={{ background: "#050913", paddingTop: "88px" }}
+            style={{ background: "#050505", paddingTop: "88px" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -307,12 +307,12 @@ export function Navbar() {
           >
             {/* grid */}
             <div className="absolute inset-0 opacity-[0.035]" style={{
-              backgroundImage: "linear-gradient(rgba(67,97,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(67,97,238,1) 1px, transparent 1px)",
+              backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
               backgroundSize: "64px 64px",
             }} />
             {/* glow */}
             <div className="absolute inset-0 pointer-events-none" style={{
-              background: "radial-gradient(ellipse 70% 55% at 50% 65%, rgba(67,97,238,0.1) 0%, transparent 70%)"
+              background: "radial-gradient(ellipse 70% 55% at 50% 65%, rgba(212,175,55,0.1) 0%, transparent 70%)"
             }} />
 
             <nav className="relative flex flex-col px-8 pt-4 flex-1 overflow-y-auto">
@@ -323,7 +323,7 @@ export function Navbar() {
                   end={l.to === "/"}
                   data-mob
                   className="group flex items-center justify-between py-5 border-b"
-                  style={{ borderColor: "rgba(67,97,238,0.1)" }}
+                  style={{ borderColor: "rgba(212,175,55,0.1)" }}
                 >
                   {({ isActive }) => (
                     <>
@@ -332,8 +332,8 @@ export function Navbar() {
                         style={{
                           fontSize: "clamp(34px, 9.5vw, 52px)",
                           letterSpacing: "-0.03em",
-                          color: isActive ? "#6B8AF4" : "rgba(255,255,255,0.85)",
-                          textShadow: isActive ? "0 0 40px rgba(67,97,238,0.45)" : "none",
+                          color: isActive ? "#C8A96A" : "rgba(255,255,255,0.85)",
+                          textShadow: isActive ? "0 0 40px rgba(212,175,55,0.45)" : "none",
                         }}
                       >
                         {l.label}
@@ -341,7 +341,7 @@ export function Navbar() {
                       <ArrowRight
                         size={17}
                         className="transition-transform duration-300 group-hover:translate-x-1.5"
-                        style={{ color: isActive ? "#4361EE" : "rgba(255,255,255,0.14)" }}
+                        style={{ color: isActive ? "#D4AF37" : "rgba(255,255,255,0.14)" }}
                       />
                     </>
                   )}
@@ -351,7 +351,7 @@ export function Navbar() {
               <div data-mob className="mt-auto pb-10 pt-8 flex flex-col gap-4">
                 <a
                   href="tel:+97145587968"
-                  className="flex items-center gap-2 font-body text-[13px] text-white/38 hover:text-[#6B8AF4] transition-colors"
+                  className="flex items-center gap-2 font-body text-[13px] text-white/38 hover:text-[#C8A96A] transition-colors"
                 >
                   <Phone size={13} /> +971 4 558 7968
                 </a>
@@ -359,8 +359,8 @@ export function Navbar() {
                   <button
                     className="w-full flex items-center justify-center gap-2 rounded-2xl py-4 font-display font-semibold text-[13px] uppercase tracking-[2px] text-white"
                     style={{
-                      background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)",
-                      boxShadow: "0 8px 32px rgba(67,97,238,0.38)",
+                      background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
+                      boxShadow: "0 8px 32px rgba(212,175,55,0.38)",
                     }}
                   >
                     Free Consultation <ArrowRight size={13} />

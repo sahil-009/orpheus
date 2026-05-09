@@ -19,7 +19,7 @@ interface OBProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<Variant, string> = {
   gold:
-    "bg-gold text-charcoal hover:bg-gold-light shadow-[0_8px_28px_rgba(67,97,238,0.38)] font-semibold",
+    "bg-gold text-charcoal hover:bg-gold-light shadow-[0_8px_28px_rgba(212,175,55,0.38)] font-semibold",
   white:
     "bg-white text-charcoal hover:bg-gold-ultra shadow-[0_4px_16px_rgba(0,0,0,0.12)]",
   "ghost-light":
@@ -31,7 +31,7 @@ const variants: Record<Variant, string> = {
   "outline-sky":
     "bg-transparent text-gold border border-gold/40 hover:bg-gold hover:text-charcoal",
   sky:
-    "bg-gold text-charcoal hover:bg-gold-light shadow-[0_8px_28px_rgba(67,97,238,0.35)] font-semibold",
+    "bg-gold text-charcoal hover:bg-gold-light shadow-[0_8px_28px_rgba(212,175,55,0.35)] font-semibold",
 };
 
 export const OButton = forwardRef<HTMLButtonElement, OBProps>(

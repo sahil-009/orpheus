@@ -35,7 +35,7 @@ function ContactForm() {
   };
 
   const fieldCls =
-    "w-full h-12 rounded-lg border border-gold/20 bg-white px-4 font-body text-sm text-charcoal outline-none transition-all focus:border-gold focus:shadow-[0_0_0_3px_rgba(67,97,238,0.1)] placeholder:text-muted2/50";
+    "w-full h-12 rounded-lg border border-gold/20 bg-white px-4 font-body text-sm text-charcoal outline-none transition-all focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-muted2/50";
   const labelCls =
     "block font-body text-[10px] font-semibold uppercase tracking-[1.5px] text-charcoal/60 mb-2";
 
@@ -85,7 +85,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="mt-7 w-full rounded-lg bg-gold text-charcoal font-body font-semibold text-sm py-4 transition-all hover:-translate-y-0.5 hover:bg-gold-light hover:shadow-[0_12px_32px_rgba(67,97,238,0.38)] disabled:opacity-60"
+        className="mt-7 w-full rounded-lg bg-gold text-charcoal font-body font-semibold text-sm py-4 transition-all hover:-translate-y-0.5 hover:bg-gold-light hover:shadow-[0_12px_32px_rgba(212,175,55,0.38)] disabled:opacity-60"
       >
         {submitting ? "Sending..." : "Send Message →"}
       </button>
@@ -128,7 +128,7 @@ function WorldMap() {
   return (
     <div className="relative">
       <svg ref={ref} viewBox="0 0 1000 450" className="w-full h-auto">
-        <g stroke="#4361EE" strokeWidth="0.7" fill="none" opacity="0.55">
+        <g stroke="#D4AF37" strokeWidth="0.7" fill="none" opacity="0.55">
           <path data-cont d="M150 130 Q200 100 280 110 T400 140 Q420 200 360 240 T220 250 Q160 220 140 180 Z" />
           <path data-cont d="M420 110 Q500 95 580 110 T700 140 Q720 180 660 200 T520 200 Q440 180 420 150 Z" />
           <path data-cont d="M730 130 Q820 110 880 150 T920 240 Q900 290 820 280 T740 230 Q720 180 730 150 Z" />
@@ -138,10 +138,10 @@ function WorldMap() {
         </g>
         {dots.map((d) => (
           <g key={d.label}>
-            <circle cx={d.x} cy={d.y} r="6" fill="#4361EE" />
-            <circle cx={d.x} cy={d.y} r="6" fill="none" stroke="#4361EE" strokeWidth="1.5"
+            <circle cx={d.x} cy={d.y} r="6" fill="#D4AF37" />
+            <circle cx={d.x} cy={d.y} r="6" fill="none" stroke="#D4AF37" strokeWidth="1.5"
               className="pulse-ring" style={{ transformOrigin: `${d.x}px ${d.y}px` }} />
-            <text x={d.x + 12} y={d.y + 4} fontSize="11" fill="#A5BEFF" fontFamily="Inter" fontWeight="500">
+            <text x={d.x + 12} y={d.y + 4} fontSize="11" fill="#E5CB7E" fontFamily="Inter" fontWeight="500">
               {d.label}
             </text>
           </g>

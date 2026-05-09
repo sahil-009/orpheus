@@ -10,7 +10,6 @@ import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import NotFound from "./pages/NotFound";
-import { Cursor } from "./components/interactive/Cursor";
 import { SmoothScrollProvider } from "./lib/lenisContext";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
@@ -27,7 +26,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <SmoothScrollProvider>
-          <Cursor />
           <Navbar />
           <PageTransition>
             <Routes>

@@ -53,7 +53,7 @@ function OverlayContent() {
             key={i}
             className="block font-display font-extrabold"
             style={{
-              background: "linear-gradient(160deg, #A5BEFF 0%, #6B8AF4 35%, #4361EE 65%, #2D4BCC 100%)",
+              background: "linear-gradient(160deg, #E5CB7E 0%, #C8A96A 35%, #D4AF37 65%, #A88829 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -74,7 +74,7 @@ function OverlayContent() {
       {/* expanding rule */}
       <motion.div
         className="h-px rounded-full"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.6), transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)" }}
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "clamp(200px, 28vw, 480px)", opacity: 1 }}
         transition={{ duration: 0.9, delay: 0.75, ease: "easeOut" }}
@@ -133,7 +133,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
         <motion.div
           key={`ov-${location.pathname}`}
           className="fixed inset-0 z-[9998] flex items-center justify-center overflow-hidden"
-          style={{ background: "#050913" }}
+          style={{ background: "#050505" }}
           initial={{ y: "100%" }}
           animate={{ y: ["100%", "0%", "0%", "-100%"] }}
           transition={{
@@ -144,13 +144,13 @@ export function PageTransition({ children }: { children: ReactNode }) {
         >
           {/* subtle grid */}
           <div className="absolute inset-0 opacity-[0.035]" style={{
-            backgroundImage: "linear-gradient(rgba(67,97,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(67,97,238,1) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
           }} />
 
           {/* blue radial glow */}
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(67,97,238,0.14) 0%, transparent 70%)"
+            background: "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)"
           }} />
 
           {/* corner label TL */}
@@ -179,7 +179,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
           {/* bottom thin progress bar */}
           <motion.div
             className="absolute bottom-0 left-0 h-[2px] rounded-full"
-            style={{ background: "linear-gradient(90deg, #2D4BCC, #4361EE, #6B8AF4)" }}
+            style={{ background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 1.4, delay: 0.5, ease: "easeInOut" }}

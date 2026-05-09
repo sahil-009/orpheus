@@ -68,7 +68,7 @@ export function FaqSection() {
 
   return (
     <section className="bg-white py-28 md:py-36 relative overflow-hidden">
-      <FloatingParticles count={45} color="rgba(67,97,238,0.35)" ringColor="rgba(67,97,238,0.2)" />
+      <FloatingParticles count={45} color="rgba(212,175,55,0.35)" ringColor="rgba(212,175,55,0.2)" />
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
         backgroundSize: "48px 48px", pointerEvents: "none",
@@ -92,7 +92,7 @@ export function FaqSection() {
         </div>
 
         {/* Questions */}
-        <div ref={ref}>
+        <div ref={ref} className="needs-copy" data-marker="Copy: confirm or replace FAQ entries">
           {faqs.map((f, i) => (
             <FaqItem key={i} q={f.q} a={f.a} idx={i} />
           ))}

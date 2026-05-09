@@ -60,7 +60,7 @@ function Globe() {
 
       {/* outer glow ring */}
       <div className="absolute inset-0 rounded-full pointer-events-none"
-        style={{ boxShadow: "0 0 80px rgba(67,97,238,0.18), 0 0 0 1px rgba(67,97,238,0.12)" }} />
+        style={{ boxShadow: "0 0 80px rgba(212,175,55,0.18), 0 0 0 1px rgba(212,175,55,0.12)" }} />
 
       <svg viewBox="0 0 400 400" width={400} height={400} className="overflow-visible">
         <defs>
@@ -75,7 +75,7 @@ function Globe() {
           </radialGradient>
           {/* atmosphere glow */}
           <radialGradient id="atmo" cx="38%" cy="30%" r="60%">
-            <stop offset="0%"   stopColor="rgba(107,138,244,0.08)" />
+            <stop offset="0%"   stopColor="rgba(200,169,106,0.08)" />
             <stop offset="100%" stopColor="transparent" />
           </radialGradient>
           {/* sphere base */}
@@ -86,8 +86,8 @@ function Globe() {
           </radialGradient>
           {/* connection line gradient */}
           <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stopColor="#4361EE" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#4361EE" stopOpacity="0.15" />
+            <stop offset="0%"   stopColor="#D4AF37" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.15" />
           </linearGradient>
         </defs>
 
@@ -101,11 +101,11 @@ function Globe() {
           {/* lat/lon grid */}
           {PARALLELS.map((d, i) => (
             <path key={`par-${i}`} d={d} fill="none"
-              stroke="rgba(67,97,238,0.18)" strokeWidth="0.7" />
+              stroke="rgba(212,175,55,0.18)" strokeWidth="0.7" />
           ))}
           {MERIDIANS.map((d, i) => (
             <path key={`mer-${i}`} d={d} fill="none"
-              stroke="rgba(67,97,238,0.13)" strokeWidth="0.7" />
+              stroke="rgba(212,175,55,0.13)" strokeWidth="0.7" />
           ))}
 
           {/* connection arcs Dubai → other cities */}
@@ -115,7 +115,7 @@ function Globe() {
             return (
               <path key={`arc-${c.name}`}
                 d={`M${DUBAI.x.toFixed(1)},${DUBAI.y.toFixed(1)} Q${mx.toFixed(1)},${my.toFixed(1)} ${c.x.toFixed(1)},${c.y.toFixed(1)}`}
-                fill="none" stroke="rgba(67,97,238,0.35)" strokeWidth="0.9"
+                fill="none" stroke="rgba(212,175,55,0.35)" strokeWidth="0.9"
                 strokeDasharray="3 4" />
             );
           })}
@@ -125,7 +125,7 @@ function Globe() {
             <g key={c.name}>
               {/* pulse ring */}
               <circle cx={c.x} cy={c.y} r={c.hq ? 9 : 6} fill="none"
-                stroke={c.hq ? "rgba(67,97,238,0.5)" : "rgba(107,138,244,0.35)"}
+                stroke={c.hq ? "rgba(212,175,55,0.5)" : "rgba(200,169,106,0.35)"}
                 strokeWidth="1">
                 <animate attributeName="r"
                   values={c.hq ? "7;14;7" : "5;10;5"}
@@ -135,8 +135,8 @@ function Globe() {
               </circle>
               {/* dot */}
               <circle cx={c.x} cy={c.y} r={c.hq ? 4.5 : 3}
-                fill={c.hq ? "#4361EE" : "#6B8AF4"}
-                style={{ filter: c.hq ? "drop-shadow(0 0 5px #4361EE)" : "drop-shadow(0 0 3px #6B8AF4)" }} />
+                fill={c.hq ? "#D4AF37" : "#C8A96A"}
+                style={{ filter: c.hq ? "drop-shadow(0 0 5px #D4AF37)" : "drop-shadow(0 0 3px #C8A96A)" }} />
             </g>
           ))}
         </g>
@@ -146,7 +146,7 @@ function Globe() {
 
         {/* outer border ring */}
         <circle cx={CX} cy={CY} r={R} fill="none"
-          stroke="rgba(67,97,238,0.22)" strokeWidth="1" />
+          stroke="rgba(212,175,55,0.22)" strokeWidth="1" />
 
         {/* city labels (outside clip so they always show) */}
         {CITIES.map((c) => {
@@ -163,7 +163,7 @@ function Globe() {
               </text>
               <text x={c.x + dx} y={c.y + 8}
                 fontSize="7.5" fontFamily="'Plus Jakarta Sans', sans-serif"
-                fill="rgba(107,138,244,0.7)" textAnchor={anchor as "start" | "end"}>
+                fill="rgba(200,169,106,0.7)" textAnchor={anchor as "start" | "end"}>
                 {c.sub}
               </text>
             </g>
@@ -175,11 +175,11 @@ function Globe() {
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full px-4 py-1.5 pointer-events-none"
         style={{
           background: "rgba(8,12,30,0.9)",
-          border: "1px solid rgba(67,97,238,0.25)",
+          border: "1px solid rgba(212,175,55,0.25)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
         }}>
-        <span className="h-1.5 w-1.5 rounded-full bg-[#4361EE]"
-          style={{ boxShadow: "0 0 6px #4361EE" }} />
+        <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]"
+          style={{ boxShadow: "0 0 6px #D4AF37" }} />
         <span className="font-display font-semibold text-[10px] uppercase tracking-[2px] text-white/70">
           18 Active Markets
         </span>
@@ -193,7 +193,7 @@ function Globe() {
 ══════════════════════════════════════════════════════════════ */
 const INPUT_STYLE: React.CSSProperties = {
   background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(67,97,238,0.2)",
+  border: "1px solid rgba(212,175,55,0.2)",
   borderRadius: "12px",
   padding: "12px 16px",
   width: "100%",
@@ -266,8 +266,8 @@ export function HomeContact() {
 
   const focusStyle = (name: string): React.CSSProperties => ({
     ...INPUT_STYLE,
-    borderColor: focused === name ? "rgba(67,97,238,0.6)" : "rgba(67,97,238,0.2)",
-    boxShadow: focused === name ? "0 0 0 3px rgba(67,97,238,0.08)" : "none",
+    borderColor: focused === name ? "rgba(212,175,55,0.6)" : "rgba(212,175,55,0.2)",
+    boxShadow: focused === name ? "0 0 0 3px rgba(212,175,55,0.08)" : "none",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -282,12 +282,12 @@ export function HomeContact() {
 
       {/* grid texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{
-        backgroundImage: "linear-gradient(rgba(67,97,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(67,97,238,1) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
       }} />
       {/* top edge */}
       <div className="absolute inset-x-0 top-0 h-px" style={{
-        background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.3), transparent)"
+        background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent)"
       }} />
 
       <div className="relative z-10 mx-auto max-w-[1280px] px-6 md:px-16">
@@ -297,14 +297,14 @@ export function HomeContact() {
           <div>
             <div data-ca>
               <p className="font-display text-[11px] font-semibold uppercase tracking-[3px]"
-                style={{ color: "#4361EE" }}>
+                style={{ color: "#D4AF37" }}>
                 Get In Touch
               </p>
               <h2 className="mt-4 font-display font-extrabold leading-[1.0] text-white"
                 style={{ fontSize: "clamp(32px, 4vw, 58px)", letterSpacing: "-0.03em" }}>
                 Let's Structure{" "}
                 <span className="font-serif italic" style={{
-                  background: "linear-gradient(130deg, #6B8AF4 0%, #A5BEFF 50%, #4361EE 100%)",
+                  background: "linear-gradient(130deg, #C8A96A 0%, #E5CB7E 50%, #D4AF37 100%)",
                   WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
                 }}>
                   Your Future.
@@ -317,7 +317,7 @@ export function HomeContact() {
             </div>
 
             {/* contact pills */}
-            <div data-ca className="mt-7 flex flex-wrap gap-3">
+            <div data-ca className="mt-7 flex flex-wrap gap-3 needs-copy" data-marker="Copy: confirm address / phone / email">
               {[
                 { icon: <MapPin size={12} />, text: "Business Bay, Dubai" },
                 { icon: <Phone size={12} />,  text: "+971 4 558 7968",             href: "tel:+97145587968" },
@@ -326,13 +326,13 @@ export function HomeContact() {
                 p.href
                   ? <a key={p.text} href={p.href}
                       className="flex items-center gap-2 rounded-full px-4 py-2 font-body text-[12px] transition-all hover:border-blue/40"
-                      style={{ background: "rgba(67,97,238,0.07)", border: "1px solid rgba(67,97,238,0.18)", color: "rgba(255,255,255,0.55)" }}>
-                      <span style={{ color: "#6B8AF4" }}>{p.icon}</span>{p.text}
+                      style={{ background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)", color: "rgba(255,255,255,0.55)" }}>
+                      <span style={{ color: "#C8A96A" }}>{p.icon}</span>{p.text}
                     </a>
                   : <div key={p.text}
                       className="flex items-center gap-2 rounded-full px-4 py-2 font-body text-[12px]"
-                      style={{ background: "rgba(67,97,238,0.07)", border: "1px solid rgba(67,97,238,0.18)", color: "rgba(255,255,255,0.55)" }}>
-                      <span style={{ color: "#6B8AF4" }}>{p.icon}</span>{p.text}
+                      style={{ background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)", color: "rgba(255,255,255,0.55)" }}>
+                      <span style={{ color: "#C8A96A" }}>{p.icon}</span>{p.text}
                     </div>
               ))}
             </div>
@@ -341,7 +341,7 @@ export function HomeContact() {
             <div data-ca className="mt-10">
               {sent ? (
                 <div className="flex flex-col items-start gap-4 rounded-2xl p-8"
-                  style={{ background: "rgba(67,97,238,0.06)", border: "1px solid rgba(67,97,238,0.2)" }}>
+                  style={{ background: "rgba(212,175,55,0.06)", border: "1px solid rgba(212,175,55,0.2)" }}>
                   <CheckCircle2 size={36} style={{ color: "#4ADE80" }} />
                   <div>
                     <p className="font-display font-bold text-[20px] text-white">Message sent!</p>
@@ -381,8 +381,8 @@ export function HomeContact() {
                   <button type="submit"
                     className="flex items-center justify-center gap-2.5 rounded-xl py-4 font-display font-semibold text-[13px] uppercase tracking-[2px] text-white transition-all hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.98]"
                     style={{
-                      background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)",
-                      boxShadow: "0 8px 32px rgba(67,97,238,0.4), inset 0 1px 0 rgba(255,255,255,0.12)",
+                      background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
+                      boxShadow: "0 8px 32px rgba(212,175,55,0.4), inset 0 1px 0 rgba(255,255,255,0.12)",
                     }}>
                     <Send size={14} /> Send Message <ArrowRight size={14} />
                   </button>
@@ -415,9 +415,9 @@ export function HomeContact() {
                   <span key={m}
                     className="rounded-full px-2.5 py-1 font-display text-[9px] uppercase tracking-[1.5px] font-semibold"
                     style={{
-                      background: "rgba(67,97,238,0.08)",
-                      border: "1px solid rgba(67,97,238,0.15)",
-                      color: "rgba(107,138,244,0.7)",
+                      background: "rgba(212,175,55,0.08)",
+                      border: "1px solid rgba(212,175,55,0.15)",
+                      color: "rgba(200,169,106,0.7)",
                     }}>
                     {m}
                   </span>

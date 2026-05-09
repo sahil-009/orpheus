@@ -22,19 +22,19 @@ export function CtaBand() {
 
       {/* gold radial */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: "radial-gradient(ellipse 70% 80% at 50% 50%, rgba(67,97,238,0.12) 0%, transparent 65%)"
+        background: "radial-gradient(ellipse 70% 80% at 50% 50%, rgba(212,175,55,0.12) 0%, transparent 65%)"
       }} />
       {/* grid */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{
-        backgroundImage: "linear-gradient(rgba(67,97,238,1) 1px, transparent 1px), linear-gradient(90deg, rgba(67,97,238,1) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
       }} />
       {/* lines */}
       <div className="absolute top-0 inset-x-0 h-px" style={{
-        background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.4), transparent)"
+        background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent)"
       }} />
       <div className="absolute bottom-0 inset-x-0 h-px" style={{
-        background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.4), transparent)"
+        background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent)"
       }} />
 
       <div data-inner className="relative z-10 mx-auto max-w-[800px] px-6 text-center text-white">
@@ -43,7 +43,7 @@ export function CtaBand() {
           style={{ fontSize: "clamp(36px, 5.5vw, 72px)", letterSpacing: "-0.03em" }}>
           Ready to{" "}
           <span className="font-serif italic" style={{
-            background: "linear-gradient(130deg, #6B8AF4, #4361EE, #EEF2FF, #4361EE, #2D4BCC)",
+            background: "linear-gradient(130deg, #C8A96A, #D4AF37, #F7EFD6, #D4AF37, #A88829)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
           }}>
             Structure Your Future?

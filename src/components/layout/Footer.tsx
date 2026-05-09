@@ -23,7 +23,7 @@ export function Footer() {
       {/* ── Links grid ─────────────────────────────── */}
       <div className="mx-auto max-w-[1440px] px-6 md:px-16 pt-12 pb-10">
         <div className="h-px mb-12" style={{
-          background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.18), transparent)"
+          background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.18), transparent)"
         }} />
 
         <div className="grid gap-12 md:grid-cols-12">
@@ -31,7 +31,7 @@ export function Footer() {
           <div className="md:col-span-5" data-foot-col>
             <Link to="/" className="inline-flex items-center gap-3 group">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg font-display font-extrabold text-charcoal text-[15px] transition-transform group-hover:scale-110"
-                style={{ background: "linear-gradient(135deg, #4361EE 0%, #2D4BCC 100%)" }}>
+                style={{ background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)" }}>
                 O
               </div>
               <span className="font-display font-bold text-[17px]">Orpheus Financial</span>
@@ -118,7 +118,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-14 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid rgba(67,97,238,0.09)" }}>
+          style={{ borderTop: "1px solid rgba(212,175,55,0.09)" }}>
           <p className="font-body text-[11px] text-white/20">
             © {new Date().getFullYear()} Orpheus Financial®. All rights reserved.
           </p>

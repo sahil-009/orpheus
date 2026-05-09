@@ -38,7 +38,7 @@ export function FounderSection() {
 
   return (
     <section className="bg-[#F5F4F0] py-28 md:py-36 relative overflow-hidden">
-      <FloatingParticles count={45} color="rgba(67,97,238,0.4)" ringColor="rgba(67,97,238,0.26)" />
+      <FloatingParticles count={45} color="rgba(212,175,55,0.4)" ringColor="rgba(212,175,55,0.26)" />
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
         backgroundSize: "48px 48px", pointerEvents: "none",
@@ -47,11 +47,11 @@ export function FounderSection() {
       <div className="relative mx-auto grid max-w-[1280px] gap-16 px-6 md:px-16 lg:grid-cols-2 lg:gap-20 items-center">
 
         {/* LEFT — image */}
-        <div ref={leftRef} className="relative">
+        <div ref={leftRef} className="relative needs-asset" data-marker="Asset: founder portrait (high-res)">
           <div className="absolute -top-3 -left-3 right-3 bottom-3 border-2 border-gold/40 rounded-3xl" />
 
           <div ref={imgRef} className="relative aspect-[0.85] rounded-3xl overflow-hidden"
-            style={{ background: "linear-gradient(135deg, #4361EE15, #11111108)" }}>
+            style={{ background: "linear-gradient(135deg, #D4AF3715, #11111108)" }}>
             <img
               src="https://media.licdn.com/dms/image/v2/D4D03AQEgp7EqO1XxMQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673252878733?e=1779321600&v=beta&t=sNeJs21_znAv6zBbi1rZgl_XKpBUGYWUoyggkoQBuh0"
               alt="Rachit Yadav — Founder & CEO"
@@ -66,8 +66,8 @@ export function FounderSection() {
             className="absolute -bottom-6 -right-2 md:-right-8 max-w-[270px] rounded-2xl p-6"
             style={{
               background: "#0D0D0D",
-              boxShadow: "0 28px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(67,97,238,0.18)",
-              border: "1px solid rgba(67,97,238,0.15)",
+              boxShadow: "0 28px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,175,55,0.18)",
+              border: "1px solid rgba(212,175,55,0.15)",
             }}
           >
             <span className="font-serif text-[40px] leading-none text-gold/25">"</span>
@@ -99,7 +99,7 @@ export function FounderSection() {
             ))}
           </div>
 
-          <div className="mt-8 space-y-5 font-body text-[14px] text-muted2 leading-[1.9] max-w-lg">
+          <div className="mt-8 space-y-5 font-body text-[14px] text-muted2 leading-[1.9] max-w-lg needs-copy" data-marker="Copy: founder bio (final)">
             <p>
               Rachit Yadav founded Orpheus Financial with a single belief: international businesses deserve a financial partner who <em className="text-charcoal font-medium">actually executes</em> — not just advises.
             </p>

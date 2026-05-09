@@ -13,26 +13,19 @@ export default {
         body:    ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
       },
       colors: {
-        // ── Brand — Blue / Dark (FinTech Luxury) ─────────────────────
-        blue: {
-          DEFAULT: "#4361EE",
-          light:   "#6B8AF4",
-          pale:    "#EEF2FF",
-          ultra:   "#F5F7FF",
-          dark:    "#2D4BCC",
-          deep:    "#1A2E8A",
-          glow:    "#4361EE",
-        },
-        // ── Semantic aliases (components use these) ───────────────────
-        gold:    { DEFAULT: "#4361EE", light: "#6B8AF4", pale: "#EEF2FF", ultra: "#F5F7FF", dark: "#2D4BCC" },
-        charcoal:{ DEFAULT: "#0A0F1E", mid: "#0F1629", soft: "#151D36" },
-        navy:    "#0A0F1E",
-        sky:     { DEFAULT: "#4361EE", light: "#6B8AF4", pale: "#EEF2FF", ultra: "#F5F7FF", dark: "#2D4BCC" },
-        offwhite:"#F5F7FF",
-        ink:     "#0A0F1E",
-        muted2:  "#64748B",
-        line:        "rgba(67,97,238,0.15)",
-        "line-strong": "rgba(67,97,238,0.30)",
+        // ── Brand — Gold / Black (Orpheus Financial) ─────────────────
+        // Strict palette: Gold #D4AF37, Soft Gold #C8A96A, White #FFFFFF, Black #0A0A0A
+        gold:    { DEFAULT: "#D4AF37", light: "#C8A96A", pale: "#F7EFD6", ultra: "#FFFFFF", dark: "#A88829" },
+        // Legacy "blue" tokens kept as aliases for any class-based usages
+        blue:    { DEFAULT: "#D4AF37", light: "#C8A96A", pale: "#F7EFD6", ultra: "#FFFFFF", dark: "#A88829", deep: "#5C4A14", glow: "#D4AF37" },
+        sky:     { DEFAULT: "#D4AF37", light: "#C8A96A", pale: "#F7EFD6", ultra: "#FFFFFF", dark: "#A88829" },
+        charcoal:{ DEFAULT: "#0A0A0A", mid: "#141414", soft: "#1C1C1C" },
+        navy:    "#0A0A0A",
+        offwhite:"#FFFFFF",
+        ink:     "#0A0A0A",
+        muted2:  "#6B6B6B",
+        line:        "rgba(212,175,55,0.18)",
+        "line-strong": "rgba(212,175,55,0.32)",
 
         // ── Shadcn ────────────────────────────────────────────────────
         border:     "hsl(var(--border))",

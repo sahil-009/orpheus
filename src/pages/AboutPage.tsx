@@ -51,7 +51,7 @@ function StoryTimeline() {
       className="rounded-3xl text-white p-10 relative overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #0D0D0D 0%, #111 100%)",
-        border: "1px solid rgba(67,97,238,0.15)",
+        border: "1px solid rgba(212,175,55,0.15)",
         boxShadow: "0 24px 60px rgba(0,0,0,0.35)",
       }}
     >
@@ -61,7 +61,7 @@ function StoryTimeline() {
         <h3 className="mt-3 font-display text-3xl">Our Journey</h3>
         <div className="mt-8 relative pl-8">
           <svg className="absolute left-0 top-0 w-2 h-full" viewBox="0 0 4 400" preserveAspectRatio="none">
-            <line data-line x1="2" y1="0" x2="2" y2="400" stroke="#4361EE" strokeWidth="2" />
+            <line data-line x1="2" y1="0" x2="2" y2="400" stroke="#D4AF37" strokeWidth="2" />
           </svg>
           <ul className="space-y-8">
             {milestones.map((m) => (
@@ -170,7 +170,7 @@ export default function AboutPage() {
 
       {/* Team Stats */}
       <section className="relative py-0 overflow-hidden bg-[#111]">
-        <div className="h-[1px] w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.3), transparent)" }} />
+        <div className="h-[1px] w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent)" }} />
         <div ref={teamRef} className="relative mx-auto grid max-w-[1280px] grid-cols-2 md:grid-cols-4 px-6 md:px-16">
           {[
             { v: 8,  s: "",  l: "Team Members" },
@@ -190,7 +190,7 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
-        <div className="h-[1px] w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(67,97,238,0.3), transparent)" }} />
+        <div className="h-[1px] w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent)" }} />
       </section>
     </main>
   );

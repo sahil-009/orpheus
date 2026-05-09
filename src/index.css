@@ -3,55 +3,68 @@
 @tailwind utilities;
 
 /* =========================================================
-   Orpheus Financial — Blue / Dark FinTech Design System
+   Orpheus Financial — Gold / Black Brand Design System
+   Brand palette (strict):
+     Gold        #D4AF37
+     Soft Gold   #C8A96A
+     White       #FFFFFF
+     Black/Dark  #0A0A0A
    ========================================================= */
 
 @layer base {
   :root {
-    --blue:        #4361EE;
-    --blue-light:  #6B8AF4;
-    --blue-pale:   #EEF2FF;
-    --blue-ultra:  #F5F7FF;
-    --blue-dark:   #2D4BCC;
-    --blue-deep:   #1A2E8A;
-    --charcoal:    #0A0F1E;
-    --charcoal-mid:#0F1629;
-    --charcoal-soft:#151D36;
-    --off-white:   #F5F7FF;
-    --text-ink:    #0A0F1E;
-    --text-muted:  #64748B;
-    --line:        rgba(67,97,238,0.15);
-    --line-strong: rgba(67,97,238,0.30);
+    --gold:        #D4AF37;
+    --gold-soft:   #C8A96A;
+    --gold-pale:   #F7EFD6;
+    --gold-dark:   #A88829;
+    --gold-deep:   #5C4A14;
 
-    /* Shadcn HSL tokens */
+    /* Legacy aliases mapped to gold tokens */
+    --blue:        #D4AF37;
+    --blue-light:  #C8A96A;
+    --blue-pale:   #F7EFD6;
+    --blue-ultra:  #FFFFFF;
+    --blue-dark:   #A88829;
+    --blue-deep:   #5C4A14;
+
+    --charcoal:    #0A0A0A;
+    --charcoal-mid:#141414;
+    --charcoal-soft:#1C1C1C;
+    --off-white:   #FFFFFF;
+    --text-ink:    #0A0A0A;
+    --text-muted:  #6B6B6B;
+    --line:        rgba(212,175,55,0.18);
+    --line-strong: rgba(212,175,55,0.32);
+
+    /* Shadcn HSL tokens — retuned to gold/black */
     --background: 0 0% 100%;
-    --foreground: 220 47% 8%;
+    --foreground: 0 0% 4%;
     --card: 0 0% 100%;
-    --card-foreground: 220 47% 8%;
+    --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 47% 8%;
-    --primary: 231 84% 60%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 44 65% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 231 84% 95%;
-    --secondary-foreground: 220 47% 8%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 40%;
-    --accent: 231 84% 95%;
-    --accent-foreground: 220 47% 8%;
+    --secondary: 44 60% 92%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+    --accent: 44 60% 92%;
+    --accent-foreground: 0 0% 4%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 14% 90%;
-    --input: 220 14% 90%;
-    --ring: 231 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 44 65% 52%;
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-foreground: 0 0% 26%;
+    --sidebar-primary: 0 0% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 231 84% 60%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 91%;
+    --sidebar-ring: 44 65% 52%;
   }
 }
 
@@ -66,52 +79,25 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  body { overflow-x: hidden; }
+  body { overflow-x: hidden; cursor: auto; }
   .font-display { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
   .font-serif   { font-family: 'DM Serif Display', Georgia, serif; }
   .font-body    { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
 }
 
 /* =========================================================
-   Custom Cursor — Blue edition
-   ========================================================= */
-.cursor-dot, .cursor-ring {
-  position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 99999;
-  border-radius: 9999px; will-change: transform;
-}
-.cursor-dot {
-  width: 8px; height: 8px;
-  background: var(--blue);
-  transform: translate(-50%, -50%);
-}
-.cursor-ring {
-  width: 40px; height: 40px;
-  border: 1.5px solid var(--blue);
-  background: transparent;
-  transform: translate(-50%, -50%);
-  transition: background-color 0.25s ease, border-color 0.25s ease, width 0.2s ease, height 0.2s ease;
-}
-.cursor-ring.is-hover { width: 52px; height: 52px; background: rgba(67,97,238,0.1); }
-@media (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none !important; }
-  * { cursor: auto !important; }
-}
-@media (pointer: fine) { body, body * { cursor: none; } }
-
-/* =========================================================
    Grid textures
    ========================================================= */
 .grid-texture {
   background-image:
-    linear-gradient(rgba(67,97,238,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(67,97,238,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(212,175,55,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.06) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 .grid-texture-light {
   background-image:
-    linear-gradient(rgba(67,97,238,0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(67,97,238,0.09) 1px, transparent 1px);
+    linear-gradient(rgba(212,175,55,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.09) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 .grid-texture-white {
@@ -128,13 +114,13 @@
   background: rgba(255,255,255,0.04);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(67,97,238,0.18);
+  border: 1px solid rgba(212,175,55,0.20);
 }
 .glass-blue {
-  background: rgba(67,97,238,0.07);
+  background: rgba(212,175,55,0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(67,97,238,0.22);
+  border: 1px solid rgba(212,175,55,0.24);
 }
 
 /* =========================================================
@@ -145,38 +131,23 @@
 .reveal-word  { display: inline-block; will-change: transform, opacity; }
 .reveal-char  { display: inline-block; will-change: transform, opacity; }
 
-/* Blue shimmer */
+/* Gold shimmer */
 @keyframes shimmer-sweep {
   0%   { background-position: -200% center; }
   100% { background-position:  200% center; }
 }
-.blue-shimmer {
-  background: linear-gradient(90deg, #4361EE 0%, #6B8AF4 35%, #A5BEFF 50%, #6B8AF4 65%, #4361EE 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer-sweep 3.5s linear infinite;
-}
-.blue-shimmer-slow {
-  background: linear-gradient(90deg, #2D4BCC 0%, #4361EE 40%, #6B8AF4 60%, #4361EE 80%, #2D4BCC 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer-sweep 5s linear infinite;
-}
-/* Legacy alias for components still using gold-shimmer */
+.blue-shimmer,
 .gold-shimmer {
-  background: linear-gradient(90deg, #4361EE 0%, #6B8AF4 35%, #A5BEFF 50%, #6B8AF4 65%, #4361EE 100%);
+  background: linear-gradient(90deg, #D4AF37 0%, #C8A96A 35%, #F7EFD6 50%, #C8A96A 65%, #D4AF37 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer-sweep 3.5s linear infinite;
 }
+.blue-shimmer-slow,
 .gold-shimmer-slow {
-  background: linear-gradient(90deg, #2D4BCC 0%, #4361EE 40%, #6B8AF4 60%, #4361EE 80%, #2D4BCC 100%);
+  background: linear-gradient(90deg, #A88829 0%, #D4AF37 40%, #C8A96A 60%, #D4AF37 80%, #A88829 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -214,8 +185,8 @@
 }
 .card-hover:hover {
   transform: translateY(-8px);
-  box-shadow: 0 28px 56px rgba(67,97,238,0.2);
-  border-color: rgba(67,97,238,0.45);
+  box-shadow: 0 28px 56px rgba(212,175,55,0.22);
+  border-color: rgba(212,175,55,0.5);
 }
 
 /* =========================================================
@@ -231,11 +202,11 @@
 /* =========================================================
    Selection & scrollbar
    ========================================================= */
-::selection          { background: var(--blue); color: #fff; }
+::selection          { background: var(--gold); color: #0A0A0A; }
 ::-webkit-scrollbar  { width: 8px; height: 8px; }
-::-webkit-scrollbar-track  { background: #0A0F1E; }
-::-webkit-scrollbar-thumb  { background: rgba(67,97,238,0.35); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(67,97,238,0.65); }
+::-webkit-scrollbar-track  { background: #0A0A0A; }
+::-webkit-scrollbar-thumb  { background: rgba(212,175,55,0.4); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,0.7); }
 
 /* =========================================================
    Lenis
@@ -252,8 +223,9 @@ html.lenis, html.lenis body           { height: auto; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .stat-number  { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 
-.border-glow-blue {
-  box-shadow: 0 0 0 1px rgba(67,97,238,0.35), 0 0 24px rgba(67,97,238,0.14);
+.border-glow-blue,
+.border-glow-gold {
+  box-shadow: 0 0 0 1px rgba(212,175,55,0.4), 0 0 24px rgba(212,175,55,0.18);
 }
 .orb {
   position: absolute; border-radius: 9999px;
@@ -261,7 +233,51 @@ html.lenis, html.lenis body           { height: auto; }
 }
 
 /* ─── hr ───────────────────────────────────────────────── */
-.hr-blue {
+.hr-blue,
+.hr-gold {
   border: none; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(67,97,238,0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+}
+
+/* =========================================================
+   Client review markers — visible flags for assets / copy
+   that the client must supply. Toggle with body class.
+   ========================================================= */
+.needs-asset,
+.needs-copy {
+  position: relative;
+  outline: 2px dashed rgba(212,175,55,0.65);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+.needs-asset::before,
+.needs-copy::before {
+  content: attr(data-marker);
+  position: absolute;
+  top: -14px;
+  left: 12px;
+  z-index: 50;
+  padding: 4px 10px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  background: #D4AF37;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(212,175,55,0.35);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.needs-copy::before {
+  background: #C8A96A;
+}
+body.hide-review-markers .needs-asset,
+body.hide-review-markers .needs-copy {
+  outline: none;
+}
+body.hide-review-markers .needs-asset::before,
+body.hide-review-markers .needs-copy::before {
+  display: none;
 }
