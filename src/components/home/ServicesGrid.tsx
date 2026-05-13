@@ -9,7 +9,7 @@ const services = [
     icon: <Globe size={26} />,
     n: "01",
     title: "Offshore Setup",
-    body: "Form companies in UAE, BVI, Cayman, Hong Kong, Seychelles and Mauritius — picked to fit your tax, banking, and operational reality.",
+    body: "Incorporate entities across the UAE, BVI, Cayman, Hong Kong, Seychelles, and Mauritius, structured for tax efficiency and banking access.",
     tags: ["UAE", "BVI", "Cayman", "HK"],
     href: "/services",
   },
@@ -17,7 +17,7 @@ const services = [
     icon: <Landmark size={26} />,
     n: "02",
     title: "Banking Solutions",
-    body: "Open multi-currency corporate accounts. We handle documentation, bank coordination, KYC packs and ongoing compliance support.",
+    body: "Simplified global banking solutions, including account opening, regulatory documentation, and long-term compliance support.",
     tags: ["Multi-currency", "KYC", "Compliance"],
     href: "/services",
   },
@@ -25,7 +25,7 @@ const services = [
     icon: <TrendingUp size={26} />,
     n: "03",
     title: "Debt Raising",
-    body: "Strategy, documentation and investor matching to help you secure the capital your business needs to scale — on the right terms.",
+    body: "From strategy to funding close, we support debt raises with clear structuring and targeted investor engagement.",
     tags: ["Capital", "Structuring", "Term Sheet"],
     href: "/services",
   },
@@ -108,7 +108,7 @@ export function ServicesGrid() {
             className="mt-4 font-display font-extrabold leading-[1.0]"
             style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", color: "#0A0A0A" }}
           >
-            Smart Solutions for{" "}
+            End-to-End Solutions{" "}
             <span
               className="font-serif italic"
               style={{
@@ -119,11 +119,11 @@ export function ServicesGrid() {
                 backgroundClip: "text",
               }}
             >
-              Modern Businesses
+              That Deliver
             </span>
           </h2>
           <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed" style={{ color: "#6B6B6B" }}>
-            Three core practice areas — fully integrated. We don't just advise, we execute every step alongside you.
+            Three fully integrated services with direct execution at every stage of your journey.
           </p>
         </div>
 

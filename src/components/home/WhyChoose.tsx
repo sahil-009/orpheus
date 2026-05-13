@@ -5,12 +5,12 @@ import {
 } from "lucide-react";
 
 const features = [
-  { icon: <MapPin size={18} />,   title: "Dubai-based, globally connected", body: "Headquartered in Business Bay with active networks in 18 markets worldwide." },
-  { icon: <Puzzle size={18} />,   title: "Complex cases welcome",           body: "Multi-jurisdiction structures in crypto, oil, and cross-border commodities." },
-  { icon: <Cog size={18} />,      title: "End-to-end execution",           body: "We file, open banking, and handle all compliance — you receive a live entity." },
-  { icon: <Zap size={18} />,      title: "Fast & fully transparent",       body: "Clear timelines, fixed fees, no hidden charges. Ever." },
-  { icon: <ShieldCheck size={18} />, title: "Fully compliant",             body: "FCA-aware practices and OECD-aligned reporting standards throughout." },
-  { icon: <Users size={18} />,    title: "Multi-nationality team",         body: "5+ nationalities, 8 specialists — serving clients from Vancouver to Kampala." },
+  { icon: <MapPin size={18} />,   title: "Based in Dubai, Operating Internationally", body: "Operating from Dubai with strong on-ground support across 18 global jurisdictions." },
+  { icon: <Puzzle size={18} />,   title: "Comfortable With Complex Structures",       body: "Handling layered, multi-country structures across regulated and high-value industries." },
+  { icon: <Cog size={18} />,      title: "True End-to-End Execution",                 body: "From setup to banking and compliance, we manage the entire process." },
+  { icon: <Zap size={18} />,      title: "Fast and Fully Transparent",                body: "Clear timelines, fixed fees, and complete cost visibility." },
+  { icon: <ShieldCheck size={18} />, title: "Compliance-First Approach",              body: "FCA-aware processes aligned with OECD reporting standards." },
+  { icon: <Users size={18} />,    title: "Truly International Team",                  body: "A global team with cross-border experience supporting diverse client needs." },
 ];
 
 const jurisdictions = [
@@ -47,9 +47,9 @@ export function WhyChoose() {
           <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Why Choose Us</p>
           <h2 className="mt-4 font-display font-extrabold leading-[1.0]"
             style={{ fontSize: "clamp(34px, 4.2vw, 58px)", letterSpacing: "-0.03em" }}>
-            Why Businesses{" "}
+            Why Leading Businesses{" "}
             <span className="font-serif italic text-gold" style={{ fontSize: "0.92em" }}>
-              Choose Orpheus
+              Trust Orpheus
             </span>
           </h2>
 

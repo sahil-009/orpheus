@@ -4,13 +4,13 @@ import { Plus, Minus } from "lucide-react";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
 
 const faqs = [
-  { q: "How long does it take to set up an offshore company?", a: "Most structures are ready within 5–15 business days depending on the jurisdiction. UAE free zone entities can often be done in 3–5 days. We provide fixed timelines upfront before engagement." },
-  { q: "Do you handle the entire process or just advise?", a: "We handle the entire process end-to-end — from selecting the right jurisdiction and structure, to filing documents, opening bank accounts, and ensuring ongoing compliance. You don't need to manage any third parties." },
-  { q: "Which jurisdictions do you work in?", a: "We primarily work in UAE, British Virgin Islands, Cayman Islands, Hong Kong, Seychelles, Mauritius, and Marshall Islands. We choose the right jurisdiction based on your specific goals — tax, banking access, IP holding, or operational presence." },
-  { q: "Is offshore structuring legal?", a: "Yes — absolutely. Offshore structuring is a legal and widely-used method of international tax and asset planning. We only work within fully compliant frameworks aligned with OECD and FATF standards. We don't operate in blacklisted jurisdictions." },
-  { q: "What types of clients do you work with?", a: "We work with founders, family offices, high-net-worth individuals, growing businesses, and multinationals. Common use cases include tax optimisation, global banking access, IP holding, and capital raising." },
-  { q: "How do you charge for your services?", a: "We charge fixed, transparent fees — no hourly billing, no surprise add-ons. Pricing is presented clearly in your strategy proposal before any commitment. Fees vary by jurisdiction and complexity of the structure." },
-  { q: "Do you provide banking support as well?", a: "Yes — banking support is one of our core services. We handle the entire banking onboarding including KYC documentation, bank selection, and relationship management across UAE, Europe, Asia, and the Caribbean." },
+  { q: "How long does it take to form an offshore company?", a: "Most offshore companies are incorporated within 2–4 weeks, depending on jurisdiction, documentation readiness, regulatory checks, and approval timelines." },
+  { q: "Do you offer full execution or advisory-only services?", a: "We offer end-to-end execution, structuring, incorporation, banking coordination, compliance assistance, and delivery of a fully functional entity." },
+  { q: "Which offshore and onshore jurisdictions do you support?", a: "We operate in 18 territories, such as the UAE, BVI, Cayman Islands, Hong Kong, Seychelles, and Mauritius, to suit business, tax, and banking requirements." },
+  { q: "Is offshore structuring compliant with international regulations?", a: "Yes. When structured correctly, offshore entities are fully legal and compliant with international tax laws, AML requirements, and global reporting standards." },
+  { q: "Who typically works with your firm?", a: "Our clients include founders, SMEs, trading firms, fintech companies, and family offices requiring compliant cross-border structures and reliable banking access." },
+  { q: "How is your pricing structured?", a: "We operate under an open, flat-rate system on a jurisdiction and scope basis, with deadlines and no surprises." },
+  { q: "Do you assist with corporate banking and account opening?", a: "Yes. We handle the whole process of banking, documentation, KYC preparation, bank liaison, and compliance support." },
 ];
 
 function FaqItem({ q, a, idx }: { q: string; a: string; idx: number }) {

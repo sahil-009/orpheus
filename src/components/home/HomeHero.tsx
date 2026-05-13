@@ -93,24 +93,19 @@ export function HomeHero() {
             className="font-display font-extrabold leading-[1.0] text-white"
             style={{ fontSize: "clamp(42px, 6vw, 84px)", letterSpacing: "-0.03em" }}
           >
-            <span className="block">Offshore Setup.</span>
+            <span className="block">One Partner for</span>
             <span className="block" style={{
               background: "linear-gradient(130deg, #C8A96A 0%, #D4AF37 30%, #F7EFD6 55%, #D4AF37 75%, #A88829 100%)",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
             }}>
-              Banking. Capital.
-            </span>
-            <span className="block text-white/60 font-serif italic" style={{ fontSize: "0.62em", WebkitTextFillColor: "initial" }}>
-              one quiet partner.
+              Offshore, Banking & Capital
             </span>
           </h1>
 
           {/* sub */}
           <p data-anim
             className="mt-6 max-w-[500px] font-body text-[15.5px] leading-[1.85] text-white/55">
-            Dubai-based advisory delivering three integrated services — offshore company
-            formation, global banking access &amp; debt raising —
-            <span className="text-white/80"> across 18 jurisdictions, fully compliant.</span>
+            A trusted Dubai advisory helping businesses establish offshore entities, secure global banking, and raise capital with complete compliance.
           </p>
 
           {/* email + CTA row */}
