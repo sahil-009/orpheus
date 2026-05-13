@@ -39,6 +39,7 @@ export function HomeHero() {
   const [email, setEmail] = useState("");
   const leftRef  = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+  const bgRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -51,10 +52,45 @@ export function HomeHero() {
       .fromTo(cards,
         { y: 60, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.9, stagger: 0.18, ease: "power3.out" }, 0.5);
+
+    // Video parallax
+    const bgVideo = bgRef.current?.querySelector("video");
+    let onMove: (e: MouseEvent) => void;
+    if (bgVideo) {
+      gsap.fromTo(bgVideo, { scale: 1.15, opacity: 0 }, { scale: 1.05, opacity: 0.45, duration: 3, ease: "power2.out" });
+
+      onMove = (e: MouseEvent) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * -30;
+        const y = (e.clientY / window.innerHeight - 0.5) * -30;
+        gsap.to(bgVideo, { x, y, duration: 2, ease: "power2.out", overwrite: "auto" });
+      };
+      window.addEventListener("mousemove", onMove);
+    }
+
+    return () => {
+      if (onMove) window.removeEventListener("mousemove", onMove);
+    };
   }, []);
 
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col" style={{ background: "#0A0A0A" }}>
+
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={bgRef}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-0 mix-blend-lighten"
+          src="https://orpheusfinancial.co/wp-content/uploads/2025/08/Comp-1-1.mp4-revised-1.mp4"
+          style={{ transform: "scale(1.15)" }}
+        />
+        {/* Soft elegant gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/40 to-transparent" />
+      </div>
 
       {/* gold mesh */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden style={{
@@ -193,9 +229,11 @@ export function HomeHero() {
               <Link to="/services" key={s.label} data-card
                 className="group relative block overflow-hidden rounded-2xl p-5 md:p-6 transition-all hover:-translate-y-1"
                 style={{
-                  background: "rgba(20,20,20,0.94)",
-                  border: "1px solid rgba(212,175,55,0.22)",
-                  boxShadow: "0 18px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04)",
+                  background: "rgba(15,15,15,0.35)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  border: "1px solid rgba(212,175,55,0.25)",
+                  boxShadow: "0 18px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08)",
                 }}>
                 <span aria-hidden
                   className="absolute -top-3 right-4 font-display font-extrabold select-none pointer-events-none"
@@ -232,18 +270,6 @@ export function HomeHero() {
             ))}
           </div>
 
-          <div
-            className="mt-5 rounded-xl px-4 py-3 needs-asset"
-            data-marker="Asset: hero visual / lifestyle photo"
-            style={{
-              background: "rgba(212,175,55,0.06)",
-              border: "1px dashed rgba(212,175,55,0.4)",
-            }}>
-            <p className="font-body text-[11px] text-white/55 leading-[1.6]">
-              Recommended: a single high-quality visual (Dubai skyline / boardroom /
-              founder portrait) to anchor the hero — to be supplied by client.
-            </p>
-          </div>
         </div>
       </div>
 
