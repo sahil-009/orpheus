@@ -37,6 +37,7 @@ const avatars = [
 
 export function HomeHero() {
   const [email, setEmail] = useState("");
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const leftRef  = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const bgRef    = useRef<HTMLDivElement>(null);
@@ -82,8 +83,8 @@ export function HomeHero() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-0 mix-blend-lighten"
-          src="https://orpheusfinancial.co/wp-content/uploads/2025/08/Comp-1-1.mp4-revised-1.mp4"
+          className="absolute inset-0 w-full h-full object-cover mix-blend-lighten"
+          src="/12989645_960_540_60fps.webm"
           style={{ transform: "scale(1.15)" }}
         />
         {/* Soft elegant gradient overlays */}
