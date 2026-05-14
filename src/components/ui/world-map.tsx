@@ -46,7 +46,14 @@ export default function WorldMap({
   };
 
   return (
-    <div className="relative w-full aspect-[2/1] rounded-lg bg-transparent font-sans">
+    <div className="relative w-full aspect-[2/1] rounded-lg bg-gradient-to-b from-[#0F1A3A]/20 to-transparent font-sans overflow-hidden">
+      {/* Dotted background pattern */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: `radial-gradient(circle, rgba(212,175,55,0.2) 1px, transparent 1px)`,
+        backgroundSize: "32px 32px",
+        backgroundPosition: "0 0"
+      }} />
+      
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="pointer-events-none h-full w-full select-none [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)]"
@@ -89,6 +96,20 @@ export default function WorldMap({
             <stop offset="95%" stopColor={lineColor} stopOpacity="1" />
             <stop offset="100%" stopColor="white" stopOpacity="0" />
           </linearGradient>
+          <filter id="glow-dot">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="glow-pulse">
+            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
         </defs>
 
         {dots.map((dot, i) => (
@@ -97,36 +118,40 @@ export default function WorldMap({
               <circle
                 cx={projectPoint(dot.start.lat, dot.start.lng).x}
                 cy={projectPoint(dot.start.lat, dot.start.lng).y}
-                r="2"
+                r="3"
                 fill={lineColor}
+                filter="url(#glow-dot)"
               />
               <circle
                 cx={projectPoint(dot.start.lat, dot.start.lng).x}
                 cy={projectPoint(dot.start.lat, dot.start.lng).y}
-                r="2"
+                r="3"
                 fill={lineColor}
-                opacity="0.5"
+                opacity="0.4"
+                filter="url(#glow-pulse)"
               >
-                <animate attributeName="r" from="2" to="8" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="3" />
-                <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="3" />
+                <animate attributeName="r" from="3" to="10" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" from="0.4" to="0" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
               </circle>
             </g>
             <g>
               <circle
                 cx={projectPoint(dot.end.lat, dot.end.lng).x}
                 cy={projectPoint(dot.end.lat, dot.end.lng).y}
-                r="2"
+                r="3"
                 fill={lineColor}
+                filter="url(#glow-dot)"
               />
               <circle
                 cx={projectPoint(dot.end.lat, dot.end.lng).x}
                 cy={projectPoint(dot.end.lat, dot.end.lng).y}
-                r="2"
+                r="3"
                 fill={lineColor}
-                opacity="0.5"
+                opacity="0.4"
+                filter="url(#glow-pulse)"
               >
-                <animate attributeName="r" from="2" to="8" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="3" />
-                <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="3" />
+                <animate attributeName="r" from="3" to="10" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" from="0.4" to="0" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
               </circle>
             </g>
           </g>
