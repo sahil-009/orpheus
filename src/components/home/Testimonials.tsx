@@ -32,6 +32,34 @@ const items = [
     initials: "MC",
     role: "CEO",
   },
+  {
+    quote: "The entire process from consultation to completion was seamless. Rachit and the team truly understand global financial structures and made our offshore setup effortless.",
+    name: "TechVentures Inc",
+    company: "Australia",
+    initials: "TV",
+    role: "Founder & Director",
+  },
+  {
+    quote: "Working with Orpheus was a game-changer for our multi-jurisdictional operations. Their regulatory knowledge and practical approach saved us months of research and countless headaches.",
+    name: "Global Trade Solutions",
+    company: "Netherlands",
+    initials: "GT",
+    role: "Operations Manager",
+  },
+  {
+    quote: "Exceptional professionalism and deep sector knowledge. They navigated complex regulatory requirements with precision and delivered results that exceeded our expectations.",
+    name: "Capital Partners LLC",
+    company: "United States",
+    initials: "CP",
+    role: "Managing Partner",
+  },
+  {
+    quote: "From day one, Orpheus demonstrated a comprehensive understanding of our unique requirements. Their proactive approach and strategic guidance have been invaluable to our growth.",
+    name: "Asian Finance Group",
+    company: "Malaysia",
+    initials: "AF",
+    role: "Chief Financial Officer",
+  },
 ];
 
 export function Testimonials() {

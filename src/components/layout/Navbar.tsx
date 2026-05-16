@@ -15,11 +15,10 @@ const links = [
 const spring = { type: "spring" as const, stiffness: 380, damping: 30 };
 
 export function Navbar() {
-  const [expanded, setExpanded]   = useState(false);
+  const [expanded, setExpanded]   = useState(true);
   const [scrolled, setScrolled]   = useState(false);
   const [open, setOpen]           = useState(false);
   const progressRef = useRef<HTMLDivElement>(null);
-  const hoverTimer  = useRef<ReturnType<typeof setTimeout>>();
   const overlayRef  = useRef<HTMLDivElement>(null);
   const location    = useLocation();
 
@@ -49,8 +48,8 @@ export function Navbar() {
     );
   }, [open]);
 
-  const onEnter = () => { clearTimeout(hoverTimer.current); setExpanded(true); };
-  const onLeave = () => { hoverTimer.current = setTimeout(() => setExpanded(false), 90); };
+  const onEnter = () => { setExpanded(true); };
+  const onLeave = () => { setExpanded(true); };
 
   return (
     <>
