@@ -310,8 +310,8 @@ export function HomeContact() {
                   Your Future.
                 </span>
               </h2>
-              <p className="mt-4 font-body text-[15px] leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.4)", maxWidth: 420 }}>
+              <p className="mt-4 font-body text-[15px] leading-relaxed font-bold"
+                style={{ color: "rgba(255,255,255,0.75)", maxWidth: 420 }}>
                 Book a free 30-minute consultation. We'll map your structure, jurisdictions and next steps — in plain English.
               </p>
             </div>

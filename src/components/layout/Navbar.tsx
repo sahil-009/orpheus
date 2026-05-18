@@ -162,7 +162,7 @@ export function Navbar() {
                           <NavLink to={l.to} end={l.to === "/"}>
                             {({ isActive }) => (
                               <motion.span
-                                className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full font-display font-semibold text-[10.5px] uppercase tracking-[1.5px] whitespace-nowrap select-none"
+                                className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full font-display font-bold text-[10.5px] uppercase tracking-[1.5px] whitespace-nowrap select-none"
                                 animate={{
                                   background: isActive ? "rgba(212,175,55,0.22)" : "rgba(0,0,0,0)",
                                   color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.5)",
@@ -206,7 +206,7 @@ export function Navbar() {
               {/* ── CTA pill (always visible) ── */}
               <Link to="/contact" className="flex-none">
                 <motion.button
-                  className="flex items-center gap-1.5 rounded-full font-display font-semibold text-[10.5px] uppercase tracking-[1.5px] text-white whitespace-nowrap"
+                  className="flex items-center gap-1.5 rounded-full font-display font-bold text-[10.5px] uppercase tracking-[1.5px] text-white whitespace-nowrap"
                   animate={{
                     paddingLeft: expanded ? 16 : 14,
                     paddingRight: expanded ? 16 : 14,
@@ -351,7 +351,7 @@ export function Navbar() {
                 </a>
                 <Link to="/contact">
                   <button
-                    className="w-full flex items-center justify-center gap-2 rounded-2xl py-4 font-display font-semibold text-[13px] uppercase tracking-[2px] text-white"
+                    className="w-full flex items-center justify-center gap-2 rounded-2xl py-4 font-display font-bold text-[13px] uppercase tracking-[2px] text-white"
                     style={{
                       background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
                       boxShadow: "0 8px 32px rgba(212,175,55,0.38)",

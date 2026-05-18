@@ -9,25 +9,14 @@ import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 function WorldMapVisual() {
   return (
     <div
-      className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden p-8"
+      className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden"
       style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.25)", boxShadow: "0 24px 60px rgba(29,28,28,0.03)" }}
     >
-      <svg viewBox="0 0 400 220" className="w-full h-auto opacity-85">
-        <g stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.65">
-          <path d="M40 80 Q70 60 110 70 T180 80 Q200 100 180 120 T100 130 Q60 120 40 100 Z" />
-          <path d="M200 60 Q240 50 280 70 T350 90 Q360 120 320 130 T240 130 Q210 110 200 90 Z" />
-          <path d="M120 150 Q150 145 180 155 T230 170 Q220 185 180 185 T130 175 Z" />
-          <path d="M270 150 Q295 148 315 160 T335 180 Q320 195 295 190 T265 175 Z" />
-        </g>
-        {[{ x: 285, y: 95 }, { x: 95, y: 105 }, { x: 320, y: 110 }, { x: 165, y: 115 }, { x: 280, y: 165 }, { x: 60, y: 90 }]
-          .map((p, i) => (
-            <g key={i}>
-              <circle cx={p.x} cy={p.y} r="4" fill="#D4AF37" />
-              <circle cx={p.x} cy={p.y} r="4" fill="none" stroke="#D4AF37" strokeWidth="1.5"
-                className="pulse-ring" style={{ transformOrigin: `${p.x}px ${p.y}px` }} />
-            </g>
-          ))}
-      </svg>
+      <img 
+        src="/image.png" 
+        alt="Formed in Days" 
+        className="w-full h-full object-cover"
+      />
 
       <div className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-gold/15 border border-gold/25 px-4 py-2">
         <span className="h-1.5 w-1.5 rounded-full bg-gold pulse-dot" />
