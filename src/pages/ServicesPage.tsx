@@ -10,10 +10,10 @@ function WorldMapVisual() {
   return (
     <div
       className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden p-8"
-      style={{ background: "linear-gradient(135deg, #1A1A1A 0%, #111 100%)", border: "1px solid rgba(212,175,55,0.15)" }}
+      style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.25)", boxShadow: "0 24px 60px rgba(29,28,28,0.03)" }}
     >
-      <svg viewBox="0 0 400 220" className="w-full h-auto opacity-80">
-        <g stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.5">
+      <svg viewBox="0 0 400 220" className="w-full h-auto opacity-85">
+        <g stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.65">
           <path d="M40 80 Q70 60 110 70 T180 80 Q200 100 180 120 T100 130 Q60 120 40 100 Z" />
           <path d="M200 60 Q240 50 280 70 T350 90 Q360 120 320 130 T240 130 Q210 110 200 90 Z" />
           <path d="M120 150 Q150 145 180 155 T230 170 Q220 185 180 185 T130 175 Z" />
@@ -31,7 +31,7 @@ function WorldMapVisual() {
 
       <div className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-gold/15 border border-gold/25 px-4 py-2">
         <span className="h-1.5 w-1.5 rounded-full bg-gold pulse-dot" />
-        <span className="font-body text-[10px] uppercase tracking-[2px] text-gold">Formed in Days</span>
+        <span className="font-body text-[10px] uppercase tracking-[2px] text-gold font-bold">Formed in Days</span>
       </div>
     </div>
   );
@@ -117,7 +117,7 @@ function FunnelVisual() {
   return (
     <div
       className="relative aspect-square w-full rounded-2xl p-10"
-      style={{ background: "linear-gradient(135deg, #1A1A1A 0%, #111 100%)", border: "1px solid rgba(212,175,55,0.12)" }}
+      style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.22)" }}
     >
       <svg ref={ref} viewBox="0 0 400 380" className="w-full h-auto">
         {[
@@ -127,8 +127,8 @@ function FunnelVisual() {
           { d: "M140 310 L260 310 L235 365 L165 365 Z", x: 200, y: 342 },
         ].map((s, i) => (
           <g key={i}>
-            <path data-fpath d={s.d} fill="rgba(212,175,55,0.06)" stroke="#D4AF37" strokeWidth="1.5" />
-            <text x={s.x} y={s.y} textAnchor="middle" fontFamily="Inter" fontSize="12" fill="#E5CB7E" fontWeight="500">
+            <path data-fpath d={s.d} fill="rgba(212,175,55,0.04)" stroke="#D4AF37" strokeWidth="1.5" />
+            <text x={s.x} y={s.y} textAnchor="middle" fontFamily="Inter" fontSize="12" fill="#D4AF37" fontWeight="600">
               {stages[i]}
             </text>
           </g>
@@ -146,7 +146,7 @@ function ServiceBlock({
   bullets: { flag?: string; label: string; tag?: string }[];
   visual: ReactNode; reverse?: boolean; dark?: boolean;
 }) {
-  const bg = dark ? "bg-[#0D0D0D] text-white" : "bg-white text-charcoal";
+  const bg = dark ? "bg-[#1D1C1C] text-white" : "bg-white text-[#1D1C1C]";
 
   return (
     <section className={`py-24 md:py-32 relative overflow-hidden ${bg}`}>
@@ -161,11 +161,11 @@ function ServiceBlock({
           </span>
           <div className="relative">
             <p className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Service {num}</p>
-            <h2 className={`mt-5 font-display font-medium leading-[1.08] ${dark ? "text-white" : "text-charcoal"}`}
-              style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}>
+            <h2 className={`mt-5 font-display font-extrabold leading-[1.08] ${dark ? "text-white" : "text-[#1D1C1C]"}`}
+              style={{ fontSize: "clamp(32px, 3.5vw, 52px)", letterSpacing: "-0.03em" }}>
               {title}
             </h2>
-            <p className={`mt-6 font-body text-[15px] leading-[1.85] max-w-lg ${dark ? "text-white/55" : "text-muted2"}`}>
+            <p className={`mt-6 font-body text-[15px] leading-[1.85] max-w-lg font-bold ${dark ? "text-white/60" : "text-[#1D1C1C]/65"}`}>
               {body}
             </p>
 
@@ -173,8 +173,14 @@ function ServiceBlock({
               {bullets.map((b) => (
                 <li key={b.label} className="flex items-center justify-between py-3.5">
                   <span className="flex items-center gap-3">
-                    {b.flag && <span className="text-lg">{b.flag}</span>}
-                    <span className={`font-body text-sm ${dark ? "text-white/75" : "text-charcoal"}`}>{b.label}</span>
+                    {b.flag && (
+                      b.flag.startsWith("http") ? (
+                        <img src={b.flag} className="w-[24px] h-[15px] object-cover rounded-sm border border-gold/15 flex-none" alt={b.label} />
+                      ) : (
+                        <span className="text-lg">{b.flag}</span>
+                      )
+                    )}
+                    <span className={`font-body text-sm ${dark ? "text-white/75" : "text-[#1D1C1C]"}`}>{b.label}</span>
                   </span>
                   {b.tag && (
                     <span className="rounded-full border border-gold/25 bg-gold/[0.08] px-3 py-1 font-body text-[10px] uppercase tracking-[1.5px] text-gold">
@@ -220,11 +226,12 @@ export default function ServicesPage() {
         title="Offshore Company Setup"
         body="We structure companies in the right jurisdiction for your goals — tax efficiency, banking access, IP holding, or operational presence. We pick the structure, file everything, and deliver a working entity."
         bullets={[
-          { flag: "🇦🇪", label: "United Arab Emirates",    tag: "Popular" },
-          { flag: "🇻🇬", label: "British Virgin Islands",  tag: "Tax-efficient" },
-          { flag: "🇰🇾", label: "Cayman Islands",          tag: "Funds" },
+          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/uae.png", label: "United Arab Emirates",    tag: "Popular" },
+          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/british.png", label: "British Virgin Islands",  tag: "Tax-efficient" },
+          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Cayman-Islands.png", label: "Cayman Islands",          tag: "Funds" },
           { flag: "🇭🇰", label: "Hong Kong",               tag: "Asia hub" },
-          { flag: "🇸🇨", label: "Seychelles",              tag: "IBC" },
+          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Seychelles.png", label: "Seychelles",              tag: "IBC" },
+          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/marshall-island.png", label: "Marshall Islands",     tag: "Confidential" },
           { flag: "🇲🇺", label: "Mauritius",               tag: "Treaties" },
         ]}
         visual={<WorldMapVisual />}

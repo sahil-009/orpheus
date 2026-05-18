@@ -14,7 +14,7 @@ export function StatsBand() {
   const ref = useScrollReveal<HTMLDivElement>({ childSelector: "[data-stat]", stagger: 0.12, y: 30 });
 
   return (
-    <section className="relative overflow-hidden bg-[#080808]">
+    <section className="relative overflow-hidden bg-[#1D1C1C]">
       {/* grid */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{
         backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",

@@ -37,14 +37,14 @@ const avatars = [
 
 export function HomeHero() {
   const [email, setEmail] = useState("");
-  const leftRef  = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
-  const bgRef    = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     const leftEls = leftRef.current?.querySelectorAll("[data-anim]") ?? [];
-    const cards   = rightRef.current?.querySelectorAll("[data-card]") ?? [];
+    const cards = rightRef.current?.querySelectorAll("[data-card]") ?? [];
 
     tl.fromTo(leftEls,
       { y: 40, opacity: 0 },
@@ -53,37 +53,52 @@ export function HomeHero() {
         { y: 60, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.9, stagger: 0.18, ease: "power3.out" }, 0.5);
 
-    // Video parallax
-    const bgVideo = bgRef.current?.querySelector("video");
+    // Image parallax with requestAnimationFrame loop to completely eliminate lag!
+    const bgImg = bgRef.current?.querySelector("img");
     let onMove: (e: MouseEvent) => void;
-    if (bgVideo) {
-      gsap.fromTo(bgVideo, { scale: 1.15, opacity: 0 }, { scale: 1.05, opacity: 0.45, duration: 3, ease: "power2.out" });
+    let animationFrameId: number;
+
+    if (bgImg) {
+      gsap.fromTo(bgImg, { scale: 1.15, opacity: 0 }, { scale: 1.05, opacity: 0.50, duration: 3, ease: "power2.out" });
+
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
 
       onMove = (e: MouseEvent) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * -30;
-        const y = (e.clientY / window.innerHeight - 0.5) * -30;
-        gsap.to(bgVideo, { x, y, duration: 2, ease: "power2.out", overwrite: "auto", force3D: true });
+        targetX = (e.clientX / window.innerWidth - 0.5) * -30;
+        targetY = (e.clientY / window.innerHeight - 0.5) * -30;
       };
-      window.addEventListener("mousemove", onMove);
+
+      const updatePosition = () => {
+        currentX += (targetX - currentX) * 0.05;
+        currentY += (targetY - currentY) * 0.05;
+        
+        gsap.set(bgImg, { x: currentX, y: currentY, force3D: true });
+        
+        animationFrameId = requestAnimationFrame(updatePosition);
+      };
+
+      window.addEventListener("mousemove", onMove, { passive: true });
+      animationFrameId = requestAnimationFrame(updatePosition);
     }
 
     return () => {
       if (onMove) window.removeEventListener("mousemove", onMove);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col" style={{ background: "#0A0A0A" }}>
 
-      {/* Background Video */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={bgRef} style={{ willChange: "transform", transform: "translate3d(0,0,0)" }}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src="/dubai-bg.png"
+          alt="Dubai Skyline Background"
           className="absolute inset-0 w-full h-full object-cover opacity-0"
-          src="/hero-bg.webm"
           style={{ transform: "scale(1.15)", willChange: "transform", transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
         />
         {/* Soft elegant gradient overlays */}
@@ -144,7 +159,7 @@ export function HomeHero() {
 
           {/* sub */}
           <p data-anim
-            className="mt-6 max-w-[500px] font-body text-[15.5px] leading-[1.85] text-white/55">
+            className="mt-6 max-w-[500px] font-body text-[15.5px] leading-[1.85] text-white font-bold">
             A trusted Dubai advisory helping businesses establish offshore entities, secure global banking, and raise capital with complete compliance.
           </p>
 
@@ -179,8 +194,8 @@ export function HomeHero() {
             <span className="font-body text-[11px] text-white/35 uppercase tracking-[2px]">Or connect via</span>
             <div className="flex gap-2.5">
               {[
-                { Icon: Linkedin,      label: "LinkedIn", href: "https://www.linkedin.com/company/orpheuss/", bg: "#D4AF37" },
-                { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/97145587968",                  bg: "#C8A96A" },
+                { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/orpheuss/", bg: "#D4AF37" },
+                { Icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/97145587968", bg: "#C8A96A" },
               ].map(({ Icon, label, href, bg }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                   className="flex h-9 w-9 items-center justify-center rounded-xl transition-all hover:scale-110 hover:brightness-125"
@@ -203,8 +218,8 @@ export function HomeHero() {
             </div>
             <div className="flex items-center gap-6">
               {[
-                { val: "60+",  label: "Clients" },
-                { val: "18",   label: "Markets" },
+                { val: "60+", label: "Clients" },
+                { val: "18", label: "Markets" },
                 { val: "145%", label: "YoY Growth" },
               ].map(({ val, label }) => (
                 <div key={label} className="text-center">
@@ -279,7 +294,7 @@ export function HomeHero() {
       {/* ── client logos bar ── */}
       <div className="relative z-10 border-t border-white/[0.06] py-8">
         <div className="mx-auto max-w-[1440px] px-6 md:px-16">
-          <p className="text-center font-body text-[9px] uppercase tracking-[3px] text-white/25 mb-7">
+          <p className="text-center font-body text-[9px] uppercase tracking-[3px] text-white/55 mb-7 font-bold">
             Trusted by businesses across 18 markets
           </p>
           <div
@@ -287,7 +302,7 @@ export function HomeHero() {
             data-marker="Assets: client logos (SVG, monochrome)">
             {["Goldafrix", "U Remit", "Konsälidön", "Vantage", "Axiom", "Meridian"].map((c) => (
               <span key={c}
-                className="font-display font-semibold text-[15px] text-white/20 hover:text-[#D4AF37]/70 transition-colors duration-500 select-none tracking-wide">
+                className="font-display font-bold text-[15px] text-white/70 hover:text-[#D4AF37] transition-colors duration-500 select-none tracking-wide">
                 {c}
               </span>
             ))}

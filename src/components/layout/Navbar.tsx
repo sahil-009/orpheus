@@ -67,15 +67,15 @@ export function Navbar() {
             }}
             animate={{
               background: expanded
-                ? "rgba(6,9,24,0.98)"
+                ? "rgba(29,28,28,0.98)"
                 : scrolled
-                  ? "rgba(5,8,20,0.95)"
-                  : "rgba(8,11,26,0.72)",
+                  ? "rgba(29,28,28,0.96)"
+                  : "rgba(29,28,28,0.82)",
               boxShadow: expanded
-                ? "0 16px 56px rgba(0,0,0,0.65), 0 0 0 1px rgba(212,175,55,0.22), 0 0 80px rgba(212,175,55,0.07)"
+                ? "0 16px 56px rgba(29,28,28,0.25), 0 0 0 1px rgba(212,175,55,0.25), 0 0 80px rgba(212,175,55,0.04)"
                 : scrolled
-                  ? "0 8px 36px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05)"
-                  : "0 4px 24px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.04)",
+                  ? "0 8px 36px rgba(29,28,28,0.14), 0 0 0 1px rgba(255,255,255,0.06)"
+                  : "0 4px 24px rgba(29,28,28,0.08), 0 0 0 1px rgba(255,255,255,0.04)",
             }}
             transition={spring}
             onHoverStart={onEnter}
@@ -100,20 +100,16 @@ export function Navbar() {
             {/* ── Island content ── */}
             <div className="flex items-center px-2.5 py-2 gap-1">
 
-              {/* Logo O mark */}
+              {/* Logo Image */}
               <Link to="/" className="flex-none" onClick={() => setExpanded(false)}>
-                <motion.div
-                  className="h-8 w-8 rounded-full flex items-center justify-center font-display font-extrabold text-white text-[13px] flex-none"
-                  style={{
-                    background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
-                    boxShadow: "0 0 0 0 rgba(212,175,55,0.4)",
-                  }}
-                  whileHover={{ scale: 1.15, boxShadow: "0 0 0 5px rgba(212,175,55,0.18)" }}
+                <motion.img
+                  src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
+                  alt="Orpheus Logo"
+                  className="h-8 w-8 rounded-full object-contain bg-white/5 border border-gold/20 flex-none"
+                  whileHover={{ scale: 1.15, borderColor: "rgba(212,175,55,0.6)" }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 550, damping: 18 }}
-                >
-                  O
-                </motion.div>
+                />
               </Link>
 
               {/* Brand name */}
@@ -250,20 +246,19 @@ export function Navbar() {
         <div
           className="mx-4 mt-4 flex items-center justify-between px-3.5 py-2.5 rounded-2xl"
           style={{
-            background: "rgba(5,8,20,0.94)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.55)",
+            background: "rgba(29,28,28,0.96)",
+            border: "1px solid rgba(212,175,55,0.2)",
+            boxShadow: "0 8px 32px rgba(29,28,28,0.12)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
           }}
         >
           <Link to="/" className="flex items-center gap-2.5">
-            <div
-              className="h-8 w-8 rounded-full flex items-center justify-center font-display font-extrabold text-white text-[13px]"
-              style={{ background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)" }}
-            >
-              O
-            </div>
+            <img
+              src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
+              alt="Orpheus Logo"
+              className="h-8 w-8 rounded-full object-contain bg-white/5 border border-gold/20"
+            />
             <span className="font-display font-bold text-[14px] text-white/90">
               Orpheus Financial
             </span>
@@ -298,7 +293,7 @@ export function Navbar() {
             ref={overlayRef}
             key="mobile-overlay"
             className="fixed inset-0 z-[999] lg:hidden flex flex-col"
-            style={{ background: "#050505", paddingTop: "88px" }}
+            style={{ background: "#1D1C1C", paddingTop: "88px" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

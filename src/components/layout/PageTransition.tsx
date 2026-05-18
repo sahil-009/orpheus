@@ -100,19 +100,30 @@ function OverlayContent() {
   );
 }
 
+let hasLoadedOnce = false;
+
 export function PageTransition({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const isMountRef = useRef(true);
+  const [showLoader, setShowLoader] = useState(!hasLoadedOnce);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const t = setTimeout(() => ScrollTrigger.refresh(), 300);
-    isMountRef.current = false;
     return () => {
       clearTimeout(t);
       ScrollTrigger.getAll().forEach((s) => s.kill());
     };
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (showLoader) {
+      const timer = setTimeout(() => {
+        hasLoadedOnce = true;
+        setShowLoader(false);
+      }, 950);
+      return () => clearTimeout(timer);
+    }
+  }, [showLoader]);
 
   return (
     <>
@@ -129,62 +140,64 @@ export function PageTransition({ children }: { children: ReactNode }) {
       </AnimatePresence>
 
       {/* ── Full-screen overlay: enter → hold → exit ── */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`ov-${location.pathname}`}
-          className="fixed inset-0 z-[9998] flex items-center justify-center overflow-hidden"
-          style={{ background: "#050505" }}
-          initial={{ y: "100%" }}
-          animate={{ y: ["100%", "0%", "0%", "-100%"] }}
-          transition={{
-            duration: 0.95,
-            times: [0, 0.22, 0.65, 1],
-            ease: ["easeOut", "linear", "easeIn"],
-          }}
-        >
-          {/* subtle grid */}
-          <div className="absolute inset-0 opacity-[0.035]" style={{
-            backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }} />
-
-          {/* blue radial glow */}
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)"
-          }} />
-
-          {/* corner label TL */}
-          <motion.span
-            className="absolute top-6 left-8 font-body text-[10px] uppercase tracking-[3px] text-white/20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            Loading
-          </motion.span>
-
-          {/* corner label TR */}
-          <motion.span
-            className="absolute top-6 right-8 font-body text-[10px] text-white/20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            ©{new Date().getFullYear()}
-          </motion.span>
-
-          {/* main content */}
-          <OverlayContent />
-
-          {/* bottom thin progress bar */}
+      <AnimatePresence>
+        {showLoader && (
           <motion.div
-            className="absolute bottom-0 left-0 h-[2px] rounded-full"
-            style={{ background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)" }}
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 0.55, delay: 0.15, ease: "easeInOut" }}
-          />
-        </motion.div>
+            key="initial-loader"
+            className="fixed inset-0 z-[9998] flex items-center justify-center overflow-hidden"
+            style={{ background: "#050505" }}
+            initial={{ y: "0%" }}
+            animate={{ y: ["0%", "0%", "-100%"] }}
+            transition={{
+              duration: 0.95,
+              times: [0, 0.65, 1],
+              ease: ["linear", "easeIn"],
+            }}
+          >
+            {/* subtle grid */}
+            <div className="absolute inset-0 opacity-[0.035]" style={{
+              backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+            }} />
+
+            {/* blue radial glow */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+              background: "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)"
+            }} />
+
+            {/* corner label TL */}
+            <motion.span
+              className="absolute top-6 left-8 font-body text-[10px] uppercase tracking-[3px] text-white/20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
+              Loading
+            </motion.span>
+
+            {/* corner label TR */}
+            <motion.span
+              className="absolute top-6 right-8 font-body text-[10px] text-white/20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
+              ©{new Date().getFullYear()}
+            </motion.span>
+
+            {/* main content */}
+            <OverlayContent />
+
+            {/* bottom thin progress bar */}
+            <motion.div
+              className="absolute bottom-0 left-0 h-[2px] rounded-full"
+              style={{ background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)" }}
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 0.55, delay: 0.15, ease: "easeInOut" }}
+            />
+          </motion.div>
+        )}
       </AnimatePresence>
     </>
   );

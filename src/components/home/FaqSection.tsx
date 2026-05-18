@@ -38,17 +38,17 @@ function FaqItem({ q, a, idx }: { q: string; a: string; idx: number }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-start justify-between gap-6 py-6 text-left group"
       >
-        <span className="font-display font-semibold text-[16px] text-charcoal group-hover:text-gold transition-colors leading-snug">
+        <span className="font-display font-semibold text-[16px] text-[#1D1C1C] group-hover:text-gold transition-colors leading-snug">
           {q}
         </span>
         <span className={`flex-none flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
-          open ? "border-gold bg-gold text-charcoal" : "border-black/15 text-charcoal/50 group-hover:border-gold group-hover:text-gold"
+          open ? "border-gold bg-gold text-charcoal" : "border-black/15 text-[#1D1C1C]/50 group-hover:border-gold group-hover:text-gold"
         }`}>
           {open ? <Minus size={14} /> : <Plus size={14} />}
         </span>
       </button>
       <div ref={bodyRef} style={{ height: 0, overflow: "hidden", opacity: 0 }}>
-        <p className="pb-6 font-body text-[14px] text-muted2 leading-[1.85] max-w-3xl">{a}</p>
+        <p className="pb-6 font-body text-[14px] text-[#1D1C1C] leading-[1.85] max-w-3xl font-bold">{a}</p>
       </div>
     </div>
   );
@@ -78,12 +78,12 @@ export function FaqSection() {
         {/* Label */}
         <div className="lg:pt-2">
           <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">FAQ</p>
-          <h2 className="mt-4 font-display font-extrabold leading-[1.0] text-charcoal"
+          <h2 className="mt-4 font-display font-extrabold leading-[1.0] text-[#1D1C1C]"
             style={{ fontSize: "clamp(30px, 3.5vw, 50px)", letterSpacing: "-0.03em" }}>
             Frequently<br />
             <span className="font-serif italic text-gold" style={{ fontSize: "0.95em" }}>Asked</span>
           </h2>
-          <p className="mt-5 font-body text-[14px] text-muted2 leading-relaxed max-w-xs">
+          <p className="mt-5 font-body text-[14px] leading-relaxed max-w-xs font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
             Can't find your answer? Email us at{" "}
             <a href="mailto:operations@orpheusfinancial.co" className="text-gold hover:underline">
               operations@orpheusfinancial.co

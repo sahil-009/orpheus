@@ -37,7 +37,7 @@ export function FounderSection() {
   }, []);
 
   return (
-    <section className="bg-[#F5F4F0] py-28 md:py-36 relative overflow-hidden">
+    <section className="bg-[#F3F5F8] py-28 md:py-36 relative overflow-hidden">
       <FloatingParticles count={45} color="rgba(212,175,55,0.4)" ringColor="rgba(212,175,55,0.26)" />
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
@@ -65,9 +65,9 @@ export function FounderSection() {
           <div ref={quoteRef}
             className="absolute -bottom-6 -right-2 md:-right-8 max-w-[270px] rounded-2xl p-6"
             style={{
-              background: "#0D0D0D",
-              boxShadow: "0 28px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,175,55,0.18)",
-              border: "1px solid rgba(212,175,55,0.15)",
+              background: "#1D1C1C",
+              boxShadow: "0 28px 64px rgba(29,28,28,0.12), inset 0 1px 0 rgba(255,255,255,0.08)",
+              border: "1px solid rgba(212,175,55,0.22)",
             }}
           >
             <span className="font-serif text-[40px] leading-none text-gold/25">"</span>
@@ -83,7 +83,7 @@ export function FounderSection() {
         {/* RIGHT */}
         <div ref={rightRef}>
           <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Founder</p>
-          <h2 className="mt-4 font-display font-extrabold leading-[1.0] text-charcoal"
+          <h2 className="mt-4 font-display font-extrabold leading-[1.0] text-[#1D1C1C]"
             style={{ fontSize: "clamp(32px, 4vw, 56px)", letterSpacing: "-0.03em" }}>
             Rachit Yadav
           </h2>
@@ -94,14 +94,14 @@ export function FounderSection() {
               <div key={h.label}
                 className="flex items-center gap-2 rounded-full border border-gold/25 bg-gold/[0.07] px-4 py-1.5">
                 <span className="text-gold">{h.icon}</span>
-                <span className="font-display font-semibold text-[11px] uppercase tracking-[1.5px] text-charcoal">{h.label}</span>
+                <span className="font-display font-semibold text-[11px] uppercase tracking-[1.5px] text-[#1D1C1C]">{h.label}</span>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 space-y-5 font-body text-[14px] text-muted2 leading-[1.9] max-w-lg">
+          <div className="mt-8 space-y-5 font-body text-[14px] leading-[1.9] max-w-lg font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
             <p>
-              Rachit Yadav founded Orpheus Financial with a single belief: international businesses deserve a financial partner who <em className="text-charcoal font-medium">actually executes</em> — not just advises.
+              Rachit Yadav founded Orpheus Financial with a single belief: international businesses deserve a financial partner who <em className="text-[#1D1C1C] font-semibold">actually executes</em> — not just advises.
             </p>
             <p>
               With a background spanning corporate finance, offshore structuring, and banking across emerging markets, Rachit has helped 60+ businesses from 18 countries set up globally, access banking, and raise capital.

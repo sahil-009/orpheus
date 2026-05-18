@@ -25,12 +25,12 @@ export default function BlogPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#0D0D0D] text-white pt-40 pb-48">
+      <section className="relative overflow-hidden bg-[#FFFFFF] pt-40 pb-48 border-b border-[#1D1C1C]/[0.06]">
         <GridTexture />
         <div className="orb w-[500px] h-[500px] bg-gold/[0.06] top-[-80px] right-[-100px]" />
 
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
-          <span className="font-display font-bold text-white/[0.03]"
+          <span className="font-display font-bold text-[#1D1C1C]/[0.02]"
             style={{ fontSize: "clamp(100px, 18vw, 280px)", lineHeight: 1 }}>
             INSIGHTS
           </span>
@@ -38,10 +38,10 @@ export default function BlogPage() {
 
         <div className="relative z-10 mx-auto max-w-[1280px] px-6 md:px-16">
           <p className="font-body text-[10px] uppercase tracking-[3px] text-gold font-semibold">Our Perspective</p>
-          <h1 className="mt-5 font-display font-medium text-white" style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 1.05 }}>
+          <h1 className="mt-5 font-display font-extrabold text-[#1D1C1C]" style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
             Insights & Updates
           </h1>
-          <p className="mt-6 max-w-2xl font-body text-[15px] font-light text-white/45 leading-relaxed">
+          <p className="mt-6 max-w-2xl font-body text-[15px] leading-relaxed" style={{ color: "rgba(29,28,28,0.65)" }}>
             Strategic analysis of global market trends, offshore structuring evolution, and institutional wealth preservation frameworks.
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function BlogPage() {
               {/* Content */}
               <div className="flex flex-col justify-center p-10 md:p-14 lg:p-16 bg-white">
                 <div className="font-body text-[10px] uppercase tracking-[2px] text-gold font-semibold">{featured.category}</div>
-                <h2 className="mt-4 font-display text-3xl md:text-4xl text-charcoal leading-[1.15]">{featured.title}</h2>
+                <h2 className="mt-4 font-display font-extrabold text-3xl md:text-4xl text-charcoal leading-[1.15]" style={{ letterSpacing: "-0.03em" }}>{featured.title}</h2>
                 <p className="mt-6 font-body text-[15px] text-muted2 leading-[1.85] max-w-xl">{featured.excerpt}</p>
                 <div className="mt-10 flex items-center justify-between border-t border-gold/[0.12] pt-8">
                   <div className="flex items-center gap-4">
@@ -99,7 +99,7 @@ export default function BlogPage() {
       </section>
 
       {/* Grid */}
-      <section className="bg-[#F7F7F7] py-20 md:py-24 relative overflow-hidden">
+      <section className="bg-[#F3F5F8] py-20 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 grid-texture-white opacity-70 pointer-events-none" />
         <div className="relative mx-auto max-w-[1280px] px-6 md:px-16">
           <h3 className="font-display text-3xl text-charcoal">Latest Articles</h3>
@@ -109,7 +109,7 @@ export default function BlogPage() {
                 to={`/blog/${p.slug}`}
                 key={p.slug}
                 data-pcard
-                className="group block overflow-hidden rounded-2xl border border-gold/[0.12] bg-white transition-all hover:-translate-y-2 hover:border-gold/35 hover:shadow-[0_24px_48px_rgba(212,175,55,0.12)]"
+                className="group block overflow-hidden rounded-2xl border border-gold/[0.12] bg-white transition-all hover:-translate-y-2 hover:border-gold/35 hover:shadow-[0_24px_48px_rgba(212,175,55,0.06)]"
               >
                 <div
                   className="relative aspect-[16/10] overflow-hidden"
@@ -127,7 +127,7 @@ export default function BlogPage() {
                     <span className="text-muted2">{p.date}</span>
                   </div>
                   <h4 className="mt-3 font-display text-lg text-charcoal leading-snug">{p.title}</h4>
-                  <p className="mt-3 font-body text-[13px] text-muted2 leading-relaxed line-clamp-3">{p.excerpt}</p>
+                  <p className="mt-3 font-body text-[13px] leading-relaxed line-clamp-3" style={{ color: "rgba(29,28,28,0.65)" }}>{p.excerpt}</p>
                   <div className="mt-5 font-body text-xs uppercase tracking-[2px] text-gold font-semibold group-hover:translate-x-1 transition-transform inline-block">
                     Read More →
                   </div>
@@ -139,12 +139,12 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-[#0D0D0D] text-white py-20 relative overflow-hidden">
+      <section className="bg-[#1D1C1C] text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 grid-texture opacity-50 pointer-events-none" />
         <div className="orb w-[400px] h-[400px] bg-gold/[0.05] top-[-80px] left-[50%] -translate-x-1/2" />
         <div className="relative mx-auto max-w-2xl px-6 md:px-16 text-center">
           <p className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Newsletter</p>
-          <h3 className="mt-4 font-display font-medium" style={{ fontSize: "clamp(30px, 4vw, 52px)" }}>
+          <h3 className="mt-4 font-display font-extrabold" style={{ fontSize: "clamp(30px, 4vw, 52px)", letterSpacing: "-0.03em" }}>
             Stay <span className="italic gold-shimmer-slow">Informed.</span>
           </h3>
           <p className="mt-4 font-body text-sm text-white/40">Quarterly insights on structuring, banking and capital. No spam.</p>
@@ -152,7 +152,7 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="you@company.com"
-              className="flex-1 h-12 rounded-lg bg-white/[0.06] border border-gold/20 px-4 font-body text-sm text-white placeholder:text-white/25 outline-none focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)]"
+              className="flex-1 h-12 rounded-lg bg-white/[0.04] border border-gold/25 px-4 font-body text-sm text-white placeholder:text-white/30 outline-none focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.08)]"
             />
             <OButton variant="gold">Subscribe</OButton>
           </form>

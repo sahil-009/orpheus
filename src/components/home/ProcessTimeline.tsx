@@ -34,7 +34,7 @@ export function ProcessTimeline() {
   }, []);
 
   return (
-    <section className="bg-[#F5F4F0] py-28 md:py-36 relative overflow-hidden">
+    <section className="bg-[#FFFFFF] py-28 md:py-36 relative overflow-hidden">
       <FloatingParticles count={45} color="rgba(212,175,55,0.42)" ringColor="rgba(212,175,55,0.28)" />
       <div className="absolute inset-0 opacity-[0.04]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
@@ -44,12 +44,12 @@ export function ProcessTimeline() {
       <div ref={ref} className="relative mx-auto max-w-[1280px] px-6 md:px-16">
         <div className="text-center max-w-2xl mx-auto">
           <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Our Process</p>
-          <h2 className="mt-4 font-display font-extrabold leading-[1.0]"
+          <h2 className="mt-4 font-display font-extrabold leading-[1.0] text-[#1D1C1C]"
             style={{ fontSize: "clamp(34px, 4.2vw, 58px)", letterSpacing: "-0.03em" }}>
             From Inquiry to{" "}
             <span className="font-serif italic text-gold" style={{ fontSize: "0.92em" }}>Execution</span>
           </h2>
-          <p className="mt-5 font-body text-[15px] text-muted2 max-w-lg mx-auto leading-relaxed">
+          <p className="mt-5 font-body text-[15px] max-w-lg mx-auto leading-relaxed font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
             A clear four-step process. No ambiguity, no surprise fees.
           </p>
         </div>
@@ -71,8 +71,8 @@ export function ProcessTimeline() {
                 </div>
                 <div data-step-text className="mt-7">
                   <div className="font-display font-bold text-[12px] uppercase tracking-[2px] text-gold mb-2">{s.n}</div>
-                  <h4 className="font-display font-bold text-[17px] text-charcoal">{s.title}</h4>
-                  <p className="mt-3 font-body text-[13px] text-muted2 leading-relaxed max-w-[190px] mx-auto">{s.body}</p>
+                  <h4 className="font-display font-bold text-[17px] text-[#1D1C1C]">{s.title}</h4>
+                  <p className="mt-3 font-body text-[13px] leading-relaxed max-w-[190px] mx-auto" style={{ color: "rgba(29,28,28,0.65)" }}>{s.body}</p>
                 </div>
               </div>
             ))}

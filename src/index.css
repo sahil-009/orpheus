@@ -219,11 +219,11 @@
 /* =========================================================
    Selection & scrollbar
    ========================================================= */
-::selection          { background: var(--gold); color: #0A0A0A; }
-::-webkit-scrollbar  { width: 8px; height: 8px; }
-::-webkit-scrollbar-track  { background: #0A0A0A; }
-::-webkit-scrollbar-thumb  { background: rgba(212,175,55,0.4); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(212,175,55,0.7); }
+::selection          { background: rgba(212,175,55,0.28); color: #1D1C1C; }
+::-webkit-scrollbar  { width: 7px; height: 7px; }
+::-webkit-scrollbar-track  { background: #F3F5F8; }
+::-webkit-scrollbar-thumb  { background: rgba(29,28,28,0.18); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(29,28,28,0.35); }
 
 /* =========================================================
    Lenis

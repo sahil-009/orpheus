@@ -85,7 +85,7 @@ export function Footer() {
   };
 
   return (
-    <footer ref={ref} className="relative overflow-hidden text-white" style={{ background: "#0A0A0A" }}>
+    <footer ref={ref} className="relative overflow-hidden text-white border-t border-gold/[0.15]" style={{ background: "#1D1C1C" }}>
 
       {/* gold mesh + grid texture */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden style={{
@@ -112,7 +112,7 @@ export function Footer() {
               Cross-border insights, delivered{" "}
               <span className="font-serif italic text-[#D4AF37]">monthly.</span>
             </h3>
-            <p className="mt-3 font-body text-[13px] text-white/45 max-w-md leading-relaxed">
+            <p className="mt-3 font-body text-[13px] text-white/75 max-w-md leading-relaxed font-semibold">
               Jurisdiction updates, banking trends and capital strategy briefings —
               written by our partners, for founders &amp; family offices.
             </p>
@@ -152,14 +152,14 @@ export function Footer() {
           {/* Brand column */}
           <div className="md:col-span-4" data-foot-col>
             <Link to="/" className="inline-flex items-center gap-3 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg font-display font-extrabold text-[16px] transition-transform group-hover:scale-110"
+              <img
+                src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
+                alt="Orpheus Logo"
+                className="h-10 w-10 rounded-lg object-contain bg-white/5 border border-gold/25 p-1 transition-transform group-hover:scale-110"
                 style={{
-                  color: "#0A0A0A",
-                  background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
-                  boxShadow: "0 6px 20px rgba(212,175,55,0.35)",
-                }}>
-                O
-              </div>
+                  boxShadow: "0 6px 20px rgba(212,175,55,0.15)",
+                }}
+              />
               <div>
                 <div className="font-display font-bold text-[17px] leading-none">Orpheus Financial</div>
                 <div className="font-body text-[10px] uppercase tracking-[2.5px] text-[#C8A96A] mt-1">
@@ -168,7 +168,7 @@ export function Footer() {
               </div>
             </Link>
 
-            <p className="mt-6 font-body text-[13px] text-white/45 max-w-sm leading-[1.85]">
+            <p className="mt-6 font-body text-[13px] text-white/75 max-w-sm leading-[1.85] font-semibold">
               Dubai-based financial advisory firm structuring offshore companies, global
               banking access &amp; debt raising across 18 active markets — quietly,
               cleanly, fully compliant.
@@ -185,10 +185,10 @@ export function Footer() {
               ].map((c) =>
                 c.href
                   ? <a key={c.text} href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 font-body text-[12.5px] text-white/45 hover:text-[#D4AF37] transition-colors">
+                      className="flex items-center gap-2.5 font-body text-[12.5px] text-white/75 font-semibold hover:text-[#D4AF37] transition-colors">
                       <span className="text-[#D4AF37]/80">{c.icon}</span>{c.text}
                     </a>
-                  : <div key={c.text} className="flex items-center gap-2.5 font-body text-[12.5px] text-white/45">
+                  : <div key={c.text} className="flex items-center gap-2.5 font-body text-[12.5px] text-white/75 font-semibold">
                       <span className="text-[#D4AF37]/80">{c.icon}</span>{c.text}
                     </div>
               )}
@@ -254,7 +254,7 @@ export function Footer() {
             </div>
             <div>
               <div className="font-display font-semibold text-[12.5px] text-white">Fully compliant operations</div>
-              <div className="font-body text-[11px] text-white/45 mt-0.5">
+              <div className="font-body text-[11px] text-white/75 mt-0.5 font-semibold">
                 OECD-aligned · FATF-compliant · Dubai-licensed advisory
               </div>
             </div>
@@ -287,9 +287,9 @@ export function Footer() {
 
         {/* ── Disclosure ────────────────────────────────────────── */}
         <p
-          className="mt-10 max-w-4xl font-body text-[11px] leading-[1.85] text-white/35"
+          className="mt-10 max-w-4xl font-body text-[11.5px] leading-[1.85] text-white/75 font-semibold"
         >
-          <span className="text-[#C8A96A] font-semibold">Disclosure.</span>{" "}
+          <span className="text-[#D4AF37] font-semibold">Disclosure.</span>{" "}
           Orpheus Financial is a Dubai-based corporate advisory firm. Information on this
           website is general in nature and does not constitute legal, tax, accounting or
           investment advice. Specific structures, banking outcomes and capital
@@ -302,7 +302,7 @@ export function Footer() {
         {/* ── Bottom bar ────────────────────────────────────────── */}
         <div className="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
           style={{ borderTop: "1px solid rgba(212,175,55,0.10)" }}>
-          <p className="font-body text-[11px] text-white/30">
+          <p className="font-body text-[11px] text-white/60 font-semibold">
             © {new Date().getFullYear()} Orpheus Financial®. All rights reserved.
           </p>
 
@@ -314,13 +314,13 @@ export function Footer() {
               { l: "Sitemap",           to: "#" },
             ].map((l) => (
               <a key={l.l} href={l.to}
-                className="font-body text-[11px] text-white/30 hover:text-[#D4AF37] transition-colors">
+                className="font-body text-[11px] text-white/65 font-bold hover:text-[#D4AF37] transition-colors">
                 {l.l}
               </a>
             ))}
           </div>
 
-          <p className="font-body text-[11px] text-white/30">
+          <p className="font-body text-[11px] text-white/60 font-semibold">
             Made in Dubai · UAE
           </p>
         </div>
@@ -345,7 +345,7 @@ function FooterCol({
         {items.map((it) => (
           <li key={it.l}>
             <Link to={it.to}
-              className="group inline-flex items-center gap-1.5 font-body text-[13px] text-white/45 hover:text-white transition-colors">
+              className="group inline-flex items-center gap-1.5 font-body text-[13px] text-white/75 font-semibold hover:text-white transition-colors">
               <span className="h-px w-0 bg-[#D4AF37] transition-all duration-300 group-hover:w-3" />
               {it.l}
             </Link>

@@ -62,7 +62,7 @@ export default function BlogPostPage() {
             <span className="rounded-full bg-sky/20 border border-sky/40 px-3 py-1 font-body text-[10px] uppercase tracking-[2px] text-sky-light">{post.category}</span>
             <span className="font-body text-xs text-sky-pale/60">{post.date} · {post.readTime}</span>
           </div>
-          <h1 className="mt-5 font-display font-medium leading-[1.1]" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
+          <h1 className="mt-5 font-display font-extrabold leading-[1.1]" style={{ fontSize: "clamp(36px, 5vw, 64px)", letterSpacing: "-0.03em" }}>
             <RevealText stagger={0.06}>{post.title}</RevealText>
           </h1>
           <div className="mt-8 flex items-center gap-3">
@@ -108,7 +108,7 @@ export default function BlogPostPage() {
                 ref={(el) => (sectionRefs.current[i] = el)}
                 className="mb-14"
               >
-                <h2 className="font-display text-3xl md:text-4xl text-navy leading-tight">{s.heading}</h2>
+                <h2 className="font-display font-extrabold text-3xl md:text-4xl text-navy leading-tight" style={{ letterSpacing: "-0.03em" }}>{s.heading}</h2>
                 <div className="mt-6 space-y-5">
                   {s.paragraphs.map((p, k) => (
                     <p key={k} className="font-body text-base font-light text-ink leading-[1.9]">{p}</p>

@@ -89,7 +89,7 @@ export function Testimonials() {
   const t = items[active];
 
   return (
-    <section ref={sectionRef} className="bg-white py-28 md:py-36 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-[#F3F5F8] py-28 md:py-36 relative overflow-hidden">
       <FloatingParticles count={50} color="rgba(212,175,55,0.38)" ringColor="rgba(212,175,55,0.22)" />
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)",
@@ -103,7 +103,7 @@ export function Testimonials() {
       <div className="relative mx-auto max-w-[900px] px-6 md:px-16 text-center">
         <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Testimonials</p>
         <h2 className="mt-4 font-display font-extrabold leading-[1.0]"
-          style={{ fontSize: "clamp(32px, 4vw, 54px)", letterSpacing: "-0.03em", color: "#0A0A0A" }}>
+          style={{ fontSize: "clamp(32px, 4vw, 54px)", letterSpacing: "-0.03em", color: "#1D1C1C" }}>
           Why Clients{" "}
           <span className="font-serif italic text-gold" style={{ fontSize: "0.92em" }}>Love Working With Us</span>
         </h2>
@@ -120,18 +120,18 @@ export function Testimonials() {
             ))}
           </div>
 
-          <p className="font-serif italic text-charcoal leading-[1.85]"
+          <p className="font-serif italic leading-[1.85] text-[#1D1C1C] font-bold"
             style={{ fontSize: "clamp(17px, 2vw, 22px)" }}>
             "{t.quote}"
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full font-display font-bold text-charcoal text-[15px]"
-              style={{ background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)" }}>
+            <div className="flex h-14 w-14 items-center justify-center rounded-full font-display font-bold text-white text-[15px]"
+              style={{ background: "linear-gradient(135deg, #1D1C1C 0%, #0A0A0A 100%)" }}>
               {t.initials}
             </div>
             <div className="text-left">
-              <div className="font-display font-bold text-[16px] text-charcoal">{t.name}</div>
+              <div className="font-display font-bold text-[16px] text-[#1D1C1C]">{t.name}</div>
               <div className="font-body text-[12px] text-muted2">{t.role} · {t.company}</div>
             </div>
           </div>
@@ -159,13 +159,13 @@ export function Testimonials() {
 
         {/* review badges */}
         <div className="mt-10 flex items-center justify-center gap-6">
-          <div className="flex items-center gap-2 rounded-full border border-gold/20 bg-gold/[0.05] px-4 py-2">
+          <div className="flex items-center gap-2 rounded-full border border-gold/20 bg-white px-4 py-2" style={{ boxShadow: "0 4px 12px rgba(29,28,28,0.03)" }}>
             <div className="flex gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} size={11} className="text-gold fill-gold" />
               ))}
             </div>
-            <span className="font-display font-semibold text-[12px] text-charcoal">5.0</span>
+            <span className="font-display font-semibold text-[12px] text-[#1D1C1C]">5.0</span>
             <span className="font-body text-[11px] text-muted2">Google Rating</span>
           </div>
           <div className="font-body text-[12px] text-muted2">7+ reviews</div>

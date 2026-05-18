@@ -6,7 +6,7 @@ import { FloatingParticles } from "@/components/ui/FloatingParticles";
 
 const services = [
   {
-    icon: <Globe size={26} />,
+    icon: "/image.png",
     n: "01",
     title: "Offshore Setup",
     body: "Incorporate entities across the UAE, BVI, Cayman, Hong Kong, Seychelles, and Mauritius, structured for tax efficiency and banking access.",
@@ -71,24 +71,24 @@ export function ServicesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 md:py-36 relative overflow-hidden" style={{ background: "#F5F4F0" }}>
+    <section ref={sectionRef} className="py-28 md:py-36 relative overflow-hidden" style={{ background: "#F3F5F8" }}>
 
       <FloatingParticles count={50} color="rgba(212,175,55,0.45)" ringColor="rgba(212,175,55,0.3)" />
 
       {/* subtle warm dot texture */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px)",
+        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px)",
         backgroundSize: "28px 28px",
         opacity: 0.45,
       }} />
 
       {/* faint top edge line */}
       <div className="absolute inset-x-0 top-0 h-px" style={{
-        background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent)"
+        background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)"
       }} />
       {/* faint bottom edge line */}
       <div className="absolute inset-x-0 bottom-0 h-px" style={{
-        background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent)"
+        background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)"
       }} />
 
       {/* warm blue tint orb top-right */}
@@ -106,7 +106,7 @@ export function ServicesGrid() {
           </p>
           <h2
             className="mt-4 font-display font-extrabold leading-[1.0]"
-            style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", color: "#0A0A0A" }}
+            style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em", color: "#1D1C1C" }}
           >
             End-to-End Solutions{" "}
             <span
@@ -122,7 +122,7 @@ export function ServicesGrid() {
               That Deliver
             </span>
           </h2>
-          <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed" style={{ color: "#6B6B6B" }}>
+          <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
             Three fully integrated services with direct execution at every stage of your journey.
           </p>
         </div>
@@ -135,8 +135,8 @@ export function ServicesGrid() {
               className="group relative overflow-hidden rounded-3xl cursor-pointer"
               style={{
                 background: "#FFFFFF",
-                border: "1px solid rgba(0,0,0,0.07)",
-                boxShadow: "0 2px 12px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset",
+                border: "1px solid rgba(212,175,55,0.18)",
+                boxShadow: "0 12px 32px rgba(29,28,28,0.04), 0 1px 0 rgba(255,255,255,0.9) inset",
                 transformStyle: "preserve-3d",
                 padding: "36px",
               }}
@@ -163,27 +163,35 @@ export function ServicesGrid() {
               <div className="relative">
                 {/* icon */}
                 <div
-                  className="flex h-14 w-14 items-center justify-center rounded-2xl mb-7 transition-all duration-300"
+                  className="flex h-14 w-14 items-center justify-center rounded-2xl mb-7 transition-all duration-300 overflow-hidden"
                   style={{
-                    background: "rgba(212,175,55,0.08)",
+                    background: typeof s.icon === "string" ? "transparent" : "rgba(212,175,55,0.08)",
                     color: "#D4AF37",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "#D4AF37";
-                    (e.currentTarget as HTMLElement).style.color = "#ffffff";
+                    if (typeof s.icon !== "string") {
+                      (e.currentTarget as HTMLElement).style.background = "#D4AF37";
+                      (e.currentTarget as HTMLElement).style.color = "#ffffff";
+                    }
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.08)";
-                    (e.currentTarget as HTMLElement).style.color = "#D4AF37";
+                    if (typeof s.icon !== "string") {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.08)";
+                      (e.currentTarget as HTMLElement).style.color = "#D4AF37";
+                    }
                   }}
                 >
-                  {s.icon}
+                  {typeof s.icon === "string" ? (
+                    <img src={s.icon} alt={s.title} className="h-full w-full object-cover rounded-2xl" />
+                  ) : (
+                    s.icon
+                  )}
                 </div>
 
-                <h3 className="font-display font-bold text-[22px] leading-tight" style={{ color: "#0A0A0A" }}>
+                <h3 className="font-display font-bold text-[22px] leading-tight" style={{ color: "#1D1C1C" }}>
                   {s.title}
                 </h3>
-                <p className="mt-3 font-body text-[14px] leading-[1.8]" style={{ color: "#6B6B6B" }}>
+                <p className="mt-3 font-body text-[14px] leading-[1.8] font-bold" style={{ color: "rgba(29,28,28,0.65)" }}>
                   {s.body}
                 </p>
 

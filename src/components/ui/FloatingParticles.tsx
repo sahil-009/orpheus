@@ -50,40 +50,5 @@ export function FloatingParticles({
   color    = "rgba(212,175,55,0.55)",
   ringColor = "rgba(212,175,55,0.35)",
 }: Props) {
-  const dots = useMemo(() => gen(count), [count]);
-
-  return (
-    <div
-      aria-hidden
-      className="absolute inset-0 overflow-hidden pointer-events-none"
-      style={{ zIndex: 0 }}
-    >
-      {dots.map((p) => {
-        const sharedOuter: React.CSSProperties = {
-          position: "absolute",
-          left:     `${p.left}%`,
-          top:      `${p.top}%`,
-          animation: `p-sway ${p.swayDur}s ${p.swayDelay}s ease-in-out infinite`,
-          willChange: "transform",
-        };
-
-        const inner: React.CSSProperties = {
-          width:    p.size,
-          height:   p.size,
-          opacity:  p.opacity,
-          animation: `p-float ${p.dur}s ${p.delay}s ease-in-out infinite`,
-          willChange: "transform, opacity",
-          ...(p.kind === "dot"     && { borderRadius: "50%", background: color }),
-          ...(p.kind === "ring"    && { borderRadius: "50%", border: `1px solid ${ringColor}`, background: "transparent" }),
-          ...(p.kind === "diamond" && { transform: "rotate(45deg)", background: color, borderRadius: "1px" }),
-        };
-
-        return (
-          <div key={p.id} style={sharedOuter}>
-            <div style={inner} />
-          </div>
-        );
-      })}
-    </div>
-  );
+  return null;
 }

@@ -35,19 +35,19 @@ function ContactForm() {
   };
 
   const fieldCls =
-    "w-full h-12 rounded-lg border border-gold/20 bg-white px-4 font-body text-sm text-charcoal outline-none transition-all focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-muted2/50";
+    "w-full h-12 rounded-lg border border-gold/25 bg-[#F3F5F8] px-4 font-body text-sm text-[#1D1C1C] outline-none transition-all focus:bg-white focus:border-gold focus:shadow-[0_0_0_3px_rgba(212,175,55,0.1)] placeholder:text-[#1D1C1C]/40";
   const labelCls =
-    "block font-body text-[10px] font-semibold uppercase tracking-[1.5px] text-charcoal/60 mb-2";
+    "block font-body text-[10px] font-bold uppercase tracking-[1.5px] text-[#1D1C1C]/65 mb-2";
 
   return (
     <form
       ref={ref}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-gold/15 bg-white p-8 md:p-10"
-      style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.08)" }}
+      className="rounded-3xl border border-gold/18 bg-white p-8 md:p-10"
+      style={{ boxShadow: "0 24px 64px rgba(29,28,28,0.03)" }}
     >
-      <h3 className="font-display text-2xl text-charcoal">Send a Message</h3>
-      <p className="mt-2 font-body text-sm text-muted2">We respond within 24 hours.</p>
+      <h3 className="font-display text-2xl text-[#1D1C1C]">Send a Message</h3>
+      <p className="mt-2 font-body text-sm text-[#1D1C1C]/65">We respond within 24 hours.</p>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
@@ -82,14 +82,22 @@ function ContactForm() {
         </div>
       </div>
 
+      <p className="mt-6 font-body text-[11px] leading-relaxed text-muted2/60">
+        By submitting this form you agree to our{" "}
+        <Link to="/privacy" className="text-gold hover:underline">
+          Privacy Policy
+        </Link>
+        . Orpheus may contact you via email or phone for scheduling or marketing purposes.
+      </p>
+ 
       <button
         type="submit"
         disabled={submitting}
-        className="mt-7 w-full rounded-lg bg-gold text-charcoal font-body font-semibold text-sm py-4 transition-all hover:-translate-y-0.5 hover:bg-gold-light hover:shadow-[0_12px_32px_rgba(212,175,55,0.38)] disabled:opacity-60"
+        className="mt-5 w-full rounded-lg bg-gold text-charcoal font-body font-semibold text-sm py-4 transition-all hover:-translate-y-0.5 hover:bg-gold-light hover:shadow-[0_12px_32px_rgba(212,175,55,0.38)] disabled:opacity-60"
       >
         {submitting ? "Sending..." : "Send Message →"}
       </button>
-
+ 
       <div className="mt-5 text-center">
         <span className="font-body text-xs text-muted2">Or </span>
         <a href="tel:+97145587968" className="font-body text-xs text-gold hover:underline">
@@ -153,23 +161,45 @@ function WorldMap() {
 
 export default function ContactPage() {
   const infoRef = useScrollReveal<HTMLDivElement>({ childSelector: "[data-info]", stagger: 0.12, y: 30 });
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (headingRef.current) {
+      const els = headingRef.current.children;
+      gsap.fromTo(els,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out", delay: 0.1 }
+      );
+    }
+  }, []);
 
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#0D0D0D] text-white pt-36 pb-20">
+      <section className="relative overflow-hidden bg-[#FFFFFF] pt-36 pb-20 border-b border-[#1D1C1C]/[0.06]">
         <GridTexture />
         <div className="orb w-[600px] h-[600px] bg-gold/[0.06] top-[-100px] right-[-150px]" />
         <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, #0D0D0D)" }} />
+          style={{ background: "linear-gradient(to bottom, transparent, #FFFFFF)" }} />
 
         <div className="relative mx-auto max-w-[1280px] px-6 md:px-16 text-center">
           <p className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Contact</p>
-          <h1 className="mt-6 font-display font-medium" style={{ fontSize: "clamp(56px, 8vw, 120px)", lineHeight: 1.0 }}>
-            <RevealText mode="chars" stagger={0.04} duration={0.7} y={50}>Let's Talk.</RevealText>
+          <h1 ref={headingRef} className="mt-6 font-display font-extrabold leading-[1.0]" style={{ fontSize: "clamp(56px, 8vw, 120px)", letterSpacing: "-0.03em" }}>
+            <span className="inline-block text-[#1D1C1C] opacity-0">Let's</span>{" "}
+            <span
+              className="inline-block font-serif italic text-transparent bg-clip-text opacity-0"
+              style={{
+                background: "linear-gradient(130deg, #C8A96A 0%, #D4AF37 30%, #F7EFD6 55%, #D4AF37 75%, #A88829 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Talk.
+            </span>
           </h1>
-          <p className="mt-6 mx-auto max-w-xl font-body text-[15px] font-light text-white/45 leading-[1.85]">
-            30-minute free consultation. No commitment required.
+          <p className="mt-6 mx-auto max-w-xl font-body text-[15px] leading-[1.85]" style={{ color: "rgba(29,28,28,0.65)" }}>
+            We would love to hear from you | We’ll get back to you within 24 hours.
           </p>
         </div>
       </section>
@@ -181,7 +211,7 @@ export default function ContactPage() {
 
           <div ref={infoRef}>
             <p className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Get in touch</p>
-            <h2 className="mt-5 font-display font-medium leading-[1.08] text-charcoal" style={{ fontSize: "clamp(30px, 3.5vw, 50px)" }}>
+            <h2 className="mt-5 font-display font-extrabold leading-[1.08] text-charcoal" style={{ fontSize: "clamp(30px, 3.5vw, 50px)", letterSpacing: "-0.03em" }}>
               <RevealText trigger="scroll" stagger={0.06}>Start Your</RevealText>{" "}
               <RevealText trigger="scroll" stagger={0.06} delay={0.2} className="italic text-gold">Journey</RevealText>
             </h2>
@@ -221,15 +251,15 @@ export default function ContactPage() {
       </section>
 
       {/* Global footprint */}
-      <section className="bg-[#0D0D0D] text-white py-24 md:py-32 relative overflow-hidden">
+      <section className="bg-[#1D1C1C] text-white py-24 md:py-32 relative overflow-hidden">
         <div className="absolute inset-0 grid-texture opacity-50 pointer-events-none" />
         <div className="orb w-[400px] h-[400px] bg-gold/[0.04] bottom-0 left-[-80px]" />
 
         <div className="relative mx-auto max-w-[1280px] px-6 md:px-16 text-center">
           <p className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Global Footprint</p>
-          <h2 className="mt-5 font-display font-medium leading-[1.08]" style={{ fontSize: "clamp(30px, 4vw, 56px)" }}>
+          <h2 className="mt-5 font-display font-extrabold leading-[1.08]" style={{ fontSize: "clamp(30px, 4vw, 56px)", letterSpacing: "-0.03em" }}>
             <RevealText trigger="scroll" stagger={0.06}>Headquartered in</RevealText>{" "}
-            <RevealText trigger="scroll" stagger={0.06} delay={0.2} className="italic gold-shimmer-slow">
+            <RevealText trigger="scroll" stagger={0.06} delay={0.2} className="italic text-gold">
               Business Bay, Dubai.
             </RevealText>
           </h2>

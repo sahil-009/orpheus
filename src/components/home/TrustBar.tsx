@@ -70,7 +70,7 @@ function Logo({ name, color, symbol }: { name: string; color: string; symbol: st
       </span>
 
       {/* divider dot */}
-      <span className="ml-6 text-white/10 text-[8px]">◆</span>
+      <span className="ml-6 text-white/20 text-[8px]">◆</span>
     </div>
   );
 }
@@ -130,51 +130,40 @@ export function TrustBar() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-[#080808] overflow-hidden py-16">
+    <section ref={sectionRef} className="relative bg-[#1D1C1C] overflow-hidden py-16">
 
       {/* subtle top/bottom lines */}
       <div className="absolute inset-x-0 top-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent)" }} />
+        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.20), transparent)" }} />
       <div className="absolute inset-x-0 bottom-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.15), transparent)" }} />
+        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.12), transparent)" }} />
 
       {/* very faint blue glow behind logos */}
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,175,55,0.02) 0%, transparent 70%)" }} />
 
       {/* header */}
-      <p ref={labelRef} className="text-center font-body text-[13px] text-white/30 mb-10 tracking-[0.5px]">
+      <p ref={labelRef} className="text-center font-body text-[13px] text-white/80 mb-10 tracking-[0.5px] font-bold">
         Trusted by leading businesses &amp; institutions across 18 markets
       </p>
-
-      <div className="relative mx-auto mb-8 max-w-[760px] px-6">
-        <div className="needs-asset rounded-xl px-4 py-3"
-          data-marker="Assets: partner / bank logos (SVG, monochrome)"
-          style={{ background: "rgba(212,175,55,0.05)", border: "1px dashed rgba(212,175,55,0.4)" }}>
-          <p className="text-center font-body text-[11px] text-white/55 leading-[1.6]">
-            Placeholder marquee — replace with real partner / bank logos supplied by client
-            (SVG preferred, single-color so they tint to brand gold).
-          </p>
-        </div>
-      </div>
 
       {/* row 1 — scrolls left */}
       <div className="relative mb-6">
         <MarqueeRow items={ROW1} speed={38} />
         {/* fade masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-28"
-          style={{ background: "linear-gradient(to right, #080808, transparent)" }} />
+          style={{ background: "linear-gradient(to right, #1D1C1C, transparent)" }} />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-28"
-          style={{ background: "linear-gradient(to left, #080808, transparent)" }} />
+          style={{ background: "linear-gradient(to left, #1D1C1C, transparent)" }} />
       </div>
 
       {/* row 2 — scrolls right (reverse) */}
       <div className="relative">
         <MarqueeRow items={ROW2} speed={44} reverse />
         <div className="pointer-events-none absolute inset-y-0 left-0 w-28"
-          style={{ background: "linear-gradient(to right, #080808, transparent)" }} />
+          style={{ background: "linear-gradient(to right, #1D1C1C, transparent)" }} />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-28"
-          style={{ background: "linear-gradient(to left, #080808, transparent)" }} />
+          style={{ background: "linear-gradient(to left, #1D1C1C, transparent)" }} />
       </div>
     </section>
   );

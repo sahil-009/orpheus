@@ -13,6 +13,7 @@ interface RevealTextProps {
   y?: number;
   trigger?: "load" | "scroll";
   start?: string;
+  style?: React.CSSProperties;
 }
 
 export function RevealText({
@@ -26,6 +27,7 @@ export function RevealText({
   y = 60,
   trigger = "load",
   start = "top 80%",
+  style,
 }: RevealTextProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -70,7 +72,7 @@ export function RevealText({
 
   const Comp = Tag as unknown as "span";
   return (
-    <Comp ref={ref as never} className={className}>
+    <Comp ref={ref as never} className={className} style={style}>
       {children}
     </Comp>
   );

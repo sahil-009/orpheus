@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { GridTexture } from "@/components/ui/GridTexture";
-import { RevealText } from "@/components/ui/RevealText";
 import { Link } from "react-router-dom";
+import { gsap } from "@/lib/gsapSetup";
 
 interface Props {
   breadcrumb: string;
@@ -13,6 +13,18 @@ interface Props {
 }
 
 export function PageHero({ breadcrumb, title, titleAccent, subtitle, children, short }: Props) {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (titleRef.current) {
+      const els = titleRef.current.children;
+      gsap.fromTo(els,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out", delay: 0.1 }
+      );
+    }
+  }, []);
+
   return (
     <section className={`relative overflow-hidden bg-[#0D0D0D] text-white ${short ? "pt-36 pb-16" : "pt-40 pb-28"}`}>
       <GridTexture />
@@ -33,15 +45,25 @@ export function PageHero({ breadcrumb, title, titleAccent, subtitle, children, s
           <span className="text-gold">{breadcrumb}</span>
         </nav>
 
-        <h1 className="mt-8 font-display font-medium leading-[1.04]" style={{ fontSize: "clamp(42px, 5.5vw, 80px)" }}>
-          <RevealText className="block text-white">{title}</RevealText>
+        <h1 ref={titleRef} className="mt-8 font-display font-extrabold leading-[1.0]" style={{ fontSize: "clamp(42px, 5.5vw, 80px)", letterSpacing: "-0.03em" }}>
+          <span className="block text-white opacity-0">{title}</span>
           {titleAccent && (
-            <RevealText className="block italic gold-shimmer" delay={0.3}>{titleAccent}</RevealText>
+            <span
+              className="block font-serif italic text-transparent bg-clip-text opacity-0"
+              style={{
+                background: "linear-gradient(130deg, #C8A96A 0%, #D4AF37 30%, #F7EFD6 55%, #D4AF37 75%, #A88829 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              {titleAccent}
+            </span>
           )}
         </h1>
 
         {subtitle && (
-          <p className="mt-7 max-w-2xl font-body text-[15px] font-light text-white/50 leading-[1.85]">
+          <p className="mt-7 max-w-2xl font-body text-[15px] font-bold text-white leading-[1.85]">
             {subtitle}
           </p>
         )}

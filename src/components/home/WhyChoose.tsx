@@ -14,11 +14,12 @@ const features = [
 ];
 
 const jurisdictions = [
-  { flag: "🇦🇪", name: "United Arab Emirates", tag: "Popular",      color: "#D4AF37" },
-  { flag: "🇻🇬", name: "British Virgin Islands", tag: "Tax-efficient", color: "#D4AF37" },
-  { flag: "🇰🇾", name: "Cayman Islands",         tag: "Funds",        color: "#D4AF37" },
+  { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/uae.png", name: "United Arab Emirates", tag: "Popular",      color: "#D4AF37" },
+  { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/british.png", name: "British Virgin Islands", tag: "Tax-efficient", color: "#D4AF37" },
+  { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Cayman-Islands.png", name: "Cayman Islands",         tag: "Funds",        color: "#D4AF37" },
   { flag: "🇭🇰", name: "Hong Kong",              tag: "Asia hub",     color: "#D4AF37" },
-  { flag: "🇸🇨", name: "Seychelles",             tag: "IBC",          color: "#D4AF37" },
+  { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Seychelles.png", name: "Seychelles",             tag: "IBC",          color: "#D4AF37" },
+  { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/marshall-island.png", name: "Marshall Islands",     tag: "Confidential", color: "#D4AF37" },
   { flag: "🇲🇺", name: "Mauritius",              tag: "Treaties",     color: "#D4AF37" },
 ];
 
@@ -27,7 +28,7 @@ export function WhyChoose() {
   const rightRef = useScrollReveal<HTMLDivElement>({ childSelector: "[data-jur]",  stagger: 0.07, y: 20 });
 
   return (
-    <section className="bg-[#080808] text-white py-28 md:py-36 relative overflow-hidden">
+    <section className="bg-[#1D1C1C] text-white py-28 md:py-36 relative overflow-hidden">
       {/* grid */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{
         backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
@@ -62,7 +63,7 @@ export function WhyChoose() {
                   {f.icon}
                 </div>
                 <h4 className="font-display font-semibold text-[13px] text-white/90 leading-snug">{f.title}</h4>
-                <p className="mt-2 font-body text-[12px] text-white/35 leading-relaxed">{f.body}</p>
+                <p className="mt-2 font-body text-[12px] text-white/55 leading-relaxed font-bold">{f.body}</p>
               </div>
             ))}
           </div>
@@ -74,8 +75,8 @@ export function WhyChoose() {
             ref={rightRef}
             className="rounded-3xl border border-gold/15 p-8 md:p-10 lg:sticky lg:top-32"
             style={{
-              background: "rgba(14,14,14,0.8)",
-              boxShadow: "0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,175,55,0.1)",
+              background: "rgba(29,28,28,0.7)",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.15), inset 0 1px 0 rgba(212,175,55,0.08)",
               backdropFilter: "blur(20px)",
             }}
           >
@@ -84,14 +85,18 @@ export function WhyChoose() {
               <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Top Jurisdictions</p>
             </div>
             <h3 className="font-display font-bold text-[26px] text-white leading-tight">Where We Structure</h3>
-            <p className="mt-2 font-body text-[13px] text-white/35">Most frequently used offshore locations.</p>
+            <p className="mt-2 font-body text-[13px] text-white/60 font-bold">Most frequently used offshore locations.</p>
 
             <ul className="mt-8 divide-y divide-white/[0.06]">
               {jurisdictions.map((j) => (
                 <li key={j.name} data-jur
                   className="flex items-center justify-between py-4 group hover:bg-gold/[0.04] px-2 -mx-2 rounded-lg transition-colors">
                   <div className="flex items-center gap-4">
-                    <span className="text-[22px]">{j.flag}</span>
+                    {j.flag.startsWith("http") ? (
+                      <img src={j.flag} className="w-[30px] h-[19px] object-cover rounded-sm border border-white/10 flex-none" alt={j.name} />
+                    ) : (
+                      <span className="text-[22px]">{j.flag}</span>
+                    )}
                     <span className="font-body text-[13px] text-white/70 group-hover:text-white transition-colors">{j.name}</span>
                   </div>
                   <span className="rounded-full border border-gold/25 bg-gold/[0.08] px-3 py-1 font-display text-[9px] uppercase tracking-[1.5px] text-gold font-semibold">
