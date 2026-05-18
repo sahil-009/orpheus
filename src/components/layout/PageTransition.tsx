@@ -11,8 +11,8 @@ function CounterDisplay() {
 
   useEffect(() => {
     let current = 0;
-    const totalMs = 1100;
-    const interval = 11;
+    const totalMs = 300;
+    const interval = 10;
     const steps = totalMs / interval;
     const timer = setInterval(() => {
       current += 100 / steps;
@@ -38,12 +38,12 @@ function OverlayContent() {
         className="font-body text-[10px] uppercase tracking-[5px] text-white/25"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.55 }}
+        transition={{ duration: 0.25, delay: 0.2 }}
       >
         Orpheus Financial&nbsp;&nbsp;·&nbsp;&nbsp;Dubai, UAE
       </motion.p>
 
-      {/* ORPHEUS letters stagger */}
+      {/* text reveal stagger */}
       <div
         className="flex items-end gap-0 leading-none overflow-hidden"
         style={{ fontSize: "clamp(64px, 16vw, 200px)", letterSpacing: "-0.02em" }}
@@ -61,8 +61,8 @@ function OverlayContent() {
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
-              duration: 0.55,
-              delay: 0.5 + i * 0.055,
+              duration: 0.25,
+              delay: 0.15 + i * 0.025,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -77,7 +77,7 @@ function OverlayContent() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)" }}
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "clamp(200px, 28vw, 480px)", opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.75, ease: "easeOut" }}
+        transition={{ duration: 0.35, delay: 0.25, ease: "easeOut" }}
       />
 
       {/* tagline + counter */}
@@ -85,7 +85,7 @@ function OverlayContent() {
         className="flex items-center gap-5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 1.0 }}
+        transition={{ duration: 0.25, delay: 0.35 }}
       >
         <span className="font-body text-[11px] uppercase tracking-[3px] text-white/22">
           Structuring Capital
@@ -137,8 +137,8 @@ export function PageTransition({ children }: { children: ReactNode }) {
           initial={{ y: "100%" }}
           animate={{ y: ["100%", "0%", "0%", "-100%"] }}
           transition={{
-            duration: 2.5,
-            times: [0, 0.20, 0.68, 1],
+            duration: 0.95,
+            times: [0, 0.22, 0.65, 1],
             ease: ["easeOut", "linear", "easeIn"],
           }}
         >
@@ -158,7 +158,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
             className="absolute top-6 left-8 font-body text-[10px] uppercase tracking-[3px] text-white/20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.1 }}
           >
             Loading
           </motion.span>
@@ -168,7 +168,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
             className="absolute top-6 right-8 font-body text-[10px] text-white/20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.1 }}
           >
             ©{new Date().getFullYear()}
           </motion.span>
@@ -182,7 +182,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
             style={{ background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 1.4, delay: 0.5, ease: "easeInOut" }}
+            transition={{ duration: 0.55, delay: 0.15, ease: "easeInOut" }}
           />
         </motion.div>
       </AnimatePresence>

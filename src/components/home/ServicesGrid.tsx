@@ -127,7 +127,7 @@ export function ServicesGrid() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="mt-16 grid gap-5 md:grid-cols-3 needs-copy" data-marker="Copy: confirm service descriptions">
+        <div ref={cardsRef} className="mt-16 grid gap-5 md:grid-cols-3">
           {services.map((s) => (
             <div
               key={s.title}

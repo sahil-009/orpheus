@@ -109,7 +109,7 @@ export function Testimonials() {
         </h2>
 
         {/* slide area */}
-        <div ref={slideRef} className="mt-14 needs-copy" data-marker="Copy: confirm or replace testimonials">
+        <div ref={slideRef} className="mt-14">
           {/* quote icon */}
           <Quote size={40} className="mx-auto text-gold/20 mb-6" />
 

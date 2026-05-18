@@ -53,7 +53,7 @@ export function WhyChoose() {
             </span>
           </h2>
 
-          <div ref={leftRef} className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 needs-copy" data-marker="Copy: confirm differentiator points">
+          <div ref={leftRef} className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {features.map((f) => (
               <div key={f.title} data-feat
                 className="group rounded-2xl border border-white/[0.07] bg-white/[0.03] p-6 transition-all duration-300 hover:bg-gold/[0.07] hover:border-gold/30 cursor-default"

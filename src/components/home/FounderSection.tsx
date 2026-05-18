@@ -99,7 +99,7 @@ export function FounderSection() {
             ))}
           </div>
 
-          <div className="mt-8 space-y-5 font-body text-[14px] text-muted2 leading-[1.9] max-w-lg needs-copy" data-marker="Copy: founder bio (final)">
+          <div className="mt-8 space-y-5 font-body text-[14px] text-muted2 leading-[1.9] max-w-lg">
             <p>
               Rachit Yadav founded Orpheus Financial with a single belief: international businesses deserve a financial partner who <em className="text-charcoal font-medium">actually executes</em> — not just advises.
             </p>

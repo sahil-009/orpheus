@@ -44,14 +44,36 @@ export function Footer() {
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
-    setupGsap();
     if (!ref.current) return;
     const cols = ref.current.querySelectorAll("[data-foot-col]");
-    const tween = gsap.fromTo(cols,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.08, duration: 0.85, ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 88%", once: true } });
-    return () => { tween.scrollTrigger?.kill(); tween.kill(); };
+    
+    // Set initial animation state
+    gsap.set(cols, { y: 40, opacity: 0 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(cols, {
+              y: 0,
+              opacity: 1,
+              stagger: 0.08,
+              duration: 0.85,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -97,8 +119,7 @@ export function Footer() {
           </div>
 
           <form data-foot-col onSubmit={handleSubscribe}
-            className="flex flex-col sm:flex-row gap-3 needs-copy"
-            data-marker="Copy: confirm newsletter blurb">
+            className="flex flex-col sm:flex-row gap-3">
             <input
               type="email"
               required
@@ -266,8 +287,7 @@ export function Footer() {
 
         {/* ── Disclosure ────────────────────────────────────────── */}
         <p
-          className="mt-10 max-w-4xl font-body text-[11px] leading-[1.85] text-white/35 needs-copy"
-          data-marker="Copy: legal disclosure (final wording)"
+          className="mt-10 max-w-4xl font-body text-[11px] leading-[1.85] text-white/35"
         >
           <span className="text-[#C8A96A] font-semibold">Disclosure.</span>{" "}
           Orpheus Financial is a Dubai-based corporate advisory firm. Information on this

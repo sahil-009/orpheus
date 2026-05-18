@@ -62,7 +62,7 @@ export function HomeHero() {
       onMove = (e: MouseEvent) => {
         const x = (e.clientX / window.innerWidth - 0.5) * -30;
         const y = (e.clientY / window.innerHeight - 0.5) * -30;
-        gsap.to(bgVideo, { x, y, duration: 2, ease: "power2.out", overwrite: "auto" });
+        gsap.to(bgVideo, { x, y, duration: 2, ease: "power2.out", overwrite: "auto", force3D: true });
       };
       window.addEventListener("mousemove", onMove);
     }
@@ -76,15 +76,15 @@ export function HomeHero() {
     <section className="relative min-h-screen overflow-hidden flex flex-col" style={{ background: "#0A0A0A" }}>
 
       {/* Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={bgRef}>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={bgRef} style={{ willChange: "transform", transform: "translate3d(0,0,0)" }}>
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-0 mix-blend-lighten"
-          src="https://orpheusfinancial.co/wp-content/uploads/2025/08/Comp-1-1.mp4-revised-1.mp4"
-          style={{ transform: "scale(1.15)" }}
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+          src="/hero-bg.webm"
+          style={{ transform: "scale(1.15)", willChange: "transform", transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
         />
         {/* Soft elegant gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
@@ -100,12 +100,16 @@ export function HomeHero() {
           "radial-gradient(ellipse 45% 55% at 50% 80%, rgba(168,136,41,0.10) 0%, transparent 60%)",
           "linear-gradient(to bottom, transparent 75%, #0A0A0A 100%)",
         ].join(", "),
+        transform: "translate3d(0,0,0)",
+        willChange: "transform",
       }} />
 
       {/* grid texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.05]" style={{
         backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
+        transform: "translate3d(0,0,0)",
+        willChange: "transform",
       }} />
 
       {/* ── main grid ── */}
@@ -189,8 +193,7 @@ export function HomeHero() {
 
           {/* avatar + social proof */}
           <div data-anim
-            className="mt-10 flex items-center gap-5 needs-copy"
-            data-marker="Copy: confirm stat numbers">
+            className="mt-10 flex items-center gap-5">
             <div className="flex -space-x-2.5">
               {avatars.map((src, i) => (
                 <img key={i} src={src} alt="client"

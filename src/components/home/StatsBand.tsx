@@ -27,7 +27,7 @@ export function StatsBand() {
 
       <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent)" }} />
 
-      <div ref={ref} className="relative mx-auto max-w-[1440px] grid grid-cols-2 md:grid-cols-4 needs-copy" data-marker="Copy: confirm final stat numbers">
+      <div ref={ref} className="relative mx-auto max-w-[1440px] grid grid-cols-2 md:grid-cols-4">
         {stats.map((s, i) => (
           <div
             key={s.label}
