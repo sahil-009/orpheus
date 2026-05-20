@@ -216,6 +216,19 @@
 }
 .marquee-track:hover { animation-play-state: paused; }
 
+@keyframes client-logos-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.client-logos-track {
+  animation: client-logos-scroll 42s linear infinite;
+}
+.client-logos-track:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .client-logos-track,
+  .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
+}
+
 /* =========================================================
    Selection & scrollbar
    ========================================================= */

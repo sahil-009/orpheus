@@ -5,13 +5,16 @@ import {
   Facebook, Instagram, Linkedin, MapPin, Phone, Mail,
   MessageCircle, Send, Clock, ShieldCheck, ArrowUpRight,
 } from "lucide-react";
+import { ADVISORY_SERVICES } from "@/data/advisoryServices";
 
 const SERVICES = [
-  { l: "Offshore Setup",    to: "/services" },
-  { l: "Banking Solutions", to: "/services" },
-  { l: "Debt Raising",      to: "/services" },
-  { l: "Capital Strategy",  to: "/services" },
-  { l: "Compliance & KYC",  to: "/services" },
+  { l: "Offshore Structure & Banking", to: "/services" },
+  { l: "Corporate Finance & Strategic Advisory", to: "/services#corporate-finance-advisory" },
+  { l: "Debt Raising", to: "/services" },
+  ...ADVISORY_SERVICES.map((s) => ({
+    l: s.title,
+    to: `/services#${s.slug}`,
+  })),
 ];
 
 const COMPANY = [
@@ -85,7 +88,7 @@ export function Footer() {
   };
 
   return (
-    <footer ref={ref} className="relative overflow-hidden text-white border-t border-gold/[0.15]" style={{ background: "#1D1C1C" }}>
+    <footer ref={ref} className="relative overflow-hidden text-white" style={{ background: "#1D1C1C" }}>
 
       {/* gold mesh + grid texture */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden style={{

@@ -1,25 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "@/lib/gsapSetup";
-import { Globe, Landmark, TrendingUp, ArrowUpRight } from "lucide-react";
-import { FloatingParticles } from "@/components/ui/FloatingParticles";
+import { Briefcase, TrendingUp, ArrowUpRight } from "lucide-react";
+import { ClientLogosMarquee } from "@/components/services/ClientLogosMarquee";
+import { CORPORATE_FINANCE_ADVISORY } from "@/data/corporateFinanceAdvisory";
+import { AdvisoryServicesGrid } from "@/components/services/AdvisoryServicesGrid";
 
-const services = [
+type ServiceCard = {
+  icon: string | ReactNode;
+  n: string;
+  title: string;
+  body: string;
+  tags?: string[];
+  capabilities?: readonly string[];
+  href: string;
+};
+
+const services: ServiceCard[] = [
   {
     icon: "/image.png",
     n: "01",
-    title: "Offshore Setup",
-    body: "Incorporate entities across the UAE, BVI, Cayman, Hong Kong, Seychelles, and Mauritius, structured for tax efficiency and banking access.",
-    tags: ["UAE", "BVI", "Cayman", "HK"],
+    title: "Offshore Structure & Banking",
+    body: "Establish entities in the right jurisdiction and secure global banking — incorporation, structuring, account opening, and compliance in one integrated engagement.",
+    tags: ["UAE", "BVI", "Multi-currency", "KYC"],
     href: "/services",
   },
   {
-    icon: <Landmark size={26} />,
+    icon: <Briefcase size={26} />,
     n: "02",
-    title: "Banking Solutions",
-    body: "Simplified global banking solutions, including account opening, regulatory documentation, and long-term compliance support.",
-    tags: ["Multi-currency", "KYC", "Compliance"],
-    href: "/services",
+    title: CORPORATE_FINANCE_ADVISORY.title,
+    body: CORPORATE_FINANCE_ADVISORY.cardSummary,
+    capabilities: CORPORATE_FINANCE_ADVISORY.capabilities,
+    href: "/services#corporate-finance-advisory",
   },
   {
     icon: <TrendingUp size={26} />,
@@ -38,11 +50,16 @@ export function ServicesGrid() {
   useEffect(() => {
     if (!cardsRef.current) return;
     const cards = cardsRef.current.querySelectorAll<HTMLElement>("[data-card]");
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    gsap.fromTo(cards,
-      { y: 80, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: "power3.out",
-        scrollTrigger: { trigger: cardsRef.current, start: "top 78%", once: true } });
+    if (!prefersReduced) {
+      gsap.fromTo(cards,
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.12, duration: 0.85, ease: "power3.out",
+          scrollTrigger: { trigger: cardsRef.current, start: "top 78%", once: true } });
+    }
+
+    if (!window.matchMedia("(pointer: fine)").matches) return;
 
     cards.forEach((card) => {
       const bar = card.querySelector<HTMLElement>("[data-bar]");
@@ -73,25 +90,16 @@ export function ServicesGrid() {
   return (
     <section ref={sectionRef} className="py-28 md:py-36 relative overflow-hidden" style={{ background: "#F3F5F8" }}>
 
-      <FloatingParticles count={50} color="rgba(212,175,55,0.45)" ringColor="rgba(212,175,55,0.3)" />
-
-      {/* subtle warm dot texture */}
       <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px)",
         backgroundSize: "28px 28px",
         opacity: 0.45,
       }} />
 
-      {/* faint top edge line */}
       <div className="absolute inset-x-0 top-0 h-px" style={{
         background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)"
       }} />
-      {/* faint bottom edge line */}
-      <div className="absolute inset-x-0 bottom-0 h-px" style={{
-        background: "linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent)"
-      }} />
 
-      {/* warm blue tint orb top-right */}
       <div className="absolute pointer-events-none" style={{
         top: "-10%", right: "-5%", width: "45%", height: "70%",
         background: "radial-gradient(ellipse at 70% 30%, rgba(212,175,55,0.07) 0%, transparent 65%)",
@@ -99,7 +107,6 @@ export function ServicesGrid() {
 
       <div className="relative mx-auto max-w-[1280px] px-6 md:px-16">
 
-        {/* Label + heading */}
         <div className="max-w-3xl">
           <p className="font-display text-[11px] font-semibold uppercase tracking-[3px]" style={{ color: "#D4AF37" }}>
             Services
@@ -123,16 +130,16 @@ export function ServicesGrid() {
             </span>
           </h2>
           <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
-            Three fully integrated services with direct execution at every stage of your journey.
+            Three integrated practice areas — structure, advisory, and capital — with direct execution at every stage.
           </p>
         </div>
 
-        <div ref={cardsRef} className="mt-16 grid gap-5 md:grid-cols-3">
+        <div ref={cardsRef} className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <div
               key={s.title}
               data-card
-              className="group relative overflow-hidden rounded-3xl cursor-pointer"
+              className="group relative overflow-hidden rounded-3xl cursor-pointer flex flex-col"
               style={{
                 background: "#FFFFFF",
                 border: "1px solid rgba(212,175,55,0.18)",
@@ -141,7 +148,6 @@ export function ServicesGrid() {
                 padding: "36px",
               }}
             >
-              {/* animated top bar */}
               <div
                 data-bar
                 className="absolute top-0 left-0 h-[3px] rounded-t-3xl"
@@ -151,7 +157,6 @@ export function ServicesGrid() {
                 }}
               />
 
-              {/* watermark number */}
               <span
                 aria-hidden
                 className="absolute -top-3 right-5 font-display font-extrabold select-none pointer-events-none"
@@ -160,8 +165,7 @@ export function ServicesGrid() {
                 {s.n}
               </span>
 
-              <div className="relative">
-                {/* icon */}
+              <div className="relative flex flex-col flex-1">
                 <div
                   className="flex h-14 w-14 items-center justify-center rounded-2xl mb-7 transition-all duration-300 overflow-hidden"
                   style={{
@@ -182,35 +186,49 @@ export function ServicesGrid() {
                   }}
                 >
                   {typeof s.icon === "string" ? (
-                    <img src={s.icon} alt={s.title} className="h-full w-full object-cover rounded-2xl" />
+                    <img src={s.icon} alt="" loading="lazy" decoding="async" width={56} height={56} className="h-full w-full object-cover rounded-2xl" />
                   ) : (
                     s.icon
                   )}
                 </div>
 
-                <h3 className="font-display font-bold text-[22px] leading-tight" style={{ color: "#1D1C1C" }}>
+                <h3 className="font-display font-bold text-[20px] md:text-[22px] leading-tight" style={{ color: "#1D1C1C" }}>
                   {s.title}
                 </h3>
-                <p className="mt-3 font-body text-[14px] leading-[1.8] font-bold" style={{ color: "rgba(29,28,28,0.65)" }}>
+                <p className="mt-3 font-body text-[14px] leading-[1.8] font-bold flex-1" style={{ color: "rgba(29,28,28,0.65)" }}>
                   {s.body}
                 </p>
 
-                {/* tags */}
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {s.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full px-3 py-1 font-display text-[10px] uppercase tracking-[1.5px] font-semibold"
-                      style={{
-                        background: "rgba(212,175,55,0.07)",
-                        color: "#A88829",
-                        border: "1px solid rgba(212,175,55,0.12)",
-                      }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                {s.capabilities ? (
+                  <ul className="mt-5 space-y-2 border-t border-gold/12 pt-5">
+                    {s.capabilities.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 font-body text-[12.5px] font-semibold leading-snug"
+                        style={{ color: "rgba(29,28,28,0.72)" }}
+                      >
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold" aria-hidden />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {s.tags?.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full px-3 py-1 font-display text-[10px] uppercase tracking-[1.5px] font-semibold"
+                        style={{
+                          background: "rgba(212,175,55,0.07)",
+                          color: "#A88829",
+                          border: "1px solid rgba(212,175,55,0.12)",
+                        }}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 <Link
                   to={s.href}
@@ -222,6 +240,17 @@ export function ServicesGrid() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-20 md:mt-24">
+          <AdvisoryServicesGrid variant="light" />
+        </div>
+
+        <div className="mt-20 md:mt-24 pt-12 md:pt-16">
+          <ClientLogosMarquee
+            variant="light"
+            label="Trusted by businesses across 18 markets"
+          />
         </div>
       </div>
     </section>

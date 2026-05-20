@@ -6,6 +6,8 @@ import { OButton } from "@/components/ui/OButton";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 import { toast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { CORPORATE_FINANCE_ADVISORY } from "@/data/corporateFinanceAdvisory";
+import { ADVISORY_SERVICE_NAMES } from "@/data/advisoryServices";
 
 const infoBlocks = [
   { icon: "📍", label: "Visit Us",  value: "Business Bay, Dubai, UAE\nC 1802 Ontario Tower" },
@@ -62,9 +64,16 @@ function ContactForm() {
           <label className={labelCls}>Service Interest</label>
           <select name="service" className={fieldCls} defaultValue="">
             <option value="" disabled>Choose a service</option>
-            <option>Offshore Setup</option>
-            <option>Banking Solutions</option>
-            <option>Debt Raising</option>
+            <optgroup label="Practice areas">
+              <option>Offshore Structure & Banking</option>
+              <option>{CORPORATE_FINANCE_ADVISORY.title}</option>
+              <option>Debt Raising</option>
+            </optgroup>
+            <optgroup label="Advisory services">
+              {ADVISORY_SERVICE_NAMES.map((name) => (
+                <option key={name}>{name}</option>
+              ))}
+            </optgroup>
             <option>Other</option>
           </select>
         </div>
@@ -250,8 +259,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Global footprint */}
-      <section className="bg-[#1D1C1C] text-white py-24 md:py-32 relative overflow-hidden">
+      {/* Global footprint / HQ */}
+      <section className="bg-[#1D1C1C] text-white py-24 md:py-32 relative overflow-hidden border-b-0">
         <div className="absolute inset-0 grid-texture opacity-50 pointer-events-none" />
         <div className="orb w-[400px] h-[400px] bg-gold/[0.04] bottom-0 left-[-80px]" />
 

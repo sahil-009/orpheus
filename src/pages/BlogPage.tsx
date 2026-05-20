@@ -2,12 +2,20 @@ import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 import { OButton } from "@/components/ui/OButton";
 import { blogPosts } from "@/data/blogPosts";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { gsap } from "@/lib/gsapSetup";
 import { GridTexture } from "@/components/ui/GridTexture";
 
 const featured = blogPosts[0];
 const rest = blogPosts.slice(1);
+
+const goldAccentStyle: CSSProperties = {
+  fontSize: "0.95em",
+  background: "linear-gradient(130deg, #D4AF37 0%, #C8A96A 50%, #A88829 100%)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
+};
 
 export default function BlogPage() {
   const gridRef = useScrollReveal<HTMLDivElement>({ childSelector: "[data-pcard]", stagger: 0.1, y: 40 });
@@ -37,11 +45,19 @@ export default function BlogPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-[1280px] px-6 md:px-16">
-          <p className="font-body text-[10px] uppercase tracking-[3px] text-gold font-semibold">Our Perspective</p>
-          <h1 className="mt-5 font-display font-extrabold text-[#1D1C1C]" style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 1.05, letterSpacing: "-0.03em" }}>
-            Insights & Updates
+          <p className="font-display text-[11px] font-semibold uppercase tracking-[3px]" style={{ color: "#D4AF37" }}>
+            Our Perspective
+          </p>
+          <h1
+            className="mt-4 font-display font-extrabold leading-[1.0] text-[#1D1C1C]"
+            style={{ fontSize: "clamp(36px, 5vw, 68px)", letterSpacing: "-0.03em" }}
+          >
+            Insights &{" "}
+            <span className="font-serif italic" style={goldAccentStyle}>
+              Updates
+            </span>
           </h1>
-          <p className="mt-6 max-w-2xl font-body text-[15px] leading-relaxed" style={{ color: "rgba(29,28,28,0.65)" }}>
+          <p className="mt-5 max-w-2xl font-body text-[16px] leading-relaxed font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
             Strategic analysis of global market trends, offshore structuring evolution, and institutional wealth preservation frameworks.
           </p>
         </div>
@@ -102,7 +118,18 @@ export default function BlogPage() {
       <section className="bg-[#F3F5F8] py-20 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 grid-texture-white opacity-70 pointer-events-none" />
         <div className="relative mx-auto max-w-[1280px] px-6 md:px-16">
-          <h3 className="font-display text-3xl text-charcoal">Latest Articles</h3>
+          <p className="font-display text-[11px] font-semibold uppercase tracking-[3px]" style={{ color: "#D4AF37" }}>
+            From the desk
+          </p>
+          <h2
+            className="mt-4 font-display font-extrabold leading-[1.0] text-[#1D1C1C]"
+            style={{ fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-0.03em" }}
+          >
+            Latest{" "}
+            <span className="font-serif italic" style={goldAccentStyle}>
+              Articles
+            </span>
+          </h2>
           <div ref={gridRef} className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((p) => (
               <Link
@@ -143,9 +170,15 @@ export default function BlogPage() {
         <div className="absolute inset-0 grid-texture opacity-50 pointer-events-none" />
         <div className="orb w-[400px] h-[400px] bg-gold/[0.05] top-[-80px] left-[50%] -translate-x-1/2" />
         <div className="relative mx-auto max-w-2xl px-6 md:px-16 text-center">
-          <p className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Newsletter</p>
-          <h3 className="mt-4 font-display font-extrabold" style={{ fontSize: "clamp(30px, 4vw, 52px)", letterSpacing: "-0.03em" }}>
-            Stay <span className="italic gold-shimmer-slow">Informed.</span>
+          <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Newsletter</p>
+          <h3
+            className="mt-4 font-display font-extrabold leading-[1.0] text-white"
+            style={{ fontSize: "clamp(30px, 4vw, 52px)", letterSpacing: "-0.03em" }}
+          >
+            Stay{" "}
+            <span className="font-serif italic" style={goldAccentStyle}>
+              Informed.
+            </span>
           </h3>
           <p className="mt-4 font-body text-sm text-white/40">Quarterly insights on structuring, banking and capital. No spam.</p>
           <form onSubmit={(e) => e.preventDefault()} className="mt-8 flex max-w-md mx-auto gap-2">

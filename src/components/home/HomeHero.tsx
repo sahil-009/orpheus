@@ -2,22 +2,24 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "@/lib/gsapSetup";
 import {
-  ArrowRight, ArrowUpRight, Globe2, Landmark, TrendingUp,
+  ArrowRight, ArrowUpRight, Globe2, Briefcase, TrendingUp,
   Linkedin, MessageCircle,
 } from "lucide-react";
+import { ClientLogosBar } from "@/components/services/ClientLogosMarquee";
+import { CORPORATE_FINANCE_ADVISORY } from "@/data/corporateFinanceAdvisory";
 
-/* ── three core business activities (hero snapshot) ── */
+/* ── core business activities (hero snapshot) ── */
 const coreActivities = [
   {
     icon: Globe2,
-    label: "Offshore Setup",
-    blurb: "UAE · BVI · Cayman · HK · Mauritius",
+    label: "Offshore Structure & Banking",
+    blurb: "Entity setup, global accounts & compliance",
     accent: "#D4AF37",
   },
   {
-    icon: Landmark,
-    label: "Global Banking",
-    blurb: "Multi-currency corporate accounts & KYC",
+    icon: Briefcase,
+    label: CORPORATE_FINANCE_ADVISORY.shortTitle,
+    blurb: "Investment, structuring, transactions & cross-border strategy",
     accent: "#C8A96A",
   },
   {
@@ -33,7 +35,7 @@ const avatars = [
   "https://i.pravatar.cc/40?img=22",
   "https://i.pravatar.cc/40?img=33",
   "https://i.pravatar.cc/40?img=44",
-];
+] as const;
 
 export function HomeHero() {
   const [email, setEmail] = useState("");
@@ -211,7 +213,7 @@ export function HomeHero() {
             className="mt-10 flex items-center gap-5">
             <div className="flex -space-x-2.5">
               {avatars.map((src, i) => (
-                <img key={i} src={src} alt="client"
+                <img key={i} src={src} alt="" loading="lazy" decoding="async" width={36} height={36}
                   className="h-9 w-9 rounded-full object-cover"
                   style={{ border: "2px solid #0A0A0A", zIndex: 4 - i }} />
               ))}
@@ -231,13 +233,13 @@ export function HomeHero() {
           </div>
         </div>
 
-        {/* ══ RIGHT — three core activity cards (snapshot) ════ */}
+        {/* ══ RIGHT — core activity cards (snapshot) ════ */}
         <div ref={rightRef} className="relative">
 
           <div className="mb-5 flex items-center gap-2.5">
             <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.4))" }} />
             <span className="font-display text-[10px] font-semibold uppercase tracking-[3px] text-[#D4AF37]">
-              Three Core Services
+              Core Services
             </span>
             <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(212,175,55,0.4), transparent)" }} />
           </div>
@@ -297,16 +299,7 @@ export function HomeHero() {
           <p className="text-center font-body text-[9px] uppercase tracking-[3px] text-white/55 mb-7 font-bold">
             Trusted by businesses across 18 markets
           </p>
-          <div
-            className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 md:gap-x-14 needs-asset"
-            data-marker="Assets: client logos (SVG, monochrome)">
-            {["Goldafrix", "U Remit", "Konsälidön", "Vantage", "Axiom", "Meridian"].map((c) => (
-              <span key={c}
-                className="font-display font-bold text-[15px] text-white/70 hover:text-[#D4AF37] transition-colors duration-500 select-none tracking-wide">
-                {c}
-              </span>
-            ))}
-          </div>
+          <ClientLogosBar variant="dark" />
         </div>
       </div>
     </section>

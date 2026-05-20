@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { gsap, setupGsap } from "@/lib/gsapSetup";
 import { ArrowRight, Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
-import WorldMapDemo from "@/components/world-map-demo";
+
+const WorldMapDemo = lazy(() => import("@/components/world-map-demo"));
 
 /* ═══════════════════════════════════════════════════════════════
    GLOBE — orthographic projection, center lat=15°N lon=30°E
@@ -399,8 +400,14 @@ export function HomeContact() {
                 style={{ color: "rgba(255,255,255,0.25)" }}>
                 Our Global Footprint
               </p>
-              <div data-fp className="rounded-2xl border border-white/10 bg-[#070B1C] p-2">
-                <WorldMapDemo />
+              <div data-fp className="rounded-2xl border border-white/10 bg-[#070B1C] p-2 min-h-[280px]">
+                <Suspense fallback={
+                  <div className="flex h-[280px] items-center justify-center font-body text-xs uppercase tracking-[2px] text-white/30">
+                    Loading map…
+                  </div>
+                }>
+                  <WorldMapDemo />
+                </Suspense>
               </div>
               <p
                 data-fp

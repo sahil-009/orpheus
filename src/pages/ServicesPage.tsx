@@ -4,6 +4,11 @@ import { PageHero } from "@/components/ui/PageHero";
 import { OButton } from "@/components/ui/OButton";
 import { Link } from "react-router-dom";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
+import { ClientLogosMarquee } from "@/components/services/ClientLogosMarquee";
+import { CORPORATE_FINANCE_ADVISORY } from "@/data/corporateFinanceAdvisory";
+import { ADVISORY_SERVICES } from "@/data/advisoryServices";
+import { AdvisoryServicesGrid } from "@/components/services/AdvisoryServicesGrid";
+import { Briefcase, LineChart, Globe2, Handshake, Lightbulb, TrendingUp } from "lucide-react";
 
 /* ── World Map Visual ──────────────────────────────────────── */
 function WorldMapVisual() {
@@ -12,9 +17,13 @@ function WorldMapVisual() {
       className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden"
       style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.25)", boxShadow: "0 24px 60px rgba(29,28,28,0.03)" }}
     >
-      <img 
-        src="/image.png" 
-        alt="Formed in Days" 
+      <img
+        src="/image.png"
+        alt="Formed in Days"
+        loading="lazy"
+        decoding="async"
+        width={800}
+        height={600}
         className="w-full h-full object-cover"
       />
 
@@ -30,7 +39,7 @@ function WorldMapVisual() {
 function BankCardVisual() {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || !window.matchMedia("(pointer: fine)").matches) return;
     const el = ref.current;
     const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
@@ -81,6 +90,34 @@ function BankCardVisual() {
           <div className="font-body text-[10px] text-white/30">USD · AED · EUR · GBP</div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ── Advisory Visual ───────────────────────────────────────── */
+const ADVISORY_ITEMS = ADVISORY_SERVICES.map(({ icon, title }) => ({
+  icon,
+  label: title,
+}));
+
+function AdvisoryVisual() {
+  return (
+    <div
+      className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
+      style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.22)", borderRadius: "1rem", padding: "2rem" }}
+    >
+      {ADVISORY_ITEMS.map(({ icon: Icon, label }) => (
+        <div
+          key={label}
+          className="flex items-center gap-4 rounded-xl p-4 bg-white border border-gold/15"
+          style={{ boxShadow: "0 8px 24px rgba(29,28,28,0.03)" }}
+        >
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/10 text-gold">
+            <Icon size={20} />
+          </div>
+          <span className="font-body text-sm font-semibold text-[#1D1C1C] leading-snug">{label}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -164,7 +201,7 @@ function ServiceBlock({
                   <span className="flex items-center gap-3">
                     {b.flag && (
                       b.flag.startsWith("http") ? (
-                        <img src={b.flag} className="w-[24px] h-[15px] object-cover rounded-sm border border-gold/15 flex-none" alt={b.label} />
+                        <img src={b.flag} loading="lazy" decoding="async" width={24} height={15} className="w-[24px] h-[15px] object-cover rounded-sm border border-gold/15 flex-none" alt="" />
                       ) : (
                         <span className="text-lg">{b.flag}</span>
                       )
@@ -199,10 +236,10 @@ export default function ServicesPage() {
         breadcrumb="Services"
         title="Our Services"
         titleAccent="Built for Execution."
-        subtitle="Three core practice areas, fully integrated. From offshore structuring to global banking and capital raising — we handle every engagement end-to-end."
+        subtitle="Three integrated practice areas. Offshore structure, corporate finance advisory, and capital raising — delivered end-to-end under one advisory relationship."
       >
         <div className="flex flex-wrap gap-3">
-          {["Offshore Setup", "Banking Solutions", "Debt Raising"].map((t) => (
+          {["Offshore Structure & Banking", CORPORATE_FINANCE_ADVISORY.title, "Debt Raising"].map((t) => (
             <span key={t} className="rounded-full border border-gold/30 bg-gold/[0.08] px-5 py-2 font-body text-xs text-gold">
               {t}
             </span>
@@ -212,8 +249,8 @@ export default function ServicesPage() {
 
       <ServiceBlock
         num="01"
-        title="Offshore Company Setup"
-        body="We structure companies in the right jurisdiction for your goals — tax efficiency, banking access, IP holding, or operational presence. We pick the structure, file everything, and deliver a working entity."
+        title="Offshore Structure & Banking"
+        body="We structure companies in the right jurisdiction and open the accounts they need — tax efficiency, banking access, IP holding, and operational presence in one integrated engagement. From incorporation and filings to KYC packs, banker introductions, and ongoing compliance across UAE, Europe, Asia, and the Caribbean."
         bullets={[
           { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/uae.png", label: "United Arab Emirates",    tag: "Popular" },
           { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/british.png", label: "British Virgin Islands",  tag: "Tax-efficient" },
@@ -222,25 +259,38 @@ export default function ServicesPage() {
           { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Seychelles.png", label: "Seychelles",              tag: "IBC" },
           { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/marshall-island.png", label: "Marshall Islands",     tag: "Confidential" },
           { flag: "🇲🇺", label: "Mauritius",               tag: "Treaties" },
-        ]}
-        visual={<WorldMapVisual />}
-        dark={false}
-      />
-
-      <ServiceBlock
-        num="02"
-        title="Banking Solutions"
-        body="Multi-currency corporate accounts with banks that actually want your business. We handle KYC packs, banker introductions, and ongoing relationship support across UAE, Europe, Asia and the Caribbean."
-        bullets={[
           { label: "Account Structuring" },
-          { label: "Documentation Support" },
+          { label: "Documentation & KYC Support" },
           { label: "Bank Coordination" },
           { label: "Ongoing Compliance" },
         ]}
-        visual={<BankCardVisual />}
-        reverse
-        dark
+        visual={
+          <div className="flex flex-col gap-8">
+            <WorldMapVisual />
+            <BankCardVisual />
+          </div>
+        }
+        dark={false}
       />
+
+      <div id="corporate-finance-advisory" className="scroll-mt-28">
+        <ServiceBlock
+          num="02"
+          title={CORPORATE_FINANCE_ADVISORY.title}
+          body={CORPORATE_FINANCE_ADVISORY.description}
+          bullets={CORPORATE_FINANCE_ADVISORY.capabilities.map((label) => ({ label }))}
+          visual={<AdvisoryVisual />}
+          reverse
+          dark
+        />
+      </div>
+
+      <section className="bg-white py-20 md:py-28 relative overflow-hidden">
+        <div className="absolute inset-0 grid-texture-white opacity-70 pointer-events-none" />
+        <div className="relative mx-auto max-w-[1280px] px-6 md:px-16">
+          <AdvisoryServicesGrid variant="light" />
+        </div>
+      </section>
 
       <ServiceBlock
         num="03"
@@ -255,6 +305,15 @@ export default function ServicesPage() {
         visual={<FunnelVisual />}
         dark={false}
       />
+
+      <section className="bg-[#F3F5F8] py-16 md:py-20">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-16">
+          <ClientLogosMarquee
+            variant="light"
+            label="Trusted by businesses across 18 markets"
+          />
+        </div>
+      </section>
 
       <ProcessTimeline />
     </main>
