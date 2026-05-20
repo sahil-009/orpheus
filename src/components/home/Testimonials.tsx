@@ -60,6 +60,34 @@ const items = [
     initials: "AF",
     role: "Chief Financial Officer",
   },
+  {
+    quote: "Rachit and his team resolved our complex corporate banking setup in less than 3 weeks after we were delayed by major banks for months. Their relationship-driven approach makes all the difference.",
+    name: "Apex Logistics",
+    company: "Dubai / Singapore",
+    initials: "AL",
+    role: "CEO",
+  },
+  {
+    quote: "Outstanding execution on our multi-layered fund structure. The compliance standards followed by Orpheus are top-notch, matching the level of top-tier legal firms.",
+    name: "Vantage Asset Management",
+    company: "Cayman Islands",
+    initials: "VA",
+    role: "Partner",
+  },
+  {
+    quote: "Navigating trade finance and multi-currency accounts is difficult for commodities, but Orpheus structured everything perfectly. Absolute professionals.",
+    name: "Axiom Commodities",
+    company: "Switzerland",
+    initials: "AC",
+    role: "Managing Director",
+  },
+  {
+    quote: "Orpheus understands the Web3 and digital asset landscape better than any traditional corporate service provider. They set up our Dubai entity and aligned our international banking smoothly.",
+    name: "Decentralized Ventures",
+    company: "UAE",
+    initials: "DV",
+    role: "Founder",
+  },
 ];
 
 export function Testimonials() {

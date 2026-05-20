@@ -1,7 +1,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "@/lib/gsapSetup";
-import { Briefcase, TrendingUp, ArrowUpRight } from "lucide-react";
+import { Briefcase, TrendingUp, ArrowUpRight, Globe2 } from "lucide-react";
 import { ClientLogosMarquee } from "@/components/services/ClientLogosMarquee";
 import { CORPORATE_FINANCE_ADVISORY } from "@/data/corporateFinanceAdvisory";
 import { AdvisoryServicesGrid } from "@/components/services/AdvisoryServicesGrid";
@@ -18,7 +18,7 @@ type ServiceCard = {
 
 const services: ServiceCard[] = [
   {
-    icon: "/image.png",
+    icon: <Globe2 size={26} />,
     n: "01",
     title: "Offshore Structure & Banking",
     body: "Establish entities in the right jurisdiction and secure global banking — incorporation, structuring, account opening, and compliance in one integrated engagement.",

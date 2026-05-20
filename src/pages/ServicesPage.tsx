@@ -14,23 +14,45 @@ import { Briefcase, LineChart, Globe2, Handshake, Lightbulb, TrendingUp } from "
 function WorldMapVisual() {
   return (
     <div
-      className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden"
-      style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.25)", boxShadow: "0 24px 60px rgba(29,28,28,0.03)" }}
+      className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden flex items-center justify-center"
+      style={{
+        background: "radial-gradient(circle at 50% 50%, #1e1e1e 0%, #0d0d0d 100%)",
+        border: "1px solid rgba(212,175,55,0.25)",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.45)"
+      }}
     >
-      <img
-        src="/image.png"
-        alt="Formed in Days"
-        loading="lazy"
-        decoding="async"
-        width={800}
-        height={600}
-        className="w-full h-full object-cover"
-      />
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.08]" style={{
+        backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)",
+        backgroundSize: "20px 20px"
+      }} />
 
-      <div className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-gold/15 border border-gold/25 px-4 py-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-gold pulse-dot" />
-        <span className="font-body text-[10px] uppercase tracking-[2px] text-gold font-bold">Formed in Days</span>
-      </div>
+      {/* SVG Map Path or Network Map */}
+      <svg viewBox="0 0 400 300" className="w-[85%] h-[85%] relative z-10">
+        <g stroke="#D4AF37" strokeWidth="1" fill="none" opacity="0.45" strokeDasharray="3 3">
+          {/* Paths connecting global hubs */}
+          <path d="M80 120 Q190 60 200 150" />
+          <path d="M200 150 Q210 240 320 180" strokeWidth="1.5" strokeDasharray="none" />
+          <path d="M80 120 Q190 220 200 150" />
+          <path d="M200 150 Q280 80 320 180" />
+        </g>
+
+        {/* Global nodes */}
+        {[
+          { x: 80, y: 120, label: "North America" },
+          { x: 200, y: 150, label: "Dubai HQ" },
+          { x: 320, y: 180, label: "Asia-Pacific" },
+        ].map((n, i) => (
+          <g key={i}>
+            <circle cx={n.x} cy={n.y} r={i === 1 ? "8" : "5"} fill="#D4AF37" fillOpacity={i === 1 ? "0.9" : "0.75"} />
+            <circle cx={n.x} cy={n.y} r={i === 1 ? "14" : "10"} fill="none" stroke="#D4AF37" strokeWidth="1" strokeOpacity="0.4" className="pulse-ring" style={{ transformOrigin: `${n.x}px ${n.y}px` }} />
+            <text x={n.x} y={n.y - (i === 1 ? 18 : 12)} textAnchor="middle" fontSize="9" fill="#E5CB7E" fontFamily="Inter" fontWeight="600" letterSpacing="1px">
+              {n.label}
+            </text>
+          </g>
+        ))}
+      </svg>
+
     </div>
   );
 }
@@ -124,42 +146,106 @@ function AdvisoryVisual() {
 
 /* ── Funnel Visual ─────────────────────────────────────────── */
 function FunnelVisual() {
-  const ref = useRef<SVGSVGElement>(null);
-  useEffect(() => {
-    if (!ref.current) return;
-    const paths = ref.current.querySelectorAll<SVGPathElement>("[data-fpath]");
-    paths.forEach((p) => {
-      const len = p.getTotalLength();
-      p.style.strokeDasharray  = `${len}`;
-      p.style.strokeDashoffset = `${len}`;
-    });
-    gsap.to(paths, {
-      strokeDashoffset: 0, duration: 1.2, stagger: 0.25, ease: "power2.inOut",
-      scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-    });
-  }, []);
-
-  const stages = ["Strategy", "Documentation", "Investor Matching", "Capital Secured"];
   return (
     <div
-      className="relative aspect-square w-full rounded-2xl p-10"
-      style={{ background: "#F3F5F8", border: "1px solid rgba(212,175,55,0.22)" }}
+      className="relative aspect-square w-full rounded-2xl flex items-center justify-center p-6"
+      style={{
+        background: "radial-gradient(circle at 50% 50%, #1e1e1e 0%, #0d0d0d 100%)",
+        border: "1px solid rgba(212,175,55,0.25)",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.45)"
+      }}
     >
-      <svg ref={ref} viewBox="0 0 400 380" className="w-full h-auto">
+      <style>{`
+        @keyframes pulseRing {
+          0% { transform: scale(0.95); opacity: 0.8; }
+          50% { transform: scale(1.1); opacity: 0.4; }
+          100% { transform: scale(1.25); opacity: 0; }
+        }
+        @keyframes floatParticle {
+          0% { transform: translateY(0) scale(0.8); opacity: 0; }
+          10% { opacity: 0.8; }
+          90% { opacity: 0.8; }
+          100% { transform: translateY(200px) scale(0.4); opacity: 0; }
+        }
+        .animate-pulse-ring {
+          animation: pulseRing 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .particle-1 { animation: floatParticle 4s linear infinite; }
+        .particle-2 { animation: floatParticle 4s linear infinite 1.3s; }
+        .particle-3 { animation: floatParticle 4s linear infinite 2.6s; }
+      `}</style>
+
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.08]" style={{
+        backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)",
+        backgroundSize: "20px 20px"
+      }} />
+
+      <svg viewBox="0 0 400 380" className="w-[90%] h-[90%] relative z-10">
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D4AF37" />
+            <stop offset="50%" stopColor="#C8A96A" />
+            <stop offset="100%" stopColor="#A88829" />
+          </linearGradient>
+          <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Central glowing column of capital flow */}
+        <line x1="240" y1="50" x2="240" y2="280" stroke="url(#goldGradient)" strokeWidth="1.5" strokeDasharray="3 4" opacity="0.6" />
+        
+        {/* Floating animated particles */}
+        <circle cx="240" cy="60" r="3" fill="#D4AF37" className="particle-1" style={{ transformOrigin: "240px 60px" }} />
+        <circle cx="240" cy="60" r="2.5" fill="#E5CB7E" className="particle-2" style={{ transformOrigin: "240px 60px" }} />
+        <circle cx="240" cy="60" r="3" fill="#A88829" className="particle-3" style={{ transformOrigin: "240px 60px" }} />
+
+        {/* 3D stacked ellipses for each funnel stage */}
         {[
-          { d: "M40 40 L360 40 L320 110 L80 110 Z", x: 200, y: 78 },
-          { d: "M80 130 L320 130 L290 200 L110 200 Z", x: 200, y: 168 },
-          { d: "M110 220 L290 220 L260 290 L140 290 Z", x: 200, y: 258 },
-          { d: "M140 310 L260 310 L235 365 L165 365 Z", x: 200, y: 342 },
-        ].map((s, i) => (
-          <g key={i}>
-            <path data-fpath d={s.d} fill="rgba(212,175,55,0.04)" stroke="#D4AF37" strokeWidth="1.5" />
-            <text x={s.x} y={s.y} textAnchor="middle" fontFamily="Inter" fontSize="12" fill="#D4AF37" fontWeight="600">
-              {stages[i]}
+          { y: 70, rx: 90, ry: 18, label: "Strategy & Model", desc: "Capital Stack Design" },
+          { y: 140, rx: 70, ry: 14, label: "Data Room & Dossier", desc: "Institutional Ready Pack" },
+          { y: 210, rx: 50, ry: 10, label: "Investor Matching", desc: "Targeted Lender Outreach" },
+        ].map((ring, idx) => (
+          <g key={idx} className="group">
+            {/* Soft background glow for the ring */}
+            <ellipse cx="240" cy={ring.y} rx={ring.rx + 20} ry={ring.ry + 8} fill="url(#glowGrad)" />
+
+            {/* Main structural 3D ring border */}
+            <ellipse cx="240" cy={ring.y} rx={ring.rx} ry={ring.ry} stroke="url(#goldGradient)" strokeWidth="1.5" fill="rgba(212,175,55,0.02)" />
+            <ellipse cx="240" cy={ring.y + 4} rx={ring.rx} ry={ring.ry} stroke="url(#goldGradient)" strokeWidth="0.5" strokeOpacity="0.3" fill="none" />
+
+            {/* Label texts positioned elegantly to the left and right */}
+            <text x={240 - ring.rx - 15} y={ring.y + 4} textAnchor="end" fontSize="11" fill="#FFFFFF" fontFamily="Inter" fontWeight="600" letterSpacing="0.5px">
+              {ring.label}
+            </text>
+            <text x={240 - ring.rx - 15} y={ring.y + 18} textAnchor="end" fontSize="8" fill="#D4AF37" fontFamily="Inter" fontWeight="500" opacity="0.8">
+              {ring.desc}
             </text>
           </g>
         ))}
+
+        {/* Bottom Destination Node - Capital Secured */}
+        <g>
+          {/* Animated pulsing outer rings */}
+          <circle cx="240" cy="290" r="28" fill="none" stroke="#D4AF37" strokeWidth="0.5" strokeOpacity="0.2" className="animate-pulse-ring" style={{ transformOrigin: "240px 290px" }} />
+          <circle cx="240" cy="290" r="18" fill="none" stroke="#D4AF37" strokeWidth="1" strokeOpacity="0.4" className="animate-pulse-ring" style={{ transformOrigin: "240px 290px", animationDelay: "1.5s" }} />
+
+          {/* Central sunburst glowing node */}
+          <circle cx="240" cy="290" r="9" fill="url(#goldGradient)" />
+          <circle cx="240" cy="290" r="15" fill="none" stroke="#D4AF37" strokeWidth="1.5" />
+          
+          <text x="240" y="338" textAnchor="middle" fontSize="12" fill="#FFFFFF" fontFamily="Inter" fontWeight="800" letterSpacing="1px">
+            CAPITAL SECURED
+          </text>
+        </g>
       </svg>
+
+      <div className="absolute bottom-5 right-5 flex items-center gap-2 rounded-full bg-gold/15 border border-gold/25 px-4 py-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-gold pulse-dot" />
+        <span className="font-body text-[10px] uppercase tracking-[2px] text-gold font-bold">Closed Efficiently</span>
+      </div>
     </div>
   );
 }

@@ -54,190 +54,87 @@ export function Navbar() {
   return (
     <>
       {/* ══════════════════════════════════════════════════════
-          DESKTOP — Dynamic Island pill (hidden on mobile)
+          DESKTOP — Fully Extended Top Navbar (hidden on mobile)
       ══════════════════════════════════════════════════════ */}
-      <div className="fixed top-5 inset-x-0 z-[1000] justify-center hidden lg:flex pointer-events-none">
-        <LayoutGroup>
-          <motion.div
-            layout
-            className="relative pointer-events-auto rounded-full overflow-hidden"
-            style={{
-              backdropFilter: "blur(28px)",
-              WebkitBackdropFilter: "blur(28px)",
-            }}
-            animate={{
-              background: expanded
-                ? "rgba(29,28,28,0.98)"
-                : scrolled
-                  ? "rgba(29,28,28,0.96)"
-                  : "rgba(29,28,28,0.82)",
-              boxShadow: expanded
-                ? "0 16px 56px rgba(29,28,28,0.25), 0 0 0 1px rgba(212,175,55,0.25), 0 0 80px rgba(212,175,55,0.04)"
-                : scrolled
-                  ? "0 8px 36px rgba(29,28,28,0.14), 0 0 0 1px rgba(255,255,255,0.06)"
-                  : "0 4px 24px rgba(29,28,28,0.08), 0 0 0 1px rgba(255,255,255,0.04)",
-            }}
-            transition={spring}
-            onHoverStart={onEnter}
-            onHoverEnd={onLeave}
-          >
-            {/* scroll progress — thin line at very bottom of island */}
-            <div
-              ref={progressRef}
-              className="absolute bottom-0 left-0 h-[2px] w-full origin-left pointer-events-none"
-              style={{
-                background: "linear-gradient(90deg, #A88829, #D4AF37, #E5CB7E)",
-                transform: "scaleX(0)",
-                opacity: scrolled ? 1 : 0,
-                transition: "opacity 0.35s",
-              }}
+      <header
+        className="fixed inset-x-0 top-0 z-[1000] hidden lg:block transition-all duration-300 border-b"
+        style={{
+          background: scrolled ? "rgba(10,10,10,0.98)" : "rgba(10,10,10,0.85)",
+          backdropFilter: "blur(28px)",
+          WebkitBackdropFilter: "blur(28px)",
+          borderColor: "rgba(212,175,55,0.15)",
+          boxShadow: scrolled ? "0 4px 20px rgba(0,0,0,0.4)" : "none",
+        }}
+      >
+        {/* scroll progress */}
+        <div
+          ref={progressRef}
+          className="absolute bottom-0 left-0 h-[2px] w-full origin-left pointer-events-none"
+          style={{
+            background: "linear-gradient(90deg, #A88829, #D4AF37, #E5CB7E)",
+            transform: "scaleX(0)",
+            opacity: scrolled ? 1 : 0,
+            transition: "opacity 0.35s",
+          }}
+        />
+
+        <div className="mx-auto max-w-[1440px] px-6 md:px-16 h-20 flex items-center justify-between">
+          {/* Logo & Brand */}
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
+              alt="Orpheus Logo"
+              className="h-9 w-9 rounded-full object-contain bg-white/5 border border-gold/20 flex-none"
             />
+            <span className="font-display font-bold text-[15px] uppercase tracking-[2px] text-white">
+              Orpheus Financial
+            </span>
+          </Link>
 
-            {/* inner border ring (always) */}
-            <div className="absolute inset-0 rounded-full pointer-events-none"
-              style={{ border: "1px solid rgba(255,255,255,0.06)" }} />
-
-            {/* ── Island content ── */}
-            <div className="flex items-center px-2.5 py-2 gap-1">
-
-              {/* Logo Image */}
-              <Link to="/" className="flex-none" onClick={() => setExpanded(false)}>
-                <motion.img
-                  src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
-                  alt="Orpheus Logo"
-                  className="h-8 w-8 rounded-full object-contain bg-white/5 border border-gold/20 flex-none"
-                  whileHover={{ scale: 1.15, borderColor: "rgba(212,175,55,0.6)" }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 550, damping: 18 }}
-                />
-              </Link>
-
-              {/* Brand name */}
-              <motion.div layout="position" className="flex-none">
-                <Link to="/">
-                  <motion.span
-                    className="font-display font-bold text-[13px] whitespace-nowrap px-2"
-                    animate={{ color: expanded ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.8)" }}
-                    transition={{ duration: 0.2 }}
+          {/* Links */}
+          <nav className="flex items-center gap-1">
+            {links.map((l) => (
+              <NavLink key={l.to} to={l.to} end={l.to === "/"}>
+                {({ isActive }) => (
+                  <span
+                    className="relative flex items-center gap-1.5 px-4 py-2 rounded-full font-display font-bold text-[11px] uppercase tracking-[1.5px] transition-all duration-200"
+                    style={{
+                      background: isActive ? "rgba(212,175,55,0.15)" : "transparent",
+                      color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.65)",
+                    }}
                   >
-                    Orpheus
-                  </motion.span>
-                </Link>
-              </motion.div>
-
-              {/* ── Nav links (appear on expand) ── */}
-              <AnimatePresence>
-                {expanded && (
-                  <motion.div
-                    key="nav"
-                    className="flex items-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.14 }}
-                  >
-                    {/* left divider */}
-                    <motion.div
-                      className="w-px h-5 flex-none mx-2"
-                      style={{ background: "rgba(255,255,255,0.08)" }}
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: 1 }}
-                      exit={{ scaleY: 0 }}
-                    />
-
-                    <div className="flex items-center gap-0.5">
-                      {links.map((l, i) => (
-                        <motion.div
-                          key={l.to}
-                          initial={{ opacity: 0, y: -8, scale: 0.88 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -5, scale: 0.92 }}
-                          transition={{
-                            delay: i * 0.038,
-                            type: "spring",
-                            stiffness: 450,
-                            damping: 26,
-                          }}
-                        >
-                          <NavLink to={l.to} end={l.to === "/"}>
-                            {({ isActive }) => (
-                              <motion.span
-                                className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full font-display font-bold text-[10.5px] uppercase tracking-[1.5px] whitespace-nowrap select-none"
-                                animate={{
-                                  background: isActive ? "rgba(212,175,55,0.22)" : "rgba(0,0,0,0)",
-                                  color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.5)",
-                                  borderColor: isActive ? "rgba(212,175,55,0.28)" : "rgba(0,0,0,0)",
-                                }}
-                                whileHover={{
-                                  background: "rgba(212,175,55,0.14)",
-                                  color: "#ffffff",
-                                }}
-                                style={{ border: "1px solid transparent" }}
-                                transition={{ duration: 0.18 }}
-                              >
-                                {l.label}
-                                {isActive && (
-                                  <motion.span
-                                    layoutId="island-dot"
-                                    className="h-[5px] w-[5px] rounded-full bg-[#D4AF37] flex-none"
-                                    style={{ boxShadow: "0 0 7px #D4AF37" }}
-                                    transition={spring}
-                                  />
-                                )}
-                              </motion.span>
-                            )}
-                          </NavLink>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* right divider */}
-                    <motion.div
-                      className="w-px h-5 flex-none mx-2"
-                      style={{ background: "rgba(255,255,255,0.08)" }}
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: 1 }}
-                      exit={{ scaleY: 0 }}
-                    />
-                  </motion.div>
+                    {l.label}
+                    {isActive && (
+                      <span
+                        className="h-1 w-1 rounded-full bg-[#D4AF37]"
+                        style={{ boxShadow: "0 0 6px #D4AF37" }}
+                      />
+                    )}
+                  </span>
                 )}
-              </AnimatePresence>
+              </NavLink>
+            ))}
+          </nav>
 
-              {/* ── CTA pill (always visible) ── */}
-              <Link to="/contact" className="flex-none">
-                <motion.button
-                  className="flex items-center gap-1.5 rounded-full font-display font-bold text-[10.5px] uppercase tracking-[1.5px] text-white whitespace-nowrap"
-                  animate={{
-                    paddingLeft: expanded ? 16 : 14,
-                    paddingRight: expanded ? 16 : 14,
-                    paddingTop: 7,
-                    paddingBottom: 7,
-                  }}
-                  style={{
-                    background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
-                    boxShadow: "0 3px 14px rgba(212,175,55,0.38), inset 0 1px 0 rgba(255,255,255,0.14)",
-                  }}
-                  whileHover={{
-                    scale: 1.06,
-                    boxShadow: "0 6px 26px rgba(212,175,55,0.58), inset 0 1px 0 rgba(255,255,255,0.14)",
-                  }}
-                  whileTap={{ scale: 0.93 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                >
-                  Consult
-                  <motion.span
-                    animate={{ x: expanded ? 1 : 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  >
-                    <ArrowRight size={10} />
-                  </motion.span>
-                </motion.button>
-              </Link>
-
-            </div>
-          </motion.div>
-        </LayoutGroup>
-      </div>
+          {/* Consultation Button */}
+          <Link to="/contact">
+            <motion.button
+              className="flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display font-bold text-[10.5px] uppercase tracking-[1.5px] text-white whitespace-nowrap"
+              style={{
+                background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
+                boxShadow: "0 3px 14px rgba(212,175,55,0.38), inset 0 1px 0 rgba(255,255,255,0.14)",
+              }}
+              whileHover={{
+                scale: 1.04,
+                boxShadow: "0 6px 20px rgba(212,175,55,0.58)",
+              }}
+              whileTap={{ scale: 0.96 }}
+            >
+              Consult <ArrowRight size={10} />
+            </motion.button>
+          </Link>
+        </div>
+      </header>
 
       {/* ══════════════════════════════════════════════════════
           MOBILE header pill
