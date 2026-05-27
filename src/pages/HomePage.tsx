@@ -2,7 +2,7 @@ import { HomeHero }        from "@/components/home/HomeHero";
 import { ServicesGrid }    from "@/components/home/ServicesGrid";
 import { TrustedBySection } from "@/components/home/TrustedBySection";
 import { Testimonials }    from "@/components/home/Testimonials";
-import { TrustBar }        from "@/components/home/TrustBar";
+import { BankingPartners } from "@/components/home/BankingPartners";
 import { StatsBand }       from "@/components/home/StatsBand";
 import { WhyChoose }       from "@/components/home/WhyChoose";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
@@ -25,7 +25,7 @@ export default function HomePage() {
       <Testimonials />
 
       {/* Remaining sections — open for collaborative refinement */}
-      <TrustBar />
+      <BankingPartners />
       <StatsBand />
       <WhyChoose />
       <ProcessTimeline />

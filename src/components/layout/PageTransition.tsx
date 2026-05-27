@@ -11,8 +11,8 @@ function CounterDisplay() {
 
   useEffect(() => {
     let current = 0;
-    const totalMs = 300;
-    const interval = 10;
+    const totalMs = 1200;
+    const interval = 20;
     const steps = totalMs / interval;
     const timer = setInterval(() => {
       current += 100 / steps;
@@ -61,8 +61,8 @@ function OverlayContent() {
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
-              duration: 0.25,
-              delay: 0.15 + i * 0.025,
+              duration: 0.4,
+              delay: 0.15 + i * 0.04,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -77,7 +77,7 @@ function OverlayContent() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)" }}
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "clamp(200px, 28vw, 480px)", opacity: 1 }}
-        transition={{ duration: 0.35, delay: 0.25, ease: "easeOut" }}
+        transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
       />
 
       {/* tagline + counter */}
@@ -85,7 +85,7 @@ function OverlayContent() {
         className="flex items-center gap-5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.25, delay: 0.35 }}
+        transition={{ duration: 0.3, delay: 0.4 }}
       >
         <span className="font-body text-[11px] uppercase tracking-[3px] text-white/22">
           Structuring Capital
@@ -101,6 +101,9 @@ function OverlayContent() {
 }
 
 let hasLoadedOnce = false;
+if (typeof window !== "undefined") {
+  (window as any).orpheusLoaderFinished = hasLoadedOnce;
+}
 
 export function PageTransition({ children }: { children: ReactNode }) {
   const location = useLocation();
@@ -117,11 +120,23 @@ export function PageTransition({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (showLoader) {
+      // Trigger hero entry animations at 1400ms (as the slide-up begins)
+      const animTimer = setTimeout(() => {
+        (window as any).orpheusLoaderFinished = true;
+        window.dispatchEvent(new CustomEvent("orpheusLoaderComplete"));
+      }, 1400);
+
+      // Unmount loader completely at 2200ms when it is off-screen
       const timer = setTimeout(() => {
         hasLoadedOnce = true;
         setShowLoader(false);
-      }, 950);
-      return () => clearTimeout(timer);
+      }, 2200);
+      return () => {
+        clearTimeout(animTimer);
+        clearTimeout(timer);
+      };
+    } else {
+      (window as any).orpheusLoaderFinished = true;
     }
   }, [showLoader]);
 
@@ -149,8 +164,8 @@ export function PageTransition({ children }: { children: ReactNode }) {
             initial={{ y: "0%" }}
             animate={{ y: ["0%", "0%", "-100%"] }}
             transition={{
-              duration: 0.95,
-              times: [0, 0.65, 1],
+              duration: 2.2,
+              times: [0, 0.636, 1], // 1.4s / 2.2s = 0.636
               ease: ["linear", "easeIn"],
             }}
           >
@@ -194,7 +209,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
               style={{ background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)" }}
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 0.55, delay: 0.15, ease: "easeInOut" }}
+              transition={{ duration: 1.2, delay: 0.2, ease: "easeInOut" }}
             />
           </motion.div>
         )}

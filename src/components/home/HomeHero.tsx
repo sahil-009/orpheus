@@ -44,51 +44,67 @@ export function HomeHero() {
   const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    const leftEls = leftRef.current?.querySelectorAll("[data-anim]") ?? [];
-    const cards = rightRef.current?.querySelectorAll("[data-card]") ?? [];
+    let cleanUpParallax: (() => void) | undefined;
 
-    tl.fromTo(leftEls,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.75, stagger: 0.12 }, 0.2)
-      .fromTo(cards,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, stagger: 0.18, ease: "power3.out" }, 0.5);
+    const runHeroAnimations = () => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const leftEls = leftRef.current?.querySelectorAll("[data-anim]") ?? [];
+      const cards = rightRef.current?.querySelectorAll("[data-card]") ?? [];
 
-    // Image parallax with requestAnimationFrame loop to completely eliminate lag!
-    const bgImg = bgRef.current?.querySelector("img");
-    let onMove: (e: MouseEvent) => void;
-    let animationFrameId: number;
+      tl.fromTo(leftEls,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.75, stagger: 0.12 }, 0.1)
+        .fromTo(cards,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, stagger: 0.18, ease: "power3.out" }, 0.3);
 
-    if (bgImg) {
-      gsap.fromTo(bgImg, { scale: 1.15, opacity: 0 }, { scale: 1.05, opacity: 0.50, duration: 3, ease: "power2.out" });
+      const bgImg = bgRef.current?.querySelector("img");
+      if (bgImg) {
+        gsap.fromTo(bgImg, { scale: 1.15, opacity: 0 }, { scale: 1.05, opacity: 0.50, duration: 2.5, ease: "power2.out" });
 
-      let targetX = 0;
-      let targetY = 0;
-      let currentX = 0;
-      let currentY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        let currentX = 0;
+        let currentY = 0;
 
-      onMove = (e: MouseEvent) => {
-        targetX = (e.clientX / window.innerWidth - 0.5) * -30;
-        targetY = (e.clientY / window.innerHeight - 0.5) * -30;
-      };
+        const onMove = (e: MouseEvent) => {
+          targetX = (e.clientX / window.innerWidth - 0.5) * -30;
+          targetY = (e.clientY / window.innerHeight - 0.5) * -30;
+        };
 
-      const updatePosition = () => {
-        currentX += (targetX - currentX) * 0.05;
-        currentY += (targetY - currentY) * 0.05;
-        
-        gsap.set(bgImg, { x: currentX, y: currentY, force3D: true });
-        
+        let animationFrameId: number;
+        const updatePosition = () => {
+          currentX += (targetX - currentX) * 0.05;
+          currentY += (targetY - currentY) * 0.05;
+          gsap.set(bgImg, { x: currentX, y: currentY, force3D: true });
+          animationFrameId = requestAnimationFrame(updatePosition);
+        };
+
+        window.addEventListener("mousemove", onMove, { passive: true });
         animationFrameId = requestAnimationFrame(updatePosition);
-      };
 
-      window.addEventListener("mousemove", onMove, { passive: true });
-      animationFrameId = requestAnimationFrame(updatePosition);
+        cleanUpParallax = () => {
+          window.removeEventListener("mousemove", onMove);
+          cancelAnimationFrame(animationFrameId);
+        };
+      }
+    };
+
+    if ((window as any).orpheusLoaderFinished) {
+      runHeroAnimations();
+    } else {
+      const handleComplete = () => {
+        runHeroAnimations();
+      };
+      window.addEventListener("orpheusLoaderComplete", handleComplete);
+      return () => {
+        window.removeEventListener("orpheusLoaderComplete", handleComplete);
+        if (cleanUpParallax) cleanUpParallax();
+      };
     }
 
     return () => {
-      if (onMove) window.removeEventListener("mousemove", onMove);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      if (cleanUpParallax) cleanUpParallax();
     };
   }, []);
 
@@ -100,6 +116,8 @@ export function HomeHero() {
         <img
           src="/dubai-bg.png"
           alt="Dubai Skyline Background"
+          loading="eager"
+          fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover opacity-0"
           style={{ transform: "scale(1.15)", willChange: "transform", transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
         />
