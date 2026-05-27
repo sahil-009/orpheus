@@ -254,9 +254,9 @@ function FunnelVisual() {
 function ServiceBlock({
   num, title, body, bullets, visual, reverse, dark,
 }: {
-  num: string; title: string; body: string;
+  num: string; title: ReactNode; body: string;
   bullets: { flag?: string; label: string; tag?: string }[];
-  visual: ReactNode; reverse?: boolean; dark?: boolean;
+  visual?: ReactNode; reverse?: boolean; dark?: boolean;
 }) {
   const bg = dark ? "bg-[#1D1C1C] text-white" : "bg-white text-[#1D1C1C]";
 
@@ -265,7 +265,7 @@ function ServiceBlock({
       {dark && <div className="absolute inset-0 grid-texture opacity-60 pointer-events-none" />}
       {!dark && <div className="absolute inset-0 grid-texture-white opacity-70 pointer-events-none" />}
 
-      <div className={`relative mx-auto grid max-w-[1280px] gap-16 px-6 md:px-16 lg:grid-cols-2 lg:gap-20 items-center ${reverse ? "lg:[&>*:first-child]:order-last" : ""}`}>
+      <div className={`relative mx-auto px-6 md:px-16 ${visual ? "grid max-w-[1280px] gap-16 lg:grid-cols-2 lg:gap-20 items-center" : "max-w-[800px]"} ${visual && reverse ? "lg:[&>*:first-child]:order-last" : ""}`}>
         <div className="relative">
           <span aria-hidden className="absolute -top-10 -left-2 font-display select-none pointer-events-none"
             style={{ fontSize: "130px", lineHeight: 1, color: dark ? "rgba(212,175,55,0.05)" : "rgba(212,175,55,0.07)" }}>
@@ -308,7 +308,7 @@ function ServiceBlock({
             </div>
           </div>
         </div>
-        <div>{visual}</div>
+        {visual && <div>{visual}</div>}
       </div>
     </section>
   );
@@ -322,7 +322,7 @@ export default function ServicesPage() {
         breadcrumb="Services"
         title="Our Services"
         titleAccent="Built for Execution."
-        subtitle="Three integrated practice areas. Offshore structure, corporate finance advisory, and capital raising — delivered end-to-end under one advisory relationship."
+        subtitle="Three integrated practice areas tailored for institutions and corporations: offshore structure, corporate finance advisory, and debt capital raising — delivered with institutional-grade precision."
       >
         <div className="flex flex-wrap gap-3">
           {["Offshore Structure & Banking", CORPORATE_FINANCE_ADVISORY.title, "Debt Raising"].map((t) => (
@@ -333,64 +333,65 @@ export default function ServicesPage() {
         </div>
       </PageHero>
 
-      <ServiceBlock
-        num="01"
-        title="Offshore Structure & Banking"
-        body="We structure companies in the right jurisdiction and open the accounts they need — tax efficiency, banking access, IP holding, and operational presence in one integrated engagement. From incorporation and filings to KYC packs, banker introductions, and ongoing compliance across UAE, Europe, Asia, and the Caribbean."
-        bullets={[
-          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/uae.png", label: "United Arab Emirates",    tag: "Popular" },
-          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/british.png", label: "British Virgin Islands",  tag: "Tax-efficient" },
-          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Cayman-Islands.png", label: "Cayman Islands",          tag: "Funds" },
-          { flag: "🇭🇰", label: "Hong Kong",               tag: "Asia hub" },
-          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Seychelles.png", label: "Seychelles",              tag: "IBC" },
-          { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/marshall-island.png", label: "Marshall Islands",     tag: "Confidential" },
-          { flag: "🇲🇺", label: "Mauritius",               tag: "Treaties" },
-          { label: "Account Structuring" },
-          { label: "Documentation & KYC Support" },
-          { label: "Bank Coordination" },
-          { label: "Ongoing Compliance" },
-        ]}
-        visual={
-          <div className="flex flex-col gap-8">
-            <WorldMapVisual />
-            <BankCardVisual />
-          </div>
-        }
-        dark={false}
-      />
+      <div id="offshore-structure-banking" className="scroll-mt-28">
+        <ServiceBlock
+          num="01"
+          title={
+            <>
+              Offshore Structure <span className="font-serif italic font-medium text-gold block sm:inline">& Banking</span>
+            </>
+          }
+          body="We structure entities in optimal jurisdictions and secure the global banking facilities they require. We deliver regulatory compliance, tax-efficient structuring, IP holding setups, and operational hubs for financial institutions, fund vehicles, and cross-border corporations."
+          bullets={[
+            { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/uae.png", label: "United Arab Emirates",    tag: "Popular" },
+            { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/british.png", label: "British Virgin Islands",  tag: "Tax-efficient" },
+            { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Cayman-Islands.png", label: "Cayman Islands",          tag: "Funds" },
+            { flag: "🇭🇰", label: "Hong Kong",               tag: "Asia hub" },
+            { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/Seychelles.png", label: "Seychelles",              tag: "IBC" },
+            { flag: "https://www.orpheusfinancial.co/wp-content/uploads/2026/04/marshall-island.png", label: "Marshall Islands",     tag: "Confidential" },
+            { flag: "🇲🇺", label: "Mauritius",               tag: "Treaties" },
+            { label: "Account Structuring" },
+            { label: "Documentation & KYC Support" },
+            { label: "Bank Coordination" },
+            { label: "Ongoing Compliance" },
+          ]}
+          dark={false}
+        />
+      </div>
 
       <div id="corporate-finance-advisory" className="scroll-mt-28">
         <ServiceBlock
           num="02"
-          title={CORPORATE_FINANCE_ADVISORY.title}
+          title={
+            <>
+              Corporate Finance <span className="font-serif italic font-medium text-gold block sm:inline">Advisory</span>
+            </>
+          }
           body={CORPORATE_FINANCE_ADVISORY.description}
           bullets={CORPORATE_FINANCE_ADVISORY.capabilities.map((label) => ({ label }))}
-          visual={<AdvisoryVisual />}
           reverse
           dark
         />
       </div>
 
-      <section className="bg-white py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 grid-texture-white opacity-70 pointer-events-none" />
-        <div className="relative mx-auto max-w-[1280px] px-6 md:px-16">
-          <AdvisoryServicesGrid variant="light" />
-        </div>
-      </section>
-
-      <ServiceBlock
-        num="03"
-        title="Debt Raising"
-        body="From lender selection to deal close. We build the data room, model the structure, run the process and negotiate term sheets — so you secure the right capital on the right terms."
-        bullets={[
-          { label: "Capital Strategy" },
-          { label: "Documentation & Data Room" },
-          { label: "Investor Matching" },
-          { label: "Negotiation & Close" },
-        ]}
-        visual={<FunnelVisual />}
-        dark={false}
-      />
+      <div id="debt-raising" className="scroll-mt-28">
+        <ServiceBlock
+          num="03"
+          title={
+            <>
+              Debt <span className="font-serif italic font-medium text-gold block sm:inline">Raising</span>
+            </>
+          }
+          body="Comprehensive debt capital advisory and process execution for businesses and funds. We design the capital stack, build institutional-ready data rooms, run structured lender outreach, and negotiate term sheets to secure competitive credit facilities."
+          bullets={[
+            { label: "Capital Strategy" },
+            { label: "Documentation & Data Room" },
+            { label: "Investor Matching" },
+            { label: "Negotiation & Close" },
+          ]}
+          dark={false}
+        />
+      </div>
 
       <section className="bg-[#F3F5F8] py-16 md:py-20">
         <div className="mx-auto max-w-[1280px] px-6 md:px-16">

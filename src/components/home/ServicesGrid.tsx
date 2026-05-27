@@ -21,8 +21,8 @@ const services: ServiceCard[] = [
     icon: <Globe2 size={26} />,
     n: "01",
     title: "Offshore Structure & Banking",
-    body: "Establish entities in the right jurisdiction and secure global banking — incorporation, structuring, account opening, and compliance in one integrated engagement.",
-    tags: ["UAE", "BVI", "Multi-currency", "KYC"],
+    body: "Establish regulated and tax-efficient entities globally and secure institutional banking access. We handle corporate structuring, regulatory licensing, multi-currency treasury accounts, and compliance for financial institutions and cross-border enterprises.",
+    tags: ["UAE", "BVI & Cayman", "Corporate Banking", "KYC Pack"],
     href: "/services",
   },
   {
@@ -37,8 +37,8 @@ const services: ServiceCard[] = [
     icon: <TrendingUp size={26} />,
     n: "03",
     title: "Debt Raising",
-    body: "From strategy to funding close, we support debt raises with clear structuring and targeted investor engagement.",
-    tags: ["Capital", "Structuring", "Term Sheet"],
+    body: "Secure institutional debt capital and structured financing. We coordinate debt advisory, capital stack optimization, and targeted matching with credit funds, institutional lenders, and commercial banks.",
+    tags: ["Structured Finance", "Private Credit", "Capital stack"],
     href: "/services",
   },
 ];
@@ -130,7 +130,7 @@ export function ServicesGrid() {
             </span>
           </h2>
           <p className="mt-5 font-body text-[16px] max-w-xl leading-relaxed font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
-            Three integrated practice areas — structure, advisory, and capital — with direct execution at every stage.
+            Three specialized practices — institutional corporate structuring, corporate finance advisory, and debt capital raising — tailored for financial services firms, funds, and expanding businesses.
           </p>
         </div>
 

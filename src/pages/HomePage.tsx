@@ -1,5 +1,6 @@
 import { HomeHero }        from "@/components/home/HomeHero";
 import { ServicesGrid }    from "@/components/home/ServicesGrid";
+import { TrustedBySection } from "@/components/home/TrustedBySection";
 import { Testimonials }    from "@/components/home/Testimonials";
 import { TrustBar }        from "@/components/home/TrustBar";
 import { StatsBand }       from "@/components/home/StatsBand";
@@ -16,6 +17,9 @@ export default function HomePage() {
 
       {/* Section 1 — Services & overall offerings (per client brief) */}
       <ServicesGrid />
+
+      {/* Track record and client partners detailed grid */}
+      <TrustedBySection />
 
       {/* Section 2 — Testimonials & credibility (per client brief) */}
       <Testimonials />

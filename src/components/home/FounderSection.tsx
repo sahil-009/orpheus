@@ -6,7 +6,7 @@ import { FloatingParticles } from "@/components/ui/FloatingParticles";
 
 const highlights = [
   { icon: <Globe size={14} />,  label: "18 Markets" },
-  { icon: <Users size={14} />,  label: "60+ Clients" },
+  { icon: <Users size={14} />,  label: "60+ Institutions" },
   { icon: <Award size={14} />,  label: "Dubai-based" },
 ];
 
@@ -101,13 +101,13 @@ export function FounderSection() {
 
           <div className="mt-8 space-y-5 font-body text-[14px] leading-[1.9] max-w-lg font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
             <p>
-              Rachit Yadav founded Orpheus Financial with a single belief: international businesses deserve a financial partner who <em className="text-[#1D1C1C] font-semibold">actually executes</em> — not just advises.
+              Rachit Yadav founded Orpheus Financial with a single belief: financial institutions and expanding businesses deserve a partner who <em className="text-[#1D1C1C] font-semibold">actually executes</em> — not just advises.
             </p>
             <p>
-              With a background spanning corporate finance, offshore structuring, and banking across emerging markets, Rachit has helped 60+ businesses from 18 countries set up globally, access banking, and raise capital.
+              With a background spanning corporate finance, offshore structuring, and banking across emerging markets, Rachit has helped 60+ financial institutions and cross-border corporations set up global entities, secure tier-1 banking, and raise institutional capital.
             </p>
             <p>
-              Based in Dubai, his team has built a reputation for taking on complex cases — oil, crypto, cross-border commodities — that most firms turn away.
+              Based in Dubai, his team has built a reputation for structuring complex entities, investment funds, and trade finance operations across commodities, fintech, and digital assets.
             </p>
           </div>
 

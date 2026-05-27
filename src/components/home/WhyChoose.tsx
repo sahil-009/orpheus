@@ -6,10 +6,10 @@ import {
 
 const features = [
   { icon: <MapPin size={18} />,   title: "Based in Dubai, Operating Internationally", body: "Operating from Dubai with strong on-ground support across 18 global jurisdictions." },
-  { icon: <Puzzle size={18} />,   title: "Comfortable With Complex Structures",       body: "Handling layered, multi-country structures across regulated and high-value industries." },
-  { icon: <Cog size={18} />,      title: "True End-to-End Execution",                 body: "From setup to banking and compliance, we manage the entire process." },
+  { icon: <Puzzle size={18} />,   title: "Comfortable With Complex Structures",       body: "Structuring complex SPVs, layered holding companies, and fund vehicles across highly regulated financial jurisdictions." },
+  { icon: <Cog size={18} />,      title: "True End-to-End Execution",                 body: "From corporate registry filing to institutional banking access and regulatory compliance, we manage the entire institutional lifecycle." },
   { icon: <Zap size={18} />,      title: "Fast and Fully Transparent",                body: "Clear timelines, fixed fees, and complete cost visibility." },
-  { icon: <ShieldCheck size={18} />, title: "Compliance-First Approach",              body: "FCA-aware processes aligned with OECD reporting standards." },
+  { icon: <ShieldCheck size={18} />, title: "Compliance-First Approach",              body: "Compliance-first advisory aligned with OECD reporting, FATF guidelines, AML compliance, and international financial regulations." },
   { icon: <Users size={18} />,    title: "Truly International Team",                  body: "A global team with cross-border experience supporting diverse client needs." },
 ];
 

@@ -1,8 +1,8 @@
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { gsap } from "@/lib/gsapSetup";
-import { ArrowRight, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Menu, Phone, X, Globe2, Briefcase, TrendingUp, ChevronDown } from "lucide-react";
 
 const links = [
   { to: "/",         label: "Home"     },
@@ -12,12 +12,39 @@ const links = [
   { to: "/contact",  label: "Contact"  },
 ];
 
-const spring = { type: "spring" as const, stiffness: 380, damping: 30 };
+const serviceCategories = [
+  {
+    to: "/services#offshore-structure-banking",
+    label: "Offshore Structure & Banking",
+    desc: "Tax-efficient entities, global corporate accounts & KYC compliance.",
+    icon: Globe2
+  },
+  {
+    to: "/services#corporate-finance-advisory",
+    label: "Corporate Finance & Advisory",
+    desc: "Strategic transactions, holding structures & cross-border advisory.",
+    icon: Briefcase
+  },
+  {
+    to: "/services#debt-raising",
+    label: "Debt Raising",
+    desc: "Capital stacked advisory & institutional lender coordination.",
+    icon: TrendingUp
+  },
+  {
+    to: "/services",
+    label: "Overview & All Services",
+    desc: "Explore all our specialized financial practices.",
+    icon: ArrowRight
+  }
+];
 
 export function Navbar() {
-  const [expanded, setExpanded]   = useState(true);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled]   = useState(false);
   const [open, setOpen]           = useState(false);
+  
   const progressRef = useRef<HTMLDivElement>(null);
   const overlayRef  = useRef<HTMLDivElement>(null);
   const location    = useLocation();
@@ -36,7 +63,10 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMobileServicesOpen(false);
+  }, [location.pathname]);
 
   /* mobile overlay entrance */
   useEffect(() => {
@@ -47,9 +77,6 @@ export function Navbar() {
       { y: 0, opacity: 1, duration: 0.65, stagger: 0.08, ease: "power3.out", delay: 0.1 }
     );
   }, [open]);
-
-  const onEnter = () => { setExpanded(true); };
-  const onLeave = () => { setExpanded(true); };
 
   return (
     <>
@@ -84,7 +111,7 @@ export function Navbar() {
             <img
               src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
               alt="Orpheus Logo"
-              className="h-9 w-9 rounded-full object-contain bg-white/5 border border-gold/20 flex-none"
+              className="h-[52px] w-[52px] rounded-full object-contain bg-white/5 border border-gold/20 flex-none"
             />
             <span className="font-display font-bold text-[15px] uppercase tracking-[2px] text-white">
               Orpheus Financial
@@ -93,27 +120,104 @@ export function Navbar() {
 
           {/* Links */}
           <nav className="flex items-center gap-1">
-            {links.map((l) => (
-              <NavLink key={l.to} to={l.to} end={l.to === "/"}>
-                {({ isActive }) => (
-                  <span
-                    className="relative flex items-center gap-1.5 px-4 py-2 rounded-full font-display font-bold text-[11px] uppercase tracking-[1.5px] transition-all duration-200"
-                    style={{
-                      background: isActive ? "rgba(212,175,55,0.15)" : "transparent",
-                      color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.65)",
-                    }}
+            {links.map((l) => {
+              if (l.label === "Services") {
+                return (
+                  <div
+                    key={l.label}
+                    className="relative"
+                    onMouseEnter={() => setServicesDropdownOpen(true)}
+                    onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
-                    {l.label}
-                    {isActive && (
-                      <span
-                        className="h-1 w-1 rounded-full bg-[#D4AF37]"
-                        style={{ boxShadow: "0 0 6px #D4AF37" }}
-                      />
-                    )}
-                  </span>
-                )}
-              </NavLink>
-            ))}
+                    <NavLink to="/services" end>
+                      {({ isActive }) => (
+                        <span
+                          className="relative flex items-center gap-1.5 px-4 py-2 rounded-full font-display font-bold text-[11px] uppercase tracking-[1.5px] transition-all duration-200 cursor-pointer"
+                          style={{
+                            background: isActive ? "rgba(212,175,55,0.15)" : "transparent",
+                            color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.65)",
+                          }}
+                        >
+                          {l.label}
+                          <ChevronDown size={11} className={`transition-transform duration-300 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
+                          {isActive && (
+                            <span
+                              className="h-1 w-1 rounded-full bg-[#D4AF37]"
+                              style={{ boxShadow: "0 0 6px #D4AF37" }}
+                            />
+                          )}
+                        </span>
+                      )}
+                    </NavLink>
+
+                    {/* Desktop Dropdown Panel */}
+                    <AnimatePresence>
+                      {servicesDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-[380px] rounded-2xl border border-gold/25 p-3 flex flex-col gap-1 z-[1000]"
+                          style={{
+                            background: "rgba(12,12,12,0.98)",
+                            backdropFilter: "blur(32px)",
+                            WebkitBackdropFilter: "blur(32px)",
+                            boxShadow: "0 24px 60px rgba(0,0,0,0.65)",
+                          }}
+                        >
+                          {serviceCategories.map((sub) => {
+                            const Icon = sub.icon;
+                            return (
+                              <Link
+                                key={sub.to}
+                                to={sub.to}
+                                className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-gold/[0.07] transition-all duration-200"
+                                onClick={() => setServicesDropdownOpen(false)}
+                              >
+                                <div className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-black transition-all">
+                                  <Icon size={16} />
+                                </div>
+                                <div className="min-w-0">
+                                  <h4 className="font-display font-bold text-[11px] uppercase tracking-[1.5px] text-white/95 group-hover:text-[#E5CB7E] transition-colors leading-none">
+                                    {sub.label}
+                                  </h4>
+                                  <p className="mt-1.5 font-body text-[10px] leading-[1.45] text-white/50 group-hover:text-white/70 transition-colors font-semibold">
+                                    {sub.desc}
+                                  </p>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              return (
+                <NavLink key={l.to} to={l.to} end={l.to === "/"}>
+                  {({ isActive }) => (
+                    <span
+                      className="relative flex items-center gap-1.5 px-4 py-2 rounded-full font-display font-bold text-[11px] uppercase tracking-[1.5px] transition-all duration-200"
+                      style={{
+                        background: isActive ? "rgba(212,175,55,0.15)" : "transparent",
+                        color: isActive ? "#E5CB7E" : "rgba(255,255,255,0.65)",
+                      }}
+                    >
+                      {l.label}
+                      {isActive && (
+                        <span
+                          className="h-1 w-1 rounded-full bg-[#D4AF37]"
+                          style={{ boxShadow: "0 0 6px #D4AF37" }}
+                        />
+                      )}
+                    </span>
+                  )}
+                </NavLink>
+              );
+            })}
           </nav>
 
           {/* Consultation Button */}
@@ -154,7 +258,7 @@ export function Navbar() {
             <img
               src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
               alt="Orpheus Logo"
-              className="h-8 w-8 rounded-full object-contain bg-white/5 border border-gold/20"
+              className="h-[42px] w-[42px] rounded-full object-contain bg-white/5 border border-gold/20"
             />
             <span className="font-display font-bold text-[14px] text-white/90">
               Orpheus Financial
@@ -207,37 +311,100 @@ export function Navbar() {
             }} />
 
             <nav className="relative flex flex-col px-8 pt-4 flex-1 overflow-y-auto">
-              {links.map((l) => (
-                <NavLink
-                  key={l.to}
-                  to={l.to}
-                  end={l.to === "/"}
-                  data-mob
-                  className="group flex items-center justify-between py-5 border-b"
-                  style={{ borderColor: "rgba(212,175,55,0.1)" }}
-                >
-                  {({ isActive }) => (
-                    <>
-                      <span
-                        className="font-display font-extrabold leading-none"
-                        style={{
-                          fontSize: "clamp(34px, 9.5vw, 52px)",
-                          letterSpacing: "-0.03em",
-                          color: isActive ? "#C8A96A" : "rgba(255,255,255,0.85)",
-                          textShadow: isActive ? "0 0 40px rgba(212,175,55,0.45)" : "none",
-                        }}
+              {links.map((l) => {
+                if (l.label === "Services") {
+                  return (
+                    <div key={l.label} data-mob className="border-b" style={{ borderColor: "rgba(212,175,55,0.1)" }}>
+                      <button
+                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                        className="group flex items-center justify-between w-full py-5 text-left"
                       >
-                        {l.label}
-                      </span>
-                      <ArrowRight
-                        size={17}
-                        className="transition-transform duration-300 group-hover:translate-x-1.5"
-                        style={{ color: isActive ? "#D4AF37" : "rgba(255,255,255,0.14)" }}
-                      />
-                    </>
-                  )}
-                </NavLink>
-              ))}
+                        <span
+                          className="font-display font-extrabold leading-none text-white/85"
+                          style={{
+                            fontSize: "clamp(34px, 9.5vw, 52px)",
+                            letterSpacing: "-0.03em",
+                          }}
+                        >
+                          {l.label}
+                        </span>
+                        <ChevronDown
+                          size={24}
+                          className="transition-transform duration-300 text-gold"
+                          style={{
+                            transform: mobileServicesOpen ? "rotate(180deg)" : "rotate(0deg)"
+                          }}
+                        />
+                      </button>
+
+                      {/* Mobile Accordion Menu */}
+                      <AnimatePresence>
+                        {mobileServicesOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="pl-3 pb-4 flex flex-col gap-1 overflow-hidden"
+                          >
+                            {serviceCategories.map((sub) => {
+                              const SubIcon = sub.icon;
+                              return (
+                                <Link
+                                  key={sub.to}
+                                  to={sub.to}
+                                  className="group flex items-center justify-between py-3 border-b border-gold/[0.06]"
+                                  onClick={() => setOpen(false)}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <SubIcon size={16} className="text-gold" />
+                                    <span className="font-display font-bold text-sm text-white/70 group-hover:text-[#E5CB7E] transition-colors">
+                                      {sub.label}
+                                    </span>
+                                  </div>
+                                  <ArrowRight size={14} className="text-white/20 group-hover:text-gold transition-all group-hover:translate-x-1" />
+                                </Link>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
+                return (
+                  <NavLink
+                    key={l.to}
+                    to={l.to}
+                    end={l.to === "/"}
+                    data-mob
+                    className="group flex items-center justify-between py-5 border-b"
+                    style={{ borderColor: "rgba(212,175,55,0.1)" }}
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <span
+                          className="font-display font-extrabold leading-none"
+                          style={{
+                            fontSize: "clamp(34px, 9.5vw, 52px)",
+                            letterSpacing: "-0.03em",
+                            color: isActive ? "#C8A96A" : "rgba(255,255,255,0.85)",
+                            textShadow: isActive ? "0 0 40px rgba(212,175,55,0.45)" : "none",
+                          }}
+                        >
+                          {l.label}
+                        </span>
+                        <ArrowRight
+                          size={17}
+                          className="transition-transform duration-300 group-hover:translate-x-1.5"
+                          style={{ color: isActive ? "#D4AF37" : "rgba(255,255,255,0.14)" }}
+                        />
+                      </>
+                    )}
+                  </NavLink>
+                );
+              })}
 
               <div data-mob className="mt-auto pb-10 pt-8 flex flex-col gap-4">
                 <a

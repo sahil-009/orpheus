@@ -65,6 +65,10 @@
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 0 0% 91%;
     --sidebar-ring: 44 65% 52%;
+
+    /* Dynamic Brand Fonts */
+    --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 }
 
@@ -72,7 +76,7 @@
   * { @apply border-border; }
   html, body {
     @apply bg-background text-foreground;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     color: var(--text-ink);
     background: #ffffff;
@@ -80,9 +84,9 @@
     -moz-osx-font-smoothing: grayscale;
   }
   body { overflow-x: hidden; cursor: auto; }
-  .font-display { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .font-display { font-family: var(--font-display); }
   .font-serif   { font-family: 'DM Serif Display', Georgia, serif; }
-  .font-body    { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .font-body    { font-family: var(--font-body); }
 }
 
 /* =========================================================

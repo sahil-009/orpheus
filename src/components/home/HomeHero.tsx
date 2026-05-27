@@ -13,19 +13,19 @@ const coreActivities = [
   {
     icon: Globe2,
     label: "Offshore Structure & Banking",
-    blurb: "Entity setup, global accounts & compliance",
+    blurb: "Institutional setup, corporate multi-currency banking & regulatory compliance",
     accent: "#D4AF37",
   },
   {
     icon: Briefcase,
     label: CORPORATE_FINANCE_ADVISORY.shortTitle,
-    blurb: "Investment, structuring, transactions & cross-border strategy",
+    blurb: "Corporate structuring, transaction advisory & cross-border financial strategy",
     accent: "#C8A96A",
   },
   {
     icon: TrendingUp,
     label: "Debt Raising",
-    blurb: "Capital strategy, structuring & investor match",
+    blurb: "Debt advisory, capital stack optimization & matchmaking with institutional lenders and credit funds",
     accent: "#D4AF37",
   },
 ];
@@ -155,14 +155,14 @@ export function HomeHero() {
               background: "linear-gradient(130deg, #C8A96A 0%, #D4AF37 30%, #F7EFD6 55%, #D4AF37 75%, #A88829 100%)",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
             }}>
-              Offshore, Banking & Capital
+              Offshore, Banking & Debt Capital
             </span>
           </h1>
 
           {/* sub */}
           <p data-anim
             className="mt-6 max-w-[500px] font-body text-[15.5px] leading-[1.85] text-white font-bold">
-            A trusted Dubai advisory helping businesses establish offshore entities, secure global banking, and raise capital with complete compliance.
+            A premier Dubai financial advisory partner for financial institutions, institutional funds, and cross-border enterprises. We specialize in offshore structures, global banking setups, and institutional debt capital solutions.
           </p>
 
           {/* email + CTA row */}
@@ -220,7 +220,7 @@ export function HomeHero() {
             </div>
             <div className="flex items-center gap-6">
               {[
-                { val: "60+", label: "Clients" },
+                { val: "60+", label: "Corporate Clients" },
                 { val: "18", label: "Markets" },
                 { val: "145%", label: "YoY Growth" },
               ].map(({ val, label }) => (

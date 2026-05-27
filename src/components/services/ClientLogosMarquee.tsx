@@ -25,13 +25,9 @@ function LogoImage({
       alt={name}
       loading="lazy"
       decoding="async"
-      width={160}
-      height={48}
-      className={`h-8 md:h-10 w-auto max-w-[130px] md:max-w-[150px] object-contain object-center transition-opacity duration-300 hover:opacity-100 ${className} ${
-        variant === "light"
-          ? "opacity-65"
-          : "opacity-75"
-      }`}
+      width={220}
+      height={64}
+      className={`h-12 md:h-15 w-auto max-w-[160px] md:max-w-[200px] object-contain object-center transition-all duration-300 opacity-95 hover:opacity-100 hover:scale-105 filter brightness-105 ${className}`}
     />
   );
 }
@@ -81,7 +77,7 @@ export function ClientLogosMarquee({
               key={`${logo.name}-${i}`}
               className="flex shrink-0 items-center px-6 md:px-10"
             >
-              <LogoImage {...logo} variant={variant} className="max-w-[120px] md:max-w-[140px]" />
+              <LogoImage {...logo} variant={variant} className="max-w-[160px] md:max-w-[200px]" />
             </div>
           ))}
         </div>

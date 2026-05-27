@@ -8,17 +8,17 @@ import { FounderSection } from "@/components/home/FounderSection";
 
 const milestones = [
   { year: "2019", event: "Founded in Dubai with a focus on global structuring." },
-  { year: "2021", event: "First 10 clients across 5 countries; Banking practice launched." },
+  { year: "2021", event: "First 10 financial services and corporate clients onboarded; Institutional banking coordination desk launched." },
   { year: "2023", event: "Expanded to 18 active markets; Debt Raising practice added." },
-  { year: "2026", event: "60+ businesses structured globally with 8 specialists onboard." },
+  { year: "2026", event: "Over 60 institutions and corporations structured globally with 8 specialists onboard." },
 ];
 
 const values = [
   { icon: "🔍", title: "Transparency",  body: "Fixed fees, clear timelines, no surprises in the engagement." },
   { icon: "🎯", title: "Expertise",     body: "Cross-border specialists with first-hand jurisdictional knowledge." },
-  { icon: "⚡", title: "Execution",     body: "We don't just advise — we file, open, and operate alongside you." },
+  { icon: "⚡", title: "Execution",     body: "We don't just advise — we file, open, coordinate, and scale structures alongside you." },
   { icon: "🔒", title: "Privacy",       body: "Discreet engagement and tight data hygiene throughout." },
-  { icon: "🛡️", title: "Compliance",   body: "FCA-aware practices, OECD-aligned reporting standards." },
+  { icon: "🛡️", title: "Compliance",   body: "Strict adherence to OECD, FATF, and regional regulatory compliance frameworks." },
   { icon: "🤝", title: "Trust",         body: "Long-term relationships built on doing exactly what we said we would." },
 ];
 
@@ -86,9 +86,9 @@ export default function AboutPage() {
     <main>
       <PageHero
         breadcrumb="About"
-        title="Built for Entrepreneurs"
-        titleAccent="Who Think Global."
-        subtitle="We are a Dubai-based financial advisory firm, structured to support founders, family offices and ambitious businesses operating across borders."
+        title="Built for Institutions"
+        titleAccent="& Businesses."
+        subtitle="We are a premier Dubai-based financial advisory firm specializing in serving financial institutions, investment funds, family offices, and cross-border businesses with institutional-grade corporate and capital solutions."
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-4 max-w-3xl">
           {[
@@ -121,19 +121,19 @@ export default function AboutPage() {
             </h2>
             <div className="mt-8 space-y-6 font-body text-sm text-muted2 leading-[1.9] max-w-xl font-bold">
               <p>
-                Orpheus Financial was founded with a singular vision—to empower businesses and individuals with strategic financial solutions that transcend borders. In an increasingly complex global economy, navigating offshore setups, banking solutions, asset management, and corporate financial planning requires expertise, trust, and discretion. Recognizing this need, we built Orpheus Financial as a dedicated partner for those seeking seamless and secure financial services tailored to their unique goals.
+                Orpheus Financial was founded with a singular vision—to empower financial institutions, investment funds, and corporate enterprises with strategic cross-border solutions. In an increasingly complex global regulatory landscape, navigating offshore structures, multi-currency treasury setups, and institutional debt capital requires seasoned expertise, absolute compliance, and discretion. We built Orpheus Financial to serve as the execution bridge for institutions requiring clean, sophisticated setups.
               </p>
               <p>
-                From the very beginning, we set out to bridge the gap between financial ambition and execution. Our journey started with a team of industry experts who understood the intricacies of global banking, investment structuring, and corporate financial management. With years of experience in the field, we recognized that many businesses and high-net-worth individuals faced challenges in establishing offshore entities, accessing international banking solutions, and managing their wealth effectively. Orpheus Financial was created to remove these barriers, offering personalized, compliant, and result-driven financial solutions.
+                From inception, we focused on bridging the gap between financial structuring and operational execution. Our journey started with a team of experts with deep backgrounds in corporate banking, fund administration, and international tax compliance. We recognized that investment managers, fintech platforms, and commercial enterprises faced significant hurdles in establishing offshore vehicles, passing stringent banking due diligence, and securing structured debt. Orpheus Financial was structured specifically to solve these complex bottlenecks.
               </p>
               <p>
-                At the heart of our success is a commitment to confidentiality, integrity, and excellence. We prioritize our clients’ privacy, ensuring that every financial transaction and strategy is executed with the highest level of security and discretion. Our strong global network of banking institutions, legal advisors, and financial experts allows us to deliver seamless services, helping clients optimize their assets while staying fully compliant with international regulations.
+                At the heart of our operations is a commitment to compliance-first advice, confidentiality, and speed. We prioritize institutional standards of data security and regulatory compliance, ensuring all setups align with OECD guidelines, regional licensing requirements, and FATF recommendations. Our robust global network of tier-1 banking institutions, legal desks, and regional advisors allows us to coordinate complex multijurisdictional tasks seamlessly.
               </p>
               <p>
-                Over the years, we have helped businesses expand into new markets, facilitated offshore company formations, structured complex asset management plans, and assisted clients in securing corporate banking solutions that align with their long-term vision. Our reputation for reliability and professionalism has made us a trusted name in the financial industry, and we continue to innovate and adapt to the evolving financial landscape.
+                Over the years, we have successfully advised fintech scale-ups on cross-border payment corridors, structured SPVs and fund-holding entities for asset managers, and negotiated structured debt capital packages with credit funds and banks. Our team continues to expand its footprint, tracking emerging compliance regulations to ensure our clients operate with maximum security and operational efficiency.
               </p>
               <p>
-                At Orpheus Financial, our story is defined by our clients’ success. We don’t just offer financial services—we create pathways to financial freedom, stability, and growth. Whether you are looking to establish an offshore entity, optimize your banking strategy, or manage your wealth more efficiently, we stand ready to guide you every step of the way. Welcome to Orpheus Financial.
+                At Orpheus Financial, we measure success by the reliability and longevity of the structures we establish. We don't just draft reports—we file, coordinate, and scale alongside you. Whether you are establishing an offshore holding network, structuring a new fund SPV, or optimizing corporate treasury access, we deliver execution-ready solutions.
               </p>
             </div>
           </div>

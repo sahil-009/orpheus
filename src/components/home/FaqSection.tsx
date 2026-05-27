@@ -8,9 +8,9 @@ const faqs = [
   { q: "Do you offer full execution or advisory-only services?", a: "We offer end-to-end execution, structuring, incorporation, banking coordination, compliance assistance, and delivery of a fully functional entity." },
   { q: "Which offshore and onshore jurisdictions do you support?", a: "We operate in 18 territories, such as the UAE, BVI, Cayman Islands, Hong Kong, Seychelles, and Mauritius, to suit business, tax, and banking requirements." },
   { q: "Is offshore structuring compliant with international regulations?", a: "Yes. When structured correctly, offshore entities are fully legal and compliant with international tax laws, AML requirements, and global reporting standards." },
-  { q: "Who typically works with your firm?", a: "Our clients include founders, SMEs, trading firms, fintech companies, and family offices requiring compliant cross-border structures and reliable banking access." },
+  { q: "What types of businesses and institutions do you serve?", a: "We serve financial institutions (asset managers, fund managers, investment platforms), fintech scale-ups, multinational trading firms, and large family offices requiring robust cross-border structures, corporate banking, and institutional capital access." },
   { q: "How is your pricing structured?", a: "We operate under an open, flat-rate system on a jurisdiction and scope basis, with deadlines and no surprises." },
-  { q: "Do you assist with corporate banking and account opening?", a: "Yes. We handle the whole process of banking, documentation, KYC preparation, bank liaison, and compliance support." },
+  { q: "Do you assist with corporate banking and account opening?", a: "Yes. We manage the end-to-end banking coordination process, preparing institutional-grade KYC packs, interfacing with corporate and investment banks, and managing compliance onboarding." },
 ];
 
 function FaqItem({ q, a, idx }: { q: string; a: string; idx: number }) {
