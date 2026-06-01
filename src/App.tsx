@@ -37,7 +37,7 @@ function ScrollToHash() {
         // Wait briefly for route transition and Lenis layout recalculation
         const timer = setTimeout(() => {
           if (lenis) {
-            lenis.scrollTo(element, { offset: -100, duration: 1.2 });
+            lenis.scrollTo(element, { offset: -100, immediate: true });
           } else {
             element.scrollIntoView({ behavior: "smooth" });
           }

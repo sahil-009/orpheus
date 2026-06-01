@@ -49,7 +49,7 @@ export function StatsBand() {
                 <div className="mt-2 font-display font-semibold text-[11px] uppercase tracking-[2.5px] text-gold">
                   {s.label}
                 </div>
-                <div className="mt-1 font-body text-[11px] text-white/25">{s.desc}</div>
+                <div className="type-prose-body-on-dark mt-2 text-center text-white/55">{s.desc}</div>
               </div>
             </div>
           </div>

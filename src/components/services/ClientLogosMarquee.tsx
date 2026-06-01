@@ -1,35 +1,12 @@
+import { BrandLogo, type LogoVariant } from "@/components/ui/BrandLogo";
 import { CLIENT_LOGOS } from "@/data/clientLogos";
 
-type Variant = "light" | "dark";
+type Variant = LogoVariant;
 
 interface Props {
   variant?: Variant;
   className?: string;
   label?: string;
-}
-
-function LogoImage({
-  name,
-  src,
-  variant,
-  className = "",
-}: {
-  name: string;
-  src: string;
-  variant: Variant;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={name}
-      loading="lazy"
-      decoding="async"
-      width={220}
-      height={64}
-      className={`h-12 md:h-15 w-auto max-w-[160px] md:max-w-[200px] object-contain object-center transition-all duration-300 opacity-95 hover:opacity-100 hover:scale-105 filter brightness-105 ${className}`}
-    />
-  );
 }
 
 /** Static row — hero “Trusted by businesses across 18 markets”. */
@@ -42,10 +19,16 @@ export function ClientLogosBar({
 }) {
   return (
     <div
-      className={`flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 lg:gap-x-14 ${className}`}
+      className={`flex flex-wrap items-center justify-center gap-6 md:gap-10 lg:gap-12 ${className}`}
     >
       {CLIENT_LOGOS.map((logo) => (
-        <LogoImage key={logo.name} {...logo} variant={variant} />
+        <BrandLogo
+          key={logo.name}
+          src={logo.src}
+          alt={logo.name}
+          variant={variant}
+          size="md"
+        />
       ))}
     </div>
   );
@@ -63,32 +46,37 @@ export function ClientLogosMarquee({
   return (
     <div className={`relative ${className}`}>
       <p
-        className={`text-center font-body text-[11px] uppercase tracking-[2.5px] font-semibold mb-8 ${
-          variant === "light" ? "text-[#1D1C1C]/50" : "text-white/45"
+        className={`type-eyebrow mb-8 text-center ${
+          variant === "light" ? "text-charcoal/55" : "text-white/50"
         }`}
       >
         {label}
       </p>
 
-      <div className="overflow-hidden py-2">
-        <div className="client-logos-track flex w-max items-center gap-2">
+      <div className="overflow-hidden py-3">
+        <div className="client-logos-track flex w-max items-center gap-4 md:gap-6">
           {items.map((logo, i) => (
             <div
               key={`${logo.name}-${i}`}
-              className="flex shrink-0 items-center px-6 md:px-10"
+              className="flex shrink-0 items-center px-4 md:px-8"
             >
-              <LogoImage {...logo} variant={variant} className="max-w-[160px] md:max-w-[200px]" />
+              <BrandLogo
+                src={logo.src}
+                alt={logo.name}
+                variant={variant}
+                size="lg"
+              />
             </div>
           ))}
         </div>
       </div>
 
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24"
+        className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28"
         style={{ background: `linear-gradient(to right, ${fade}, transparent)` }}
       />
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24"
+        className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-28"
         style={{ background: `linear-gradient(to left, ${fade}, transparent)` }}
       />
     </div>

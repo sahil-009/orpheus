@@ -8,6 +8,10 @@ export function useLenis() {
   return useContext(LenisContext);
 }
 
+/**
+ * Lenis without smoothWheel — native scrolling stays pixel-crisp.
+ * Lenis remains for ScrollTrigger sync and programmatic scrollTo.
+ */
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
   const rafRef = useRef<number>();
@@ -15,11 +19,21 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setupGsap();
     const l = new Lenis({
-      duration: 1.0,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false,
+      smoothWheel: false,
+      syncTouch: false,
+      autoResize: true,
     });
+
+    if (!(window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished) {
+      l.stop();
+    }
+
+    const onLoaderComplete = () => {
+      l.start();
+      l.scrollTo(0, { immediate: true });
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("orpheusLoaderComplete", onLoaderComplete, { once: true });
 
     const raf = (time: number) => {
       l.raf(time);
@@ -31,6 +45,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     setLenis(l);
 
     return () => {
+      window.removeEventListener("orpheusLoaderComplete", onLoaderComplete);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       l.destroy();
     };

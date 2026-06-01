@@ -62,8 +62,8 @@ export function WhyChoose() {
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gold/10 text-gold mb-4 transition-all group-hover:bg-gold group-hover:text-charcoal">
                   {f.icon}
                 </div>
-                <h4 className="font-display font-semibold text-[13px] text-white/90 leading-snug">{f.title}</h4>
-                <p className="mt-2 font-body text-[12px] text-white/55 leading-relaxed font-bold">{f.body}</p>
+                <h4 className="type-feature-title">{f.title}</h4>
+                <p className="type-feature-body">{f.body}</p>
               </div>
             ))}
           </div>
@@ -75,9 +75,8 @@ export function WhyChoose() {
             ref={rightRef}
             className="rounded-3xl border border-gold/15 p-8 md:p-10 lg:sticky lg:top-32"
             style={{
-              background: "rgba(29,28,28,0.7)",
+              background: "rgba(20,20,20,0.95)",
               boxShadow: "0 32px 80px rgba(0,0,0,0.15), inset 0 1px 0 rgba(212,175,55,0.08)",
-              backdropFilter: "blur(20px)",
             }}
           >
             <div className="flex items-center gap-3 mb-6">
@@ -85,7 +84,7 @@ export function WhyChoose() {
               <p className="font-display text-[11px] font-semibold uppercase tracking-[3px] text-gold">Top Jurisdictions</p>
             </div>
             <h3 className="font-display font-bold text-[26px] text-white leading-tight">Where We Structure</h3>
-            <p className="mt-2 font-body text-[13px] text-white/60 font-bold">Most frequently used offshore locations.</p>
+            <p className="type-prose-body-on-dark mt-2 text-white/72">Most frequently used offshore locations.</p>
 
             <ul className="mt-8 divide-y divide-white/[0.06]">
               {jurisdictions.map((j) => (
@@ -97,7 +96,7 @@ export function WhyChoose() {
                     ) : (
                       <span className="text-[22px]">{j.flag}</span>
                     )}
-                    <span className="font-body text-[13px] text-white/70 group-hover:text-white transition-colors">{j.name}</span>
+                    <span className="font-body text-[15px] font-medium text-white/80 transition-colors group-hover:text-white">{j.name}</span>
                   </div>
                   <span className="rounded-full border border-gold/25 bg-gold/[0.08] px-3 py-1 font-display text-[9px] uppercase tracking-[1.5px] text-gold font-semibold">
                     {j.tag}
@@ -107,7 +106,7 @@ export function WhyChoose() {
             </ul>
 
             <div className="mt-6 pt-5 border-t border-white/[0.06] flex items-center justify-between">
-              <p className="font-body text-[11px] text-white/25">+12 more active jurisdictions</p>
+              <p className="font-body text-[14px] font-medium text-white/45">+12 more active jurisdictions</p>
               <Flag size={13} className="text-gold/30" />
             </div>
           </div>

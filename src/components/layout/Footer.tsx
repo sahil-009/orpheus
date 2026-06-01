@@ -157,8 +157,8 @@ export function Footer() {
             <Link to="/" className="inline-flex items-center gap-3 group">
               <img
                 src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
-                alt="Orpheus Logo"
-                className="h-10 w-10 rounded-lg object-contain bg-white/5 border border-gold/25 p-1 transition-transform group-hover:scale-110"
+                alt="Orpheus logo"
+                className="h-11 w-11 rounded-lg border border-gold/25 bg-white object-contain p-1.5 transition-transform group-hover:scale-110"
                 style={{
                   boxShadow: "0 6px 20px rgba(212,175,55,0.15)",
                 }}

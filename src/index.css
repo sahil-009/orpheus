@@ -66,27 +66,85 @@
     --sidebar-border: 0 0% 91%;
     --sidebar-ring: 44 65% 52%;
 
-    /* Dynamic Brand Fonts */
-    --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+    /* Brand typography */
+    --font-display: 'Syne', system-ui, sans-serif;
     --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --text-base: 1rem;
+    --leading-body: 1.65;
+    --leading-tight: 1.12;
   }
 }
 
 @layer base {
   * { @apply border-border; }
+  html {
+    font-size: 16px;
+    scroll-behavior: auto;
+  }
   html, body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    font-size: var(--text-base);
     font-weight: 400;
+    line-height: var(--leading-body);
     color: var(--text-ink);
     background: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   body { overflow-x: hidden; cursor: auto; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: var(--leading-tight);
+    text-wrap: balance;
+  }
+  p { line-height: var(--leading-body); }
   .font-display { font-family: var(--font-display); }
   .font-serif   { font-family: 'DM Serif Display', Georgia, serif; }
   .font-body    { font-family: var(--font-body); }
+}
+
+@layer components {
+  .type-eyebrow {
+    @apply font-display text-xs font-semibold uppercase tracking-[0.18em] text-gold;
+  }
+  .type-section-title {
+    @apply font-display text-[clamp(1.75rem,4vw,2.875rem)] font-extrabold leading-[1.08] tracking-tight;
+  }
+  .type-body {
+    @apply font-body text-base leading-relaxed;
+  }
+  .type-body-muted {
+    @apply font-body text-base leading-relaxed text-muted2;
+  }
+  .type-feature-title {
+    @apply font-display text-[15px] font-semibold leading-snug text-white/90 md:text-base;
+  }
+  .type-feature-body {
+    @apply mt-2.5 font-body text-[15px] leading-relaxed text-white/70 font-medium md:text-base;
+  }
+  .type-prose-body {
+    @apply font-body text-[15px] leading-[1.85] font-medium md:text-base;
+  }
+  .type-prose-body-muted {
+    @apply font-body text-[15px] leading-[1.85] font-medium text-[rgba(29,28,28,0.82)] md:text-base;
+  }
+  .type-prose-body-on-dark {
+    @apply font-body text-[15px] leading-[1.85] font-medium text-white/70 md:text-base;
+  }
+
+  /* Hero — original Plus Jakarta display typography */
+  .hero-section {
+    --font-hero-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  .hero-section .font-display,
+  .hero-section h1,
+  .hero-section h3 {
+    font-family: var(--font-hero-display);
+  }
 }
 
 /* =========================================================
@@ -115,15 +173,11 @@
    Glass
    ========================================================= */
 .glass-dark {
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(18,18,18,0.92);
   border: 1px solid rgba(212,175,55,0.20);
 }
 .glass-blue {
-  background: rgba(212,175,55,0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(22,20,14,0.92);
   border: 1px solid rgba(212,175,55,0.24);
 }
 
@@ -132,8 +186,8 @@
    ========================================================= */
 .text-balance { text-wrap: balance; }
 .reveal-line  { display: inline-block; overflow: hidden; vertical-align: bottom; }
-.reveal-word  { display: inline-block; will-change: transform, opacity; }
-.reveal-char  { display: inline-block; will-change: transform, opacity; }
+.reveal-word  { display: inline-block; }
+.reveal-char  { display: inline-block; }
 
 /* Gold shimmer */
 @keyframes shimmer-sweep {
@@ -221,11 +275,11 @@
 .marquee-track:hover { animation-play-state: paused; }
 
 @keyframes client-logos-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 .client-logos-track {
-  animation: client-logos-scroll 42s linear infinite;
+  animation: client-logos-scroll 48s linear infinite;
 }
 .client-logos-track:hover { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
@@ -243,12 +297,17 @@
 ::-webkit-scrollbar-thumb:hover { background: rgba(29,28,28,0.35); }
 
 /* =========================================================
-   Lenis
+   Lenis (native wheel — no smooth class / fractional scroll)
    ========================================================= */
-html.lenis, html.lenis body           { height: auto; }
-.lenis.lenis-smooth                   { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped                  { overflow: hidden; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* Keep text sharp while scrolling — avoid unnecessary GPU layers */
+html.lenis body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* =========================================================
    Utilities
@@ -263,7 +322,7 @@ html.lenis, html.lenis body           { height: auto; }
 }
 .orb {
   position: absolute; border-radius: 9999px;
-  filter: blur(80px); pointer-events: none; will-change: transform;
+  filter: blur(80px); pointer-events: none;
 }
 
 /* ─── hr ───────────────────────────────────────────────── */

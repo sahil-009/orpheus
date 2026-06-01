@@ -119,7 +119,7 @@ export default function AboutPage() {
                 Execute, Not Just Advise.
               </RevealText>
             </h2>
-            <div className="mt-8 space-y-6 font-body text-sm text-muted2 leading-[1.9] max-w-xl font-bold">
+            <div className="mt-8 max-w-xl space-y-6 type-prose-body-muted">
               <p>
                 Orpheus Financial was founded with a singular vision—to empower financial institutions, investment funds, and corporate enterprises with strategic cross-border solutions. In an increasingly complex global regulatory landscape, navigating offshore structures, multi-currency treasury setups, and institutional debt capital requires seasoned expertise, absolute compliance, and discretion. We built Orpheus Financial to serve as the execution bridge for institutions requiring clean, sophisticated setups.
               </p>
@@ -163,7 +163,7 @@ export default function AboutPage() {
                   <span className="text-gold text-xl">👁️</span>
                 </div>
                 <h3 className="font-display text-2xl font-medium tracking-wide text-[#1D1C1C]">Orpheus on Vision</h3>
-                <p className="mt-6 font-body text-sm text-[#1D1C1C]/65 leading-[1.8] font-bold">
+                <p className="type-prose-body-muted mt-6">
                   At Orpheus, we believe that your financial journey should be straightforward and stress-free. Our mission is to simplify complexities, empower you to achieve your business goals, and make the world of finance accessible and efficient.
                 </p>
               </div>
@@ -185,7 +185,7 @@ export default function AboutPage() {
                   <span className="text-gold text-xl">🚀</span>
                 </div>
                 <h3 className="font-display text-2xl font-medium tracking-wide text-[#1D1C1C]">Orpheus on Mission</h3>
-                <p className="mt-6 font-body text-sm text-[#1D1C1C]/65 leading-[1.8] font-bold">
+                <p className="type-prose-body-muted mt-6">
                   We envision Orpheus as your steadfast companion in the dynamic world of business and asset management. We strive to create an ecosystem where you can grow and prosper seamlessly. Imagine having all your financial needs met in one place, where opportunities are endless, and success is within reach.
                 </p>
               </div>
@@ -219,7 +219,7 @@ export default function AboutPage() {
               >
                 <div className="text-3xl">{v.icon}</div>
                 <h3 className="mt-5 font-display text-xl text-[#1D1C1C]">{v.title}</h3>
-                <p className="mt-3 font-body text-sm text-[#1D1C1C]/65 leading-relaxed font-bold">{v.body}</p>
+                <p className="type-prose-body-muted mt-3">{v.body}</p>
               </div>
             ))}
           </div>
@@ -236,7 +236,7 @@ export default function AboutPage() {
             <div>
               <span className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Corporate Pillar I</span>
               <h3 className="mt-4 font-display text-3xl font-medium text-charcoal">Confidentiality & Trust</h3>
-              <div className="mt-6 space-y-4 font-body text-sm text-muted2 leading-[1.8] font-bold">
+              <div className="type-prose-body-muted mt-6 space-y-4">
                 <p>
                   At Orpheus Financial, confidentiality is at the core of our operations. We understand that financial matters require the highest level of discretion, and we take every measure to ensure the privacy and security of our clients’ information. Our secure systems and stringent protocols are designed to protect sensitive data, ensuring that all transactions and communications remain strictly confidential.
                 </p>
@@ -250,7 +250,7 @@ export default function AboutPage() {
             <div>
               <span className="font-body text-[11px] uppercase tracking-[3px] text-gold font-semibold">Corporate Pillar II</span>
               <h3 className="mt-4 font-display text-3xl font-medium text-charcoal">Expertise & Reliability</h3>
-              <div className="mt-6 space-y-4 font-body text-sm text-muted2 leading-[1.8] font-bold">
+              <div className="type-prose-body-muted mt-6 space-y-4">
                 <p>
                   Orpheus Financial is backed by a team of professionals with years of experience in the financial sector. Our expertise spans across various domains, including offshore company formations, global banking solutions, wealth and asset management, and debt-raising strategies.
                 </p>

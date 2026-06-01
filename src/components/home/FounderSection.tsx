@@ -4,6 +4,8 @@ import { OButton } from "@/components/ui/OButton";
 import { Linkedin, Award, Globe, Users } from "lucide-react";
 import { FloatingParticles } from "@/components/ui/FloatingParticles";
 
+const FOUNDER_IMAGE = "/brands/yadav.png";
+
 const highlights = [
   { icon: <Globe size={14} />,  label: "18 Markets" },
   { icon: <Users size={14} />,  label: "60+ Institutions" },
@@ -47,15 +49,17 @@ export function FounderSection() {
       <div className="relative mx-auto grid max-w-[1280px] gap-16 px-6 md:px-16 lg:grid-cols-2 lg:gap-20 items-center">
 
         {/* LEFT — image */}
-        <div ref={leftRef} className="relative needs-asset" data-marker="Asset: founder portrait (high-res)">
+        <div ref={leftRef} className="relative">
           <div className="absolute -top-3 -left-3 right-3 bottom-3 border-2 border-gold/40 rounded-3xl" />
 
           <div ref={imgRef} className="relative aspect-[0.85] rounded-3xl overflow-hidden"
             style={{ background: "linear-gradient(135deg, #D4AF3715, #11111108)" }}>
             <img
-              src="https://media.licdn.com/dms/image/v2/D4D03AQEgp7EqO1XxMQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1673252878733?e=1779321600&v=beta&t=sNeJs21_znAv6zBbi1rZgl_XKpBUGYWUoyggkoQBuh0"
+              src={FOUNDER_IMAGE}
               alt="Rachit Yadav — Founder & CEO"
-              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-[center_22%]"
             />
             <div className="absolute inset-x-0 bottom-0 h-1/3"
               style={{ background: "linear-gradient(to top, rgba(8,8,8,0.45), transparent)" }} />
@@ -99,7 +103,7 @@ export function FounderSection() {
             ))}
           </div>
 
-          <div className="mt-8 space-y-5 font-body text-[14px] leading-[1.9] max-w-lg font-bold" style={{ color: "rgba(29,28,28,0.85)" }}>
+          <div className="type-prose-body-muted mt-8 max-w-lg space-y-5">
             <p>
               Rachit Yadav founded Orpheus Financial with a single belief: financial institutions and expanding businesses deserve a partner who <em className="text-[#1D1C1C] font-semibold">actually executes</em> — not just advises.
             </p>

@@ -1,43 +1,48 @@
 import { motion } from "framer-motion";
 import { Shield, Sparkles, Network, Briefcase, Globe } from "lucide-react";
+import { BrandLogo } from "@/components/ui/BrandLogo";
+import { CLIENT_LOGOS } from "@/data/clientLogos";
 
-const clientDetails = [
-  {
-    name: "U Remit",
-    src: "/uremit-removebg-preview.png",
+const clientMeta: Record<
+  string,
+  { sector: string; description: string; icon: typeof Globe }
+> = {
+  "U Remit": {
     sector: "Fintech & Remittances",
-    description: "Structuring cross-border transaction channels and treasury bank accounts across multi-currency corridors.",
-    icon: Globe
+    description:
+      "Structuring cross-border transaction channels and treasury bank accounts across multi-currency corridors.",
+    icon: Globe,
   },
-  {
-    name: "Konsälidön",
-    src: "/konsilodon-removebg-preview.png",
+  "Konsälidön": {
     sector: "Global Consulting Platform",
-    description: "Setting up tax-efficient corporate holding structures and operational branches across EMEA.",
-    icon: Network
+    description:
+      "Setting up tax-efficient corporate holding structures and operational branches across EMEA.",
+    icon: Network,
   },
-  {
-    name: "Vantage",
-    src: "/vantage-removebg-preview.png",
+  Vantage: {
     sector: "Wealth Management",
-    description: "Designing offshore holding structures and securing institutional private banking partnerships.",
-    icon: Shield
+    description:
+      "Designing offshore holding structures and securing institutional private banking partnerships.",
+    icon: Shield,
   },
-  {
-    name: "Axiom",
-    src: "/axiom-removebg-preview.png",
+  Axiom: {
     sector: "Corporate Finance",
-    description: "Advising on cross-border corporate reorganizations, SPV setups, and debt capital stack allocations.",
-    icon: Briefcase
+    description:
+      "Advising on cross-border corporate reorganizations, SPV setups, and debt capital stack allocations.",
+    icon: Briefcase,
   },
-  {
-    name: "Meridian",
-    src: "/Meridian%20Logo.gif",
+  Meridian: {
     sector: "Asset Holding",
-    description: "Establishing robust offshore asset-holding vehicles and private banking compliance infrastructure.",
-    icon: Sparkles
-  }
-];
+    description:
+      "Establishing robust offshore asset-holding vehicles and private banking compliance infrastructure.",
+    icon: Sparkles,
+  },
+};
+
+const clientDetails = CLIENT_LOGOS.map((logo) => ({
+  ...logo,
+  ...clientMeta[logo.name],
+}));
 
 export function TrustedBySection() {
   return (
@@ -61,15 +66,14 @@ export function TrustedBySection() {
             style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37]" />
-            <span className="font-display text-[9px] font-semibold uppercase tracking-[2px] text-[#C8A96A]">
-              TRACK RECORD & CREDIBILITY
-            </span>
+            <span className="type-eyebrow text-[#C8A96A]">Track Record & Credibility</span>
           </div>
 
-          <h2 className="font-display font-extrabold text-white text-[32px] md:text-[46px] leading-[1.1] tracking-tight">
-            Trusted by Regulated Networks & <span className="gold-shimmer font-semibold">Global Enterprises</span>
+          <h2 className="type-section-title mt-2 text-white">
+            Trusted by Regulated Networks &{" "}
+            <span className="gold-shimmer font-semibold">Global Enterprises</span>
           </h2>
-          <p className="mt-4 font-body text-sm md:text-base leading-relaxed text-white/50 font-medium">
+          <p className="type-body mt-5 text-white/55">
             We partner with leading remittance firms, consulting consortia, regulated corporate finance houses, and asset managers to design robust global banking setups and capital solutions.
           </p>
         </div>
@@ -99,26 +103,25 @@ export function TrustedBySection() {
               >
                 <div>
                   {/* Card Header (Logo + Icon) */}
-                  <div className="flex items-center justify-between gap-4 mb-8">
-                    <div className="h-10 max-w-[110px] flex items-center">
-                      <img
-                        src={client.src}
-                        alt={`${client.name} Logo`}
-                        className="h-full w-auto object-contain object-left opacity-75 group-hover:opacity-100 transition-opacity filter brightness-105"
-                      />
-                    </div>
+                  <div className="mb-8 flex items-center justify-between gap-4">
+                    <BrandLogo
+                      src={client.src}
+                      alt={`${client.name} logo`}
+                      variant="dark"
+                      size="sm"
+                      className="!px-3 !py-2"
+                    />
                     <div className="h-8 w-8 rounded-lg bg-gold/[0.08] text-gold flex items-center justify-center border border-gold/15 group-hover:bg-gold group-hover:text-black transition-all">
                       <Icon size={14} />
                     </div>
                   </div>
 
                   {/* Sector Tag */}
-                  <span className="inline-block text-[9.5px] font-display font-bold uppercase tracking-wider text-gold mb-3">
+                  <span className="type-eyebrow mb-3 inline-block text-[11px] text-gold">
                     {client.sector}
                   </span>
 
-                  {/* Description */}
-                  <p className="font-body text-[11.5px] leading-relaxed text-white/55 group-hover:text-white/80 transition-colors font-medium">
+                  <p className="font-body text-sm leading-relaxed text-white/55 transition-colors group-hover:text-white/80">
                     {client.description}
                   </p>
                 </div>

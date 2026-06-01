@@ -15,20 +15,23 @@ const coreActivities = [
     label: "Offshore Structure & Banking",
     blurb: "Institutional setup, corporate multi-currency banking & regulatory compliance",
     accent: "#D4AF37",
+    href: "/services#offshore-structure-banking",
   },
   {
     icon: Briefcase,
     label: CORPORATE_FINANCE_ADVISORY.shortTitle,
     blurb: "Corporate structuring, transaction advisory & cross-border financial strategy",
     accent: "#C8A96A",
+    href: "/services#corporate-finance-advisory",
   },
   {
     icon: TrendingUp,
     label: "Debt Raising",
     blurb: "Debt advisory, capital stack optimization & matchmaking with institutional lenders and credit funds",
     accent: "#D4AF37",
+    href: "/services#debt-raising",
   },
-];
+] as const;
 
 const avatars = [
   "https://i.pravatar.cc/40?img=11",
@@ -109,17 +112,20 @@ export function HomeHero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden flex flex-col" style={{ background: "#0A0A0A" }}>
+    <section
+      className="hero-section relative flex min-h-screen flex-col overflow-hidden"
+      style={{ background: "#0A0A0A" }}
+    >
 
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={bgRef} style={{ willChange: "transform", transform: "translate3d(0,0,0)" }}>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" ref={bgRef}>
         <img
           src="/dubai-bg.png"
           alt="Dubai Skyline Background"
           loading="eager"
           fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover opacity-0"
-          style={{ transform: "scale(1.15)", willChange: "transform", transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
+          className="absolute inset-0 h-full w-full object-cover opacity-0"
+          style={{ transform: "scale(1.15)" }}
         />
         {/* Soft elegant gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
@@ -135,16 +141,12 @@ export function HomeHero() {
           "radial-gradient(ellipse 45% 55% at 50% 80%, rgba(168,136,41,0.10) 0%, transparent 60%)",
           "linear-gradient(to bottom, transparent 75%, #0A0A0A 100%)",
         ].join(", "),
-        transform: "translate3d(0,0,0)",
-        willChange: "transform",
       }} />
 
       {/* grid texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.05]" style={{
         backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
-        transform: "translate3d(0,0,0)",
-        willChange: "transform",
       }} />
 
       {/* ── main grid ── */}
@@ -251,70 +253,85 @@ export function HomeHero() {
           </div>
         </div>
 
-        {/* ══ RIGHT — core activity cards (snapshot) ════ */}
+        {/* ══ RIGHT — core services ════ */}
         <div ref={rightRef} className="relative">
-
           <div className="mb-5 flex items-center gap-2.5">
-            <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.4))" }} />
+            <span
+              className="h-px flex-1"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.4))" }}
+            />
             <span className="font-display text-[10px] font-semibold uppercase tracking-[3px] text-[#D4AF37]">
               Core Services
             </span>
-            <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(212,175,55,0.4), transparent)" }} />
+            <span
+              className="h-px flex-1"
+              style={{ background: "linear-gradient(90deg, rgba(212,175,55,0.4), transparent)" }}
+            />
           </div>
 
           <div className="grid gap-4">
             {coreActivities.map((s, i) => (
-              <Link to="/services" key={s.label} data-card
-                className="group relative block overflow-hidden rounded-2xl p-5 md:p-6 transition-all hover:-translate-y-1"
+              <Link
+                key={s.label}
+                to={s.href}
+                data-card
+                className="group relative block overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 md:p-6"
                 style={{
-                  background: "rgba(15,15,15,0.35)",
-                  backdropFilter: "blur(20px)",
-                  WebkitBackdropFilter: "blur(20px)",
+                  background: "rgba(15,15,15,0.75)",
                   border: "1px solid rgba(212,175,55,0.25)",
                   boxShadow: "0 18px 44px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08)",
-                }}>
-                <span aria-hidden
-                  className="absolute -top-3 right-4 font-display font-extrabold select-none pointer-events-none"
-                  style={{ fontSize: "70px", lineHeight: 1, color: "rgba(212,175,55,0.07)" }}>
+                }}
+              >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -top-3 right-4 select-none font-display text-[70px] font-extrabold leading-none"
+                  style={{ color: "rgba(212,175,55,0.07)" }}
+                >
                   0{i + 1}
                 </span>
 
                 <div className="relative flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-none items-center justify-center rounded-xl"
+                  <div
+                    className="flex h-12 w-12 flex-none items-center justify-center rounded-xl"
                     style={{
                       background: "rgba(212,175,55,0.10)",
                       border: "1px solid rgba(212,175,55,0.30)",
                       color: s.accent,
-                    }}>
+                    }}
+                  >
                     <s.icon size={22} />
                   </div>
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-display font-bold text-white text-[17px] leading-snug">
+                      <h3 className="font-display text-[17px] font-bold leading-snug text-white">
                         {s.label}
                       </h3>
-                      <ArrowUpRight size={16} className="text-[#D4AF37] flex-none transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <ArrowUpRight
+                        size={16}
+                        className="flex-none text-[#D4AF37] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
                     </div>
-                    <p className="mt-1.5 font-body text-[12.5px] leading-[1.6] text-white/55">
+                    <p className="mt-2 font-body text-[13.5px] font-medium leading-[1.65] text-white/70">
                       {s.blurb}
                     </p>
                   </div>
                 </div>
 
-                <span className="absolute bottom-0 left-0 h-[2px] w-0 transition-all duration-500 group-hover:w-full"
-                  style={{ background: "linear-gradient(90deg,#D4AF37,#C8A96A)" }} />
+                <span
+                  className="absolute bottom-0 left-0 h-[2px] w-0 transition-all duration-500 group-hover:w-full"
+                  style={{ background: "linear-gradient(90deg,#D4AF37,#C8A96A)" }}
+                />
               </Link>
             ))}
           </div>
-
         </div>
       </div>
 
       {/* ── client logos bar ── */}
       <div className="relative z-10 border-t border-white/[0.06] py-8">
         <div className="mx-auto max-w-[1440px] px-6 md:px-16">
-          <p className="text-center font-body text-[9px] uppercase tracking-[3px] text-white/55 mb-7 font-bold">
+          <p className="mb-7 text-center font-body text-[9px] font-bold uppercase tracking-[3px] text-white/55">
             Trusted by businesses across 18 markets
           </p>
           <ClientLogosBar variant="dark" />

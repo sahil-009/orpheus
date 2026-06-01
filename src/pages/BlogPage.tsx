@@ -154,7 +154,7 @@ export default function BlogPage() {
                     <span className="text-muted2">{p.date}</span>
                   </div>
                   <h4 className="mt-3 font-display text-lg text-charcoal leading-snug">{p.title}</h4>
-                  <p className="mt-3 font-body text-[13px] leading-relaxed line-clamp-3" style={{ color: "rgba(29,28,28,0.65)" }}>{p.excerpt}</p>
+                  <p className="type-prose-body-muted mt-3 line-clamp-3">{p.excerpt}</p>
                   <div className="mt-5 font-body text-xs uppercase tracking-[2px] text-gold font-semibold group-hover:translate-x-1 transition-transform inline-block">
                     Read More →
                   </div>

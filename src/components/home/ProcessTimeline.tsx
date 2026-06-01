@@ -72,7 +72,7 @@ export function ProcessTimeline() {
                 <div data-step-text className="mt-7">
                   <div className="font-display font-bold text-[12px] uppercase tracking-[2px] text-gold mb-2">{s.n}</div>
                   <h4 className="font-display font-bold text-[17px] text-[#1D1C1C]">{s.title}</h4>
-                  <p className="mt-3 font-body text-[13px] leading-relaxed max-w-[190px] mx-auto" style={{ color: "rgba(29,28,28,0.65)" }}>{s.body}</p>
+                  <p className="type-prose-body-muted mx-auto mt-3 max-w-[210px]">{s.body}</p>
                 </div>
               </div>
             ))}

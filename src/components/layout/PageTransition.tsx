@@ -3,23 +3,30 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ScrollTrigger } from "@/lib/gsapSetup";
 
-/* ── Letter reveal sub-component ─────────────────────────── */
 const LETTERS = "ORPHEUS".split("");
+const LOADER_HOLD_MS = 1500;
+const LOADER_EXIT_MS = 1100;
+const LOADER_TOTAL_MS = LOADER_HOLD_MS + LOADER_EXIT_MS;
 
 function CounterDisplay() {
   const [count, setCount] = useState(0);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
-    let current = 0;
-    const totalMs = 1200;
-    const interval = 20;
-    const steps = totalMs / interval;
-    const timer = setInterval(() => {
-      current += 100 / steps;
-      if (current >= 100) { setCount(100); clearInterval(timer); }
-      else setCount(Math.floor(current));
-    }, interval);
-    return () => clearInterval(timer);
+    const start = performance.now();
+    const duration = LOADER_HOLD_MS;
+
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setCount(Math.round(eased * 100));
+      if (t < 1) rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
@@ -32,20 +39,17 @@ function CounterDisplay() {
 function OverlayContent() {
   return (
     <div className="flex flex-col items-center justify-center gap-6 select-none pointer-events-none">
-
-      {/* eyebrow */}
       <motion.p
-        className="font-body text-[10px] uppercase tracking-[5px] text-white/25"
-        initial={{ opacity: 0, y: 10 }}
+        className="type-eyebrow text-white/30 tracking-[0.35em]"
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25, delay: 0.2 }}
+        transition={{ duration: 0.35, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
       >
-        Orpheus Financial&nbsp;&nbsp;·&nbsp;&nbsp;Dubai, UAE
+        Orpheus Financial · Dubai, UAE
       </motion.p>
 
-      {/* text reveal stagger */}
       <div
-        className="flex items-end gap-0 leading-none overflow-hidden"
+        className="flex items-end gap-0 overflow-hidden leading-none"
         style={{ fontSize: "clamp(64px, 16vw, 200px)", letterSpacing: "-0.02em" }}
       >
         {LETTERS.map((ch, i) => (
@@ -53,7 +57,8 @@ function OverlayContent() {
             key={i}
             className="block font-display font-extrabold"
             style={{
-              background: "linear-gradient(160deg, #E5CB7E 0%, #C8A96A 35%, #D4AF37 65%, #A88829 100%)",
+              background:
+                "linear-gradient(160deg, #E5CB7E 0%, #C8A96A 35%, #D4AF37 65%, #A88829 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -61,8 +66,8 @@ function OverlayContent() {
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
-              duration: 0.4,
-              delay: 0.15 + i * 0.04,
+              duration: 0.55,
+              delay: 0.12 + i * 0.045,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -71,38 +76,38 @@ function OverlayContent() {
         ))}
       </div>
 
-      {/* expanding rule */}
       <motion.div
         className="h-px rounded-full"
-        style={{ background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)" }}
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)",
+        }}
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "clamp(200px, 28vw, 480px)", opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+        transition={{ duration: 0.65, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      {/* tagline + counter */}
       <motion.div
         className="flex items-center gap-5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.4 }}
+        transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
       >
-        <span className="font-body text-[11px] uppercase tracking-[3px] text-white/22">
+        <span className="font-body text-xs uppercase tracking-[0.2em] text-white/25">
           Structuring Capital
         </span>
-        <span className="text-white/10 text-[9px]">◆</span>
-        <span className="font-display text-[28px] font-bold text-white/30">
+        <span className="text-[9px] text-white/10">◆</span>
+        <span className="font-display text-[28px] font-bold text-white/35">
           <CounterDisplay />
         </span>
       </motion.div>
-
     </div>
   );
 }
 
 let hasLoadedOnce = false;
 if (typeof window !== "undefined") {
-  (window as any).orpheusLoaderFinished = hasLoadedOnce;
+  (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished =
+    hasLoadedOnce;
 }
 
 export function PageTransition({ children }: { children: ReactNode }) {
@@ -111,7 +116,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const t = setTimeout(() => ScrollTrigger.refresh(), 300);
+    const t = setTimeout(() => ScrollTrigger.refresh(), 350);
     return () => {
       clearTimeout(t);
       ScrollTrigger.getAll().forEach((s) => s.kill());
@@ -120,24 +125,23 @@ export function PageTransition({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (showLoader) {
-      // Trigger hero entry animations at 1400ms (as the slide-up begins)
       const animTimer = setTimeout(() => {
-        (window as any).orpheusLoaderFinished = true;
+        (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished =
+          true;
         window.dispatchEvent(new CustomEvent("orpheusLoaderComplete"));
-      }, 1400);
+      }, LOADER_HOLD_MS);
 
-      // Unmount loader completely at 2200ms when it is off-screen
       const timer = setTimeout(() => {
         hasLoadedOnce = true;
         setShowLoader(false);
-      }, 2200);
+      }, LOADER_TOTAL_MS + 80);
+
       return () => {
         clearTimeout(animTimer);
         clearTimeout(timer);
       };
-    } else {
-      (window as any).orpheusLoaderFinished = true;
     }
+    (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished = true;
   }, [showLoader]);
 
   return (
@@ -148,13 +152,12 @@ export function PageTransition({ children }: { children: ReactNode }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         >
           {children}
         </motion.div>
       </AnimatePresence>
 
-      {/* ── Full-screen overlay: enter → hold → exit ── */}
       <AnimatePresence>
         {showLoader && (
           <motion.div
@@ -164,52 +167,60 @@ export function PageTransition({ children }: { children: ReactNode }) {
             initial={{ y: "0%" }}
             animate={{ y: ["0%", "0%", "-100%"] }}
             transition={{
-              duration: 2.2,
-              times: [0, 0.636, 1], // 1.4s / 2.2s = 0.636
-              ease: ["linear", "easeIn"],
+              duration: LOADER_TOTAL_MS / 1000,
+              times: [0, LOADER_HOLD_MS / LOADER_TOTAL_MS, 1],
+              ease: ["linear", [0.76, 0, 0.24, 1]],
             }}
           >
-            {/* subtle grid */}
-            <div className="absolute inset-0 opacity-[0.035]" style={{
-              backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-            }} />
+            <div
+              className="absolute inset-0 opacity-[0.035]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
+                backgroundSize: "64px 64px",
+              }}
+            />
 
-            {/* blue radial glow */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-              background: "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)"
-            }} />
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)",
+              }}
+            />
 
-            {/* corner label TL */}
             <motion.span
-              className="absolute top-6 left-8 font-body text-[10px] uppercase tracking-[3px] text-white/20"
+              className="absolute left-8 top-6 font-body text-xs uppercase tracking-[0.2em] text-white/20"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
             >
               Loading
             </motion.span>
 
-            {/* corner label TR */}
             <motion.span
-              className="absolute top-6 right-8 font-body text-[10px] text-white/20"
+              className="absolute right-8 top-6 font-body text-xs text-white/20"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
             >
               ©{new Date().getFullYear()}
             </motion.span>
 
-            {/* main content */}
             <OverlayContent />
 
-            {/* bottom thin progress bar */}
             <motion.div
               className="absolute bottom-0 left-0 h-[2px] rounded-full"
-              style={{ background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)" }}
+              style={{
+                background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)",
+              }}
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 1.2, delay: 0.2, ease: "easeInOut" }}
+              transition={{
+                duration: LOADER_HOLD_MS / 1000,
+                delay: 0.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             />
           </motion.div>
         )}

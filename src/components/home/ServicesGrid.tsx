@@ -204,8 +204,7 @@ export function ServicesGrid() {
                     {s.capabilities.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2 font-body text-[12.5px] font-semibold leading-snug"
-                        style={{ color: "rgba(29,28,28,0.72)" }}
+                        className="type-prose-body-muted flex items-start gap-2 leading-snug"
                       >
                         <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold" aria-hidden />
                         {item}

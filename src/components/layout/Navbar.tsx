@@ -12,6 +12,10 @@ const links = [
   { to: "/contact",  label: "Contact"  },
 ];
 
+const PHONE_TEL = "tel:+97145587968";
+const PHONE_DISPLAY = "+971 4 558 7968";
+const NAV_LOGO = "/brands/favicon.png";
+
 const serviceCategories = [
   {
     to: "/services#offshore-structure-banking",
@@ -30,12 +34,6 @@ const serviceCategories = [
     label: "Debt Raising",
     desc: "Capital stacked advisory & institutional lender coordination.",
     icon: TrendingUp
-  },
-  {
-    to: "/services",
-    label: "Overview & All Services",
-    desc: "Explore all our specialized financial practices.",
-    icon: ArrowRight
   }
 ];
 
@@ -86,9 +84,7 @@ export function Navbar() {
       <header
         className="fixed inset-x-0 top-0 z-[1000] hidden lg:block transition-all duration-300 border-b"
         style={{
-          background: scrolled ? "rgba(10,10,10,0.98)" : "rgba(10,10,10,0.85)",
-          backdropFilter: "blur(28px)",
-          WebkitBackdropFilter: "blur(28px)",
+          background: scrolled ? "rgba(10,10,10,0.98)" : "rgba(10,10,10,0.94)",
           borderColor: "rgba(212,175,55,0.15)",
           boxShadow: scrolled ? "0 4px 20px rgba(0,0,0,0.4)" : "none",
         }}
@@ -106,16 +102,18 @@ export function Navbar() {
         />
 
         <div className="mx-auto max-w-[1440px] px-6 md:px-16 h-20 flex items-center justify-between">
-          {/* Logo & Brand */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="flex shrink-0 items-center py-1"
+            aria-label="Orpheus Financial — Home"
+          >
             <img
-              src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
-              alt="Orpheus Logo"
-              className="h-[52px] w-[52px] rounded-full object-contain bg-white/5 border border-gold/20 flex-none"
+              src={NAV_LOGO}
+              alt="Orpheus Financial"
+              width={220}
+              height={48}
+              className="h-10 w-auto max-w-[200px] object-contain object-left brightness-110 contrast-105 lg:h-11 lg:max-w-[240px]"
             />
-            <span className="font-display font-bold text-[15px] uppercase tracking-[2px] text-white">
-              Orpheus Financial
-            </span>
           </Link>
 
           {/* Links */}
@@ -161,8 +159,6 @@ export function Navbar() {
                           className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-[380px] rounded-2xl border border-gold/25 p-3 flex flex-col gap-1 z-[1000]"
                           style={{
                             background: "rgba(12,12,12,0.98)",
-                            backdropFilter: "blur(32px)",
-                            WebkitBackdropFilter: "blur(32px)",
                             boxShadow: "0 24px 60px rgba(0,0,0,0.65)",
                           }}
                         >
@@ -220,23 +216,31 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Consultation Button */}
-          <Link to="/contact">
-            <motion.button
-              className="flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display font-bold text-[10.5px] uppercase tracking-[1.5px] text-white whitespace-nowrap"
-              style={{
-                background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
-                boxShadow: "0 3px 14px rgba(212,175,55,0.38), inset 0 1px 0 rgba(255,255,255,0.14)",
-              }}
-              whileHover={{
-                scale: 1.04,
-                boxShadow: "0 6px 20px rgba(212,175,55,0.58)",
-              }}
-              whileTap={{ scale: 0.96 }}
+          <div className="flex items-center gap-3 xl:gap-4">
+            <a
+              href={PHONE_TEL}
+              className="group flex items-center gap-2 rounded-full border border-gold/20 bg-white/[0.04] px-4 py-2.5 font-body text-[12px] font-semibold text-white/75 transition-all hover:border-gold/40 hover:bg-gold/[0.08] hover:text-[#E5CB7E] whitespace-nowrap"
             >
-              Consult <ArrowRight size={10} />
-            </motion.button>
-          </Link>
+              <Phone size={14} className="text-gold transition-colors group-hover:text-[#E5CB7E]" />
+              {PHONE_DISPLAY}
+            </a>
+            <Link to="/contact">
+              <motion.button
+                className="flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display font-bold text-[10.5px] uppercase tracking-[1.5px] text-white whitespace-nowrap"
+                style={{
+                  background: "linear-gradient(135deg, #D4AF37 0%, #A88829 100%)",
+                  boxShadow: "0 3px 14px rgba(212,175,55,0.38), inset 0 1px 0 rgba(255,255,255,0.14)",
+                }}
+                whileHover={{
+                  scale: 1.04,
+                  boxShadow: "0 6px 20px rgba(212,175,55,0.58)",
+                }}
+                whileTap={{ scale: 0.96 }}
+              >
+                Consult <ArrowRight size={10} />
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -247,25 +251,34 @@ export function Navbar() {
         <div
           className="mx-4 mt-4 flex items-center justify-between px-3.5 py-2.5 rounded-2xl"
           style={{
-            background: "rgba(29,28,28,0.96)",
+            background: "rgba(10,10,10,0.97)",
             border: "1px solid rgba(212,175,55,0.2)",
-            boxShadow: "0 8px 32px rgba(29,28,28,0.12)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
           }}
         >
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link
+            to="/"
+            className="flex min-w-0 shrink items-center py-0.5"
+            aria-label="Orpheus Financial — Home"
+          >
             <img
-              src="https://orpheusfinancial.co/wp-content/uploads/2025/03/Orpheus-Logo-1-1.png"
-              alt="Orpheus Logo"
-              className="h-[42px] w-[42px] rounded-full object-contain bg-white/5 border border-gold/20"
+              src={NAV_LOGO}
+              alt="Orpheus Financial"
+              width={180}
+              height={40}
+              className="h-9 w-auto max-w-[min(160px,42vw)] object-contain object-left brightness-110 contrast-105"
             />
-            <span className="font-display font-bold text-[14px] text-white/90">
-              Orpheus Financial
-            </span>
           </Link>
 
-          <button
+          <div className="flex items-center gap-2">
+            <a
+              href={PHONE_TEL}
+              aria-label={`Call ${PHONE_DISPLAY}`}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/20 bg-white/[0.05] text-gold transition-all hover:border-gold/40 hover:bg-gold/[0.12] active:scale-95"
+            >
+              <Phone size={16} />
+            </a>
+            <button
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
             className="flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300"
@@ -282,6 +295,7 @@ export function Navbar() {
               }
             </AnimatePresence>
           </button>
+          </div>
         </div>
       </header>
 
@@ -408,10 +422,10 @@ export function Navbar() {
 
               <div data-mob className="mt-auto pb-10 pt-8 flex flex-col gap-4">
                 <a
-                  href="tel:+97145587968"
+                  href={PHONE_TEL}
                   className="flex items-center gap-2 font-body text-[13px] text-white/38 hover:text-[#C8A96A] transition-colors"
                 >
-                  <Phone size={13} /> +971 4 558 7968
+                  <Phone size={13} /> {PHONE_DISPLAY}
                 </a>
                 <Link to="/contact">
                   <button
