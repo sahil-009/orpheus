@@ -4,10 +4,10 @@ export type LogoVariant = "light" | "dark";
 export type LogoSize = "sm" | "md" | "lg" | "xl";
 
 const sizeClasses: Record<LogoSize, string> = {
-  sm: "h-10 max-w-[130px]",
-  md: "h-14 max-w-[170px] md:h-16 md:max-w-[210px]",
-  lg: "h-16 max-w-[200px] md:h-[72px] md:max-w-[260px]",
-  xl: "h-20 max-w-[220px] md:h-24 md:max-w-[300px]",
+  sm: "max-h-10 max-w-full",
+  md: "max-h-14 max-w-full md:max-h-16",
+  lg: "max-h-16 max-w-full md:max-h-[72px]",
+  xl: "max-h-20 max-w-full md:max-h-24",
 };
 
 interface BrandLogoProps {
@@ -47,7 +47,7 @@ export function BrandLogo({
         decoding="async"
         className={cn(
           sizeClasses[size],
-          "w-auto object-contain object-center transition-opacity duration-300",
+          "w-auto h-auto max-w-[75%] object-contain object-center transition-opacity duration-300",
           usePad ? "opacity-100" : "opacity-90 hover:opacity-100"
         )}
       />

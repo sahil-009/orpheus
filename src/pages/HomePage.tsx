@@ -9,6 +9,7 @@ import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { FounderSection }  from "@/components/home/FounderSection";
 import { FaqSection }      from "@/components/home/FaqSection";
 import { HomeContact }     from "@/components/home/HomeContact";
+import { GoogleMapsSection } from "@/components/contact/GoogleMapsSection";
 
 export default function HomePage() {
   return (
@@ -32,6 +33,7 @@ export default function HomePage() {
       <FounderSection />
       <FaqSection />
       <HomeContact />
+      <GoogleMapsSection variant="dark" />
     </main>
   );
 }

@@ -6,7 +6,7 @@ export type BankingPartner = {
 /** UAE banking partners — transparent logos in /public/brands */
 export const BANKING_PARTNERS: BankingPartner[] = [
   { name: "First Abu Dhabi Bank", src: "/brands/fab-removebg-preview.png" },
-  { name: "Abu Dhabi Commercial Bank", src: "/brands/abc-removebg-preview.png" },
+  { name: "Zand Bank", src: "/brands/zandddddd-removebg-preview.png" },
   { name: "Dubai Islamic Bank", src: "/bank-logo-3.png" },
   { name: "RAKBANK", src: "/brands/rak-removebg-preview.png" },
   { name: "Mashreq", src: "/brands/mashreq-removebg-preview.png" },

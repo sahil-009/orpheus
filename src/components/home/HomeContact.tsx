@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { gsap, setupGsap } from "@/lib/gsapSetup";
 import { ArrowRight, Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { GOOGLE_MAPS_URL } from "@/data/siteLinks";
 
 const WorldMapDemo = lazy(() => import("@/components/world-map-demo"));
 
@@ -320,13 +321,15 @@ export function HomeContact() {
             {/* contact pills */}
             <div data-ca className="mt-7 flex flex-wrap gap-3 needs-copy" data-marker="Copy: confirm address / phone / email">
               {[
-                { icon: <MapPin size={12} />, text: "Business Bay, Dubai" },
+                { icon: <MapPin size={12} />, text: "Business Bay, Dubai", href: GOOGLE_MAPS_URL },
                 { icon: <Phone size={12} />,  text: "+971 4 558 7968",             href: "tel:+97145587968" },
                 { icon: <Mail size={12} />,   text: "operations@orpheusfinancial.co", href: "mailto:operations@orpheusfinancial.co" },
               ].map(p => (
                 p.href
                   ? <a key={p.text} href={p.href}
-                      className="flex items-center gap-2 rounded-full px-4 py-2 font-body text-[12px] transition-all hover:border-blue/40"
+                      target={p.href.startsWith("http") ? "_blank" : undefined}
+                      rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="flex items-center gap-2 rounded-full px-4 py-2 font-body text-[12px] transition-all hover:border-gold/40 hover:text-white"
                       style={{ background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)", color: "rgba(255,255,255,0.55)" }}>
                       <span style={{ color: "#C8A96A" }}>{p.icon}</span>{p.text}
                     </a>
@@ -414,7 +417,15 @@ export function HomeContact() {
                 className="mt-4 text-center font-body text-[12px] uppercase tracking-[2px]"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
-                Headquartered in Business Bay, Dubai.
+                Headquartered in Business Bay, Dubai.{" "}
+                <a
+                  href={GOOGLE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold underline-offset-2 transition-colors hover:text-[#E5CB7E] hover:underline"
+                >
+                  View on Google Maps
+                </a>
               </p>
               {/* market list below globe */}
               <div data-fp className="mt-6 flex flex-wrap justify-center gap-2 max-w-[400px] mx-auto">

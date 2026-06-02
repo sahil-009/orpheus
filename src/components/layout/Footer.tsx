@@ -6,6 +6,7 @@ import {
   MessageCircle, Send, Clock, ShieldCheck, ArrowUpRight,
 } from "lucide-react";
 import { ADVISORY_SERVICES } from "@/data/advisoryServices";
+import { GOOGLE_MAPS_URL, OFFICE_ADDRESS } from "@/data/siteLinks";
 
 const SERVICES = [
   { l: "Offshore Structure & Banking", to: "/services" },
@@ -180,7 +181,7 @@ export function Footer() {
             {/* Contact rows */}
             <div className="mt-7 space-y-3.5">
               {[
-                { icon: <MapPin size={13} />, text: "Business Bay, Dubai, UAE" },
+                { icon: <MapPin size={13} />, text: OFFICE_ADDRESS, href: GOOGLE_MAPS_URL },
                 { icon: <Phone size={13} />,  text: "+971 4 558 7968", href: "tel:+97145587968" },
                 { icon: <MessageCircle size={13} />, text: "WhatsApp · +971 4 558 7968", href: "https://wa.me/97145587968" },
                 { icon: <Mail size={13} />,   text: "operations@orpheusfinancial.co", href: "mailto:operations@orpheusfinancial.co" },

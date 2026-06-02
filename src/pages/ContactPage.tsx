@@ -8,9 +8,16 @@ import { toast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { CORPORATE_FINANCE_ADVISORY } from "@/data/corporateFinanceAdvisory";
 import { ADVISORY_SERVICE_NAMES } from "@/data/advisoryServices";
+import { GoogleMapsSection } from "@/components/contact/GoogleMapsSection";
+import { GOOGLE_MAPS_URL, OFFICE_ADDRESS } from "@/data/siteLinks";
 
 const infoBlocks = [
-  { icon: "📍", label: "Visit Us",  value: "Business Bay, Dubai, UAE\nC 1802 Ontario Tower" },
+  {
+    icon: "📍",
+    label: "Visit Us",
+    value: OFFICE_ADDRESS,
+    href: GOOGLE_MAPS_URL,
+  },
   { icon: "📞", label: "Call Us",   value: "+971 4 558 7968" },
   { icon: "✉️", label: "Email",     value: "operations@orpheusfinancial.co" },
 ];
@@ -233,7 +240,18 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div className="font-body text-[10px] uppercase tracking-[2px] text-gold font-semibold">{b.label}</div>
-                    <div className="mt-1.5 font-body text-sm text-charcoal whitespace-pre-line">{b.value}</div>
+                    {b.href ? (
+                      <a
+                        href={b.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1.5 block font-body text-[15px] font-medium leading-relaxed text-charcoal whitespace-pre-line transition-colors hover:text-gold"
+                      >
+                        {b.value}
+                      </a>
+                    ) : (
+                      <div className="type-prose-body-muted mt-1.5 whitespace-pre-line">{b.value}</div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -258,6 +276,8 @@ export default function ContactPage() {
           <ContactForm />
         </div>
       </section>
+
+      <GoogleMapsSection variant="light" />
 
       {/* Global footprint / HQ */}
       <section className="bg-[#1D1C1C] text-white py-24 md:py-32 relative overflow-hidden border-b-0">

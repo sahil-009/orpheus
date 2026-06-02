@@ -32,12 +32,12 @@ export function StatsBand() {
           <div
             key={s.label}
             data-stat
-            className={`group relative px-8 py-16 text-center md:text-left transition-colors hover:bg-gold/[0.04] ${i > 0 ? "md:border-l border-gold/[0.09]" : ""} border-t border-b border-gold/[0.09]`}
+            className={`group relative px-4 py-12 md:px-8 md:py-16 text-center md:text-left transition-colors hover:bg-gold/[0.04] ${i > 0 ? "md:border-l border-gold/[0.09]" : ""} border-t border-b border-gold/[0.09]`}
           >
             {/* top accent on hover */}
             <div className="absolute top-0 left-0 h-[2px] w-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-700 group-hover:w-full" />
 
-            <div className="flex items-start gap-4">
+            <div className="flex flex-col items-center text-center md:flex-row md:items-start md:text-left gap-3 md:gap-4">
               <div className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-gold/10 text-gold mt-1 md:mt-2 transition-all group-hover:bg-gold group-hover:text-charcoal">
                 {s.icon}
               </div>
@@ -49,7 +49,7 @@ export function StatsBand() {
                 <div className="mt-2 font-display font-semibold text-[11px] uppercase tracking-[2.5px] text-gold">
                   {s.label}
                 </div>
-                <div className="type-prose-body-on-dark mt-2 text-center text-white/55">{s.desc}</div>
+                <div className="type-prose-body-on-dark mt-2 text-center md:text-left text-white/55">{s.desc}</div>
               </div>
             </div>
           </div>

@@ -230,7 +230,7 @@ export function HomeHero() {
 
           {/* avatar + social proof */}
           <div data-anim
-            className="mt-10 flex items-center gap-5">
+            className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
             <div className="flex -space-x-2.5">
               {avatars.map((src, i) => (
                 <img key={i} src={src} alt="" loading="lazy" decoding="async" width={36} height={36}
@@ -238,13 +238,13 @@ export function HomeHero() {
                   style={{ border: "2px solid #0A0A0A", zIndex: 4 - i }} />
               ))}
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               {[
                 { val: "60+", label: "Corporate Clients" },
                 { val: "18", label: "Markets" },
                 { val: "145%", label: "YoY Growth" },
               ].map(({ val, label }) => (
-                <div key={label} className="text-center">
+                <div key={label} className="text-left sm:text-center">
                   <div className="font-display font-bold text-[18px] leading-none text-white">{val}</div>
                   <div className="font-body text-[9px] uppercase tracking-[2px] text-white/40 mt-0.5">{label}</div>
                 </div>

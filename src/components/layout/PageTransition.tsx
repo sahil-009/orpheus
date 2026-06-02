@@ -1,108 +1,16 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ScrollTrigger } from "@/lib/gsapSetup";
 
 const LETTERS = "ORPHEUS".split("");
-const LOADER_HOLD_MS = 1500;
-const LOADER_EXIT_MS = 1100;
-const LOADER_TOTAL_MS = LOADER_HOLD_MS + LOADER_EXIT_MS;
-
-function CounterDisplay() {
-  const [count, setCount] = useState(0);
-  const rafRef = useRef<number>();
-
-  useEffect(() => {
-    const start = performance.now();
-    const duration = LOADER_HOLD_MS;
-
-    const tick = (now: number) => {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setCount(Math.round(eased * 100));
-      if (t < 1) rafRef.current = requestAnimationFrame(tick);
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  return (
-    <span className="font-display tabular-nums">
-      {String(count).padStart(3, "0")}
-    </span>
-  );
-}
-
-function OverlayContent() {
-  return (
-    <div className="flex flex-col items-center justify-center gap-6 select-none pointer-events-none">
-      <motion.p
-        className="type-eyebrow text-white/30 tracking-[0.35em]"
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      >
-        Orpheus Financial · Dubai, UAE
-      </motion.p>
-
-      <div
-        className="flex items-end gap-0 overflow-hidden leading-none"
-        style={{ fontSize: "clamp(64px, 16vw, 200px)", letterSpacing: "-0.02em" }}
-      >
-        {LETTERS.map((ch, i) => (
-          <motion.span
-            key={i}
-            className="block font-display font-extrabold"
-            style={{
-              background:
-                "linear-gradient(160deg, #E5CB7E 0%, #C8A96A 35%, #D4AF37 65%, #A88829 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-            initial={{ y: "110%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            transition={{
-              duration: 0.55,
-              delay: 0.12 + i * 0.045,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            {ch}
-          </motion.span>
-        ))}
-      </div>
-
-      <motion.div
-        className="h-px rounded-full"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)",
-        }}
-        initial={{ width: 0, opacity: 0 }}
-        animate={{ width: "clamp(200px, 28vw, 480px)", opacity: 1 }}
-        transition={{ duration: 0.65, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      />
-
-      <motion.div
-        className="flex items-center gap-5"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-      >
-        <span className="font-body text-xs uppercase tracking-[0.2em] text-white/25">
-          Structuring Capital
-        </span>
-        <span className="text-[9px] text-white/10">◆</span>
-        <span className="font-display text-[28px] font-bold text-white/35">
-          <CounterDisplay />
-        </span>
-      </motion.div>
-    </div>
-  );
-}
+const LETTER_STAGGER_MS = 55;
+const LETTER_ANIM_MS = 500;
+const REVEAL_START_MS = 100;
+const REVEAL_END_MS =
+  REVEAL_START_MS + (LETTERS.length - 1) * LETTER_STAGGER_MS + LETTER_ANIM_MS;
+const HOLD_MS = 520;
+const EXIT_MS = 720;
+const EXIT_START_MS = REVEAL_END_MS + HOLD_MS;
 
 let hasLoadedOnce = false;
 if (typeof window !== "undefined") {
@@ -110,121 +18,206 @@ if (typeof window !== "undefined") {
     hasLoadedOnce;
 }
 
+function finishLoaderSession() {
+  hasLoadedOnce = true;
+  (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished = true;
+  document.documentElement.classList.remove("loader-active");
+}
+
+function fireLoaderComplete() {
+  (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished = true;
+  window.dispatchEvent(new CustomEvent("orpheusLoaderComplete"));
+}
+
+function LoaderOverlay({ onDone }: { onDone: () => void }) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const doneRef = useRef(false);
+
+  const complete = () => {
+    if (doneRef.current) return;
+    doneRef.current = true;
+    fireLoaderComplete();
+    finishLoaderSession();
+    onDone();
+  };
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+      const t = window.setTimeout(complete, 80);
+      return () => window.clearTimeout(t);
+    }
+
+    document.documentElement.classList.add("loader-active");
+
+    let fallbackTimer = 0;
+
+    const exitTimer = window.setTimeout(() => {
+      const panel = panelRef.current;
+      if (!panel) {
+        complete();
+        return;
+      }
+
+      panel.classList.add("loader-panel--exit");
+
+      const onTransitionEnd = (e: TransitionEvent) => {
+        if (e.target !== panel || e.propertyName !== "transform") return;
+        panel.removeEventListener("transitionend", onTransitionEnd);
+        window.clearTimeout(fallbackTimer);
+        complete();
+      };
+
+      panel.addEventListener("transitionend", onTransitionEnd);
+      fallbackTimer = window.setTimeout(() => {
+        panel.removeEventListener("transitionend", onTransitionEnd);
+        complete();
+      }, EXIT_MS + 150);
+    }, EXIT_START_MS);
+
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(fallbackTimer);
+      document.documentElement.classList.remove("loader-active");
+    };
+  }, [onDone]);
+
+  return (
+    <div
+      ref={panelRef}
+      className="loader-panel fixed inset-0 z-[9998] flex items-center justify-center overflow-hidden"
+      style={{ background: "#050505" }}
+      aria-hidden={false}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)",
+        }}
+      />
+
+      <span className="loader-meta absolute left-8 top-6 font-body text-xs uppercase tracking-[0.2em] text-white/25">
+        Loading
+      </span>
+      <span
+        className="loader-meta absolute right-8 top-6 font-body text-xs text-white/25"
+        style={{ animationDelay: "0.08s" }}
+      >
+        ©{new Date().getFullYear()}
+      </span>
+
+      <div className="flex select-none flex-col items-center justify-center gap-6 px-6">
+        <p
+          className="loader-eyebrow font-body text-xs uppercase tracking-[0.35em] text-white/35"
+        >
+          Orpheus Financial · Dubai, UAE
+        </p>
+
+        <div
+          className="flex items-end justify-center gap-0 overflow-hidden leading-none"
+          style={{ fontSize: "clamp(64px, 16vw, 200px)", letterSpacing: "-0.02em" }}
+        >
+          {LETTERS.map((ch, i) => (
+            <span
+              key={`${ch}-${i}`}
+              className="loader-letter font-display font-extrabold"
+              style={{
+                animationDelay: `${REVEAL_START_MS + i * LETTER_STAGGER_MS}ms`,
+                background:
+                  "linear-gradient(160deg, #E5CB7E 0%, #C8A96A 35%, #D4AF37 65%, #A88829 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              {ch}
+            </span>
+          ))}
+        </div>
+
+        <div
+          className="loader-line h-px rounded-full"
+          style={{
+            width: "clamp(200px, 28vw, 480px)",
+            background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)",
+            animationDelay: `${REVEAL_START_MS + 180}ms`,
+          }}
+        />
+
+        <div
+          className="loader-meta flex items-center gap-5"
+          style={{ animationDelay: `${REVEAL_END_MS - 120}ms` }}
+        >
+          <span className="font-body text-xs uppercase tracking-[0.2em] text-white/30">
+            Structuring Capital
+          </span>
+          <span className="text-[9px] text-white/15">◆</span>
+          <span className="font-display text-[28px] font-bold tabular-nums text-white/40">
+            100
+          </span>
+        </div>
+      </div>
+
+      <div
+        className="loader-progress-bar absolute bottom-0 left-0 h-[2px] w-full rounded-full"
+        style={{
+          background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)",
+        }}
+      />
+    </div>
+  );
+}
+
 export function PageTransition({ children }: { children: ReactNode }) {
   const location = useLocation();
   const [showLoader, setShowLoader] = useState(!hasLoadedOnce);
+  const [contentReady, setContentReady] = useState(hasLoadedOnce);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const t = setTimeout(() => ScrollTrigger.refresh(), 350);
-    return () => {
-      clearTimeout(t);
-      ScrollTrigger.getAll().forEach((s) => s.kill());
-    };
   }, [location.pathname]);
 
   useEffect(() => {
-    if (showLoader) {
-      const animTimer = setTimeout(() => {
-        (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished =
-          true;
-        window.dispatchEvent(new CustomEvent("orpheusLoaderComplete"));
-      }, LOADER_HOLD_MS);
-
-      const timer = setTimeout(() => {
-        hasLoadedOnce = true;
-        setShowLoader(false);
-      }, LOADER_TOTAL_MS + 80);
-
-      return () => {
-        clearTimeout(animTimer);
-        clearTimeout(timer);
-      };
-    }
-    (window as Window & { orpheusLoaderFinished?: boolean }).orpheusLoaderFinished = true;
-  }, [showLoader]);
+    if (!contentReady) return;
+    const t = window.setTimeout(() => ScrollTrigger.refresh(), 100);
+    return () => window.clearTimeout(t);
+  }, [contentReady, location.pathname]);
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={location.pathname}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+      <div
+        className="transition-opacity duration-300 ease-out"
+        style={{
+          opacity: contentReady ? 1 : 0,
+          visibility: contentReady ? "visible" : "hidden",
+        }}
+        aria-hidden={!contentReady}
+      >
+        {children}
+      </div>
 
-      <AnimatePresence>
-        {showLoader && (
-          <motion.div
-            key="initial-loader"
-            className="fixed inset-0 z-[9998] flex items-center justify-center overflow-hidden"
-            style={{ background: "#050505" }}
-            initial={{ y: "0%" }}
-            animate={{ y: ["0%", "0%", "-100%"] }}
-            transition={{
-              duration: LOADER_TOTAL_MS / 1000,
-              times: [0, LOADER_HOLD_MS / LOADER_TOTAL_MS, 1],
-              ease: ["linear", [0.76, 0, 0.24, 1]],
-            }}
-          >
-            <div
-              className="absolute inset-0 opacity-[0.035]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
-                backgroundSize: "64px 64px",
-              }}
-            />
-
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)",
-              }}
-            />
-
-            <motion.span
-              className="absolute left-8 top-6 font-body text-xs uppercase tracking-[0.2em] text-white/20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.35 }}
-            >
-              Loading
-            </motion.span>
-
-            <motion.span
-              className="absolute right-8 top-6 font-body text-xs text-white/20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.35 }}
-            >
-              ©{new Date().getFullYear()}
-            </motion.span>
-
-            <OverlayContent />
-
-            <motion.div
-              className="absolute bottom-0 left-0 h-[2px] rounded-full"
-              style={{
-                background: "linear-gradient(90deg, #A88829, #D4AF37, #C8A96A)",
-              }}
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{
-                duration: LOADER_HOLD_MS / 1000,
-                delay: 0.15,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {showLoader && (
+        <LoaderOverlay
+          onDone={() => {
+            setShowLoader(false);
+            setContentReady(true);
+          }}
+        />
+      )}
     </>
   );
 }

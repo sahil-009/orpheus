@@ -297,6 +297,89 @@
 ::-webkit-scrollbar-thumb:hover { background: rgba(29,28,28,0.35); }
 
 /* =========================================================
+   Intro loader (CSS — reliable on low-end devices)
+   ========================================================= */
+html.loader-active,
+html.loader-active body {
+  overflow: hidden;
+}
+
+.loader-panel {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.72s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+.loader-panel--exit {
+  transform: translate3d(0, -100%, 0);
+}
+
+@keyframes loader-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.45em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes loader-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes loader-line-grow {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@keyframes loader-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.loader-eyebrow {
+  opacity: 0;
+  animation: loader-fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
+}
+.loader-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: loader-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.loader-line {
+  opacity: 0;
+  transform-origin: center;
+  animation: loader-line-grow 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.loader-meta {
+  opacity: 0;
+  animation: loader-fade-in 0.4s ease-out forwards;
+}
+.loader-progress-bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: loader-progress 1.35s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-panel { transition-duration: 0.2s; }
+  .loader-eyebrow,
+  .loader-letter,
+  .loader-line,
+  .loader-meta,
+  .loader-progress-bar {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* =========================================================
    Lenis (native wheel — no smooth class / fractional scroll)
    ========================================================= */
 html.lenis, html.lenis body { height: auto; }
