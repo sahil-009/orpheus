@@ -25,10 +25,23 @@ export function GoogleMapsSection({ variant = "light" }: { variant?: Variant }) 
             Google Maps
           </p>
           <h2
-            className="mt-4 font-display font-extrabold leading-[1.08]"
+            className={`mt-4 font-display font-extrabold leading-[1.08] ${
+              isDark ? "text-white" : "text-[#1D1C1C]"
+            }`}
             style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-0.03em" }}
           >
-            Visit Our Dubai Office
+            Visit Our{" "}
+            <span
+              className="font-serif italic"
+              style={{
+                background: "linear-gradient(130deg, #D4AF37 0%, #C8A96A 50%, #A88829 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Dubai Office
+            </span>
           </h2>
           <p
             className={`type-prose-body mx-auto mt-4 max-w-lg ${isDark ? "!text-white/70" : ""}`}
