@@ -4,7 +4,6 @@ import { PageHero } from "@/components/ui/PageHero";
 import { StatCounter } from "@/components/ui/StatCounter";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 import { RevealText } from "@/components/ui/RevealText";
-import { FounderSection } from "@/components/home/FounderSection";
 
 const milestones = [
   { year: "2019", event: "Founded in Dubai with a focus on global structuring." },
@@ -263,8 +262,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <FounderSection />
 
       {/* Team Stats */}
       <section className="relative py-0 overflow-hidden bg-[#1D1C1C]">

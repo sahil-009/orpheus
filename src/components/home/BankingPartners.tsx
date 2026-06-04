@@ -53,7 +53,7 @@ export function BankingPartners() {
                 alt={`${partner.name} logo`}
                 variant="dark"
                 size="md"
-                className="w-full"
+                className="w-full h-full"
               />
             </motion.div>
           ))}

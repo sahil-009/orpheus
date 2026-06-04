@@ -6,7 +6,6 @@ import { BankingPartners } from "@/components/home/BankingPartners";
 import { StatsBand }       from "@/components/home/StatsBand";
 import { WhyChoose }       from "@/components/home/WhyChoose";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
-import { FounderSection }  from "@/components/home/FounderSection";
 import { FaqSection }      from "@/components/home/FaqSection";
 import { HomeContact }     from "@/components/home/HomeContact";
 import { GoogleMapsSection } from "@/components/contact/GoogleMapsSection";
@@ -30,7 +29,6 @@ export default function HomePage() {
       <StatsBand />
       <WhyChoose />
       <ProcessTimeline />
-      <FounderSection />
       <FaqSection />
       <HomeContact />
       <GoogleMapsSection variant="dark" />
