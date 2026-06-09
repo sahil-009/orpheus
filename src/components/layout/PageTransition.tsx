@@ -110,26 +110,26 @@ function LoaderOverlay({ onDone }: { onDone: () => void }) {
         }}
       />
 
-      <span className="loader-meta absolute left-8 top-6 font-body text-xs uppercase tracking-[0.2em] text-white/25">
+      <span className="loader-meta absolute left-4 top-4 sm:left-8 sm:top-6 font-body text-[10px] sm:text-xs uppercase tracking-[0.2em] text-white/25">
         Loading
       </span>
       <span
-        className="loader-meta absolute right-8 top-6 font-body text-xs text-white/25"
+        className="loader-meta absolute right-4 top-4 sm:right-8 sm:top-6 font-body text-[10px] sm:text-xs text-white/25"
         style={{ animationDelay: "0.08s" }}
       >
         ©{new Date().getFullYear()}
       </span>
 
-      <div className="flex select-none flex-col items-center justify-center gap-6 px-6">
+      <div className="flex select-none flex-col items-center justify-center gap-4 sm:gap-6 px-6">
         <p
-          className="loader-eyebrow font-body text-xs uppercase tracking-[0.35em] text-white/35"
+          className="loader-eyebrow font-body text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] text-white/35 text-center"
         >
           Orpheus Financial · Dubai, UAE
         </p>
 
         <div
           className="flex items-end justify-center gap-0 overflow-hidden leading-none"
-          style={{ fontSize: "clamp(64px, 16vw, 200px)", letterSpacing: "-0.02em" }}
+          style={{ fontSize: "clamp(32px, 8.5vw, 110px)", letterSpacing: "-0.04em" }}
         >
           {LETTERS.map((ch, i) => (
             <span
@@ -152,21 +152,21 @@ function LoaderOverlay({ onDone }: { onDone: () => void }) {
         <div
           className="loader-line h-px rounded-full"
           style={{
-            width: "clamp(200px, 28vw, 480px)",
+            width: "clamp(140px, 28vw, 480px)",
             background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent)",
             animationDelay: `${REVEAL_START_MS + 180}ms`,
           }}
         />
 
         <div
-          className="loader-meta flex items-center gap-5"
+          className="loader-meta flex items-center gap-3 sm:gap-5"
           style={{ animationDelay: `${REVEAL_END_MS - 120}ms` }}
         >
-          <span className="font-body text-xs uppercase tracking-[0.2em] text-white/30">
+          <span className="font-body text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/30">
             Structuring Capital
           </span>
           <span className="text-[9px] text-white/15">◆</span>
-          <span className="font-display text-[28px] font-bold tabular-nums text-white/40">
+          <span className="font-display text-xl sm:text-[28px] font-bold tabular-nums text-white/40">
             100
           </span>
         </div>
